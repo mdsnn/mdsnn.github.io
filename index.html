@@ -15,6 +15,87 @@
 <body>
 
   <!-- =========================================
+       PORTAL GUN TRANSITION OVERLAY
+       ========================================= -->
+  <div class="portal-swirl-overlay" id="portal-overlay"></div>
+
+  <!-- =========================================
+       WINDOWS 11 TOAST NOTIFICATION
+       ========================================= -->
+  <div class="win-toast" id="win-toast">
+    <div class="toast-title">Notification</div>
+    <div class="toast-body">Message</div>
+  </div>
+
+  <!-- =========================================
+       WINDOWS 11 CONTEXT MENU (RIGHT CLICK)
+       ========================================= -->
+  <div class="win-context-menu" id="win-context-menu">
+    <div class="context-menu-item" onclick="window.firePortalGun()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 10 10 0 0 0 0-20"/></svg>
+      <span>Fire Portal Gun (Next Dimension)</span>
+    </div>
+    <div class="context-menu-separator"></div>
+    <div class="context-menu-item" data-open-window="win-projects">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+      <span>Open File Explorer</span>
+    </div>
+    <div class="context-menu-item" data-open-window="win-terminal">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#60A5FA" stroke-width="2"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
+      <span>Open Windows PowerShell</span>
+    </div>
+    <div class="context-menu-item" data-open-window="win-skills">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+      <span>Inspect Tech Stack</span>
+    </div>
+    <div class="context-menu-separator"></div>
+    <a class="context-menu-item" href="resume.pdf" target="_blank" download style="text-decoration: none;">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#EF4444" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg>
+      <span>Download Resume.pdf</span>
+    </a>
+    <a class="context-menu-item" href="https://github.com/mdsnn" target="_blank" style="text-decoration: none;">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+      <span>GitHub Profile</span>
+    </a>
+    <div class="context-menu-separator"></div>
+    <div class="context-menu-item" data-open-window="win-about">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#0078D4" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+      <span>About MwikoOS</span>
+    </div>
+  </div>
+
+  <!-- =========================================
+       DESKTOP DEV / SYSTEM TELEMETRY WIDGET
+       ========================================= -->
+  <aside class="desktop-dev-widget">
+    <div class="widget-header">
+      <div class="widget-title">
+        <span class="widget-pulse"></span>
+        <span>DEV TELEMETRY</span>
+      </div>
+      <span id="widget-dim-tag" class="widget-dimension" style="margin: 0;">C-137</span>
+    </div>
+    <div class="widget-status">
+      <strong>Mwiko Sinyangwe</strong><br>
+      <span style="color: #94a3b8; font-size: 11px;">Fullstack Engineer &bull; Zambia (CAT)</span>
+    </div>
+    <div class="widget-dimension">
+      <span>🟢 Open for Opportunities</span>
+    </div>
+    <div class="widget-tags">
+      <span class="widget-tag">Laravel 11</span>
+      <span class="widget-tag">Livewire</span>
+      <span class="widget-tag">Tailwind</span>
+      <span class="widget-tag">Alpine.js</span>
+      <span class="widget-tag">React</span>
+      <span class="widget-tag">MySQL</span>
+    </div>
+    <button class="widget-btn" onclick="window.firePortalGun()">
+      <span>🌀 Fire Portal Gun</span>
+    </button>
+  </aside>
+
+  <!-- =========================================
        WINDOWS DESKTOP WORKSPACE & ICONS
        ========================================= -->
   <main class="desktop">
@@ -42,7 +123,19 @@
       <span class="icon-label">Projects</span>
     </div>
 
-    <!-- Icon 3: Notepad About Me -->
+    <!-- Icon 3: Portal Gun -->
+    <div class="desktop-icon" onclick="window.firePortalGun()">
+      <div class="icon-graphic">
+        <svg viewBox="0 0 48 48" fill="none">
+          <circle cx="24" cy="24" r="18" stroke="#39FF14" stroke-width="4" fill="#0A2F1D"/>
+          <path d="M14 24C14 18.4772 18.4772 14 24 14C29.5228 14 34 18.4772 34 24C34 29.5228 29.5228 34 24 34" stroke="#6EE7B7" stroke-width="3" stroke-linecap="round"/>
+          <circle cx="24" cy="24" r="5" fill="#39FF14"/>
+        </svg>
+      </div>
+      <span class="icon-label">Portal_Gun.exe</span>
+    </div>
+
+    <!-- Icon 4: Notepad About Me -->
     <div class="desktop-icon" data-open-window="win-about">
       <div class="icon-graphic">
         <svg viewBox="0 0 48 48" fill="none">
@@ -57,7 +150,7 @@
       <span class="icon-label">About_Me.txt</span>
     </div>
 
-    <!-- Icon 4: Windows PowerShell -->
+    <!-- Icon 5: Windows PowerShell -->
     <div class="desktop-icon" data-open-window="win-terminal">
       <div class="icon-graphic">
         <svg viewBox="0 0 48 48" fill="none">
@@ -69,7 +162,7 @@
       <span class="icon-label">PowerShell</span>
     </div>
 
-    <!-- Icon 5: Tech Stack -->
+    <!-- Icon 6: Tech Stack -->
     <div class="desktop-icon" data-open-window="win-skills">
       <div class="icon-graphic">
         <svg viewBox="0 0 48 48" fill="none">
@@ -80,7 +173,7 @@
       <span class="icon-label">Stack.json</span>
     </div>
 
-    <!-- Icon 6: Dashboard.exe -->
+    <!-- Icon 7: Dashboard.exe -->
     <div class="desktop-icon" data-open-window="win-dashboard">
       <div class="icon-graphic">
         <svg viewBox="0 0 48 48" fill="none">
@@ -95,7 +188,7 @@
       <span class="icon-label">Dashboard.exe</span>
     </div>
 
-    <!-- Icon 7: PotBELLY.exe -->
+    <!-- Icon 8: PotBELLY.exe -->
     <div class="desktop-icon" data-open-window="win-calc">
       <div class="icon-graphic">
         <svg viewBox="0 0 48 48" fill="none">
@@ -107,14 +200,12 @@
           <circle cx="17" cy="30" r="2.5" fill="#FFFFFF"/>
           <circle cx="24" cy="30" r="2.5" fill="#FFFFFF"/>
           <circle cx="31" cy="30" r="2.5" fill="#FFFFFF"/>
-          <circle cx="17" cy="37" r="2.5" fill="#FFFFFF"/>
-          <rect x="23" y="35" width="10" height="4" rx="2" fill="#FBCFE8"/>
         </svg>
       </div>
       <span class="icon-label">PotBELLY.exe</span>
     </div>
 
-    <!-- Icon 8: Resume PDF -->
+    <!-- Icon 9: Resume PDF -->
     <div class="desktop-icon" data-open-window="win-resume">
       <div class="icon-graphic">
         <svg viewBox="0 0 48 48" fill="none">
@@ -126,8 +217,8 @@
       <span class="icon-label">Resume.pdf</span>
     </div>
 
-    <!-- Icon 9: Recycle Bin -->
-    <div class="desktop-icon" onclick="alert('Recycle Bin: 0 bugs found. All code is running cleanly!')">
+    <!-- Icon 10: Recycle Bin -->
+    <div class="desktop-icon" onclick="alert('Recycle Bin: 0 bugs found. Rick calibrated all servers.')">
       <div class="icon-graphic">
         <svg viewBox="0 0 48 48" fill="none">
           <rect x="12" y="14" width="24" height="28" rx="3" fill="#9CA3AF"/>
@@ -170,6 +261,13 @@
         <span>Projects</span>
       </div>
 
+      <div class="start-pinned-item" onclick="window.firePortalGun()">
+        <div class="icon-graphic" style="width:36px; height:36px;">
+          <svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="18" stroke="#39FF14" stroke-width="4" fill="#0A2F1D"/><circle cx="24" cy="24" r="5" fill="#39FF14"/></svg>
+        </div>
+        <span>Portal Gun</span>
+      </div>
+
       <div class="start-pinned-item" data-open-window="win-skills">
         <div class="icon-graphic" style="width:36px; height:36px;">
           <svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="20" fill="#10B981"/><polygon points="26 6 12 26 24 26 22 42 36 22 24 22 26 6" fill="#FFFFFF"/></svg>
@@ -189,13 +287,6 @@
           <svg viewBox="0 0 48 48" fill="none"><rect x="4" y="6" width="40" height="36" rx="4" fill="#3B82F6"/></svg>
         </div>
         <span>Dashboard</span>
-      </div>
-
-      <div class="start-pinned-item" data-open-window="win-calc">
-        <div class="icon-graphic" style="width:36px; height:36px;">
-          <svg viewBox="0 0 48 48" fill="none"><rect x="8" y="4" width="32" height="40" rx="5" fill="#EC4899"/></svg>
-        </div>
-        <span>PotBELLY</span>
       </div>
 
       <div class="start-pinned-item" data-open-window="win-resume">
@@ -471,10 +562,10 @@
     </div>
     <div class="window-body powershell-body">
       <div class="powershell-output" id="powershell-output">
-        <div class="ps-line">Windows PowerShell</div>
+        <div class="ps-line">Windows PowerShell [Version 10.0.22621.1]</div>
         <div class="ps-line">Copyright (C) Microsoft Corporation. All rights reserved.</div>
         <div class="ps-line">&nbsp;</div>
-        <div class="ps-line">Type <span class="ps-highlight">help</span> or <span class="ps-highlight">dir</span> to view available commands.</div>
+        <div class="ps-line">Type <span class="ps-highlight">help</span>, <span class="ps-highlight">portal</span>, or <span class="ps-highlight">dir</span> to view available commands.</div>
       </div>
       <div class="powershell-input-row">
         <span class="ps-prompt">PS C:\Users\Mwiko&gt;</span>
@@ -490,7 +581,7 @@
     <div class="window-header">
       <div class="window-title">
         <svg viewBox="0 0 24 24" fill="#10B981"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-        <span>Stack.json &bull; Technical Proficiencies</span>
+        <span>Stack.json &bull; Technical Proficiencies (Click any tag to find projects)</span>
       </div>
       <div class="win-controls">
         <button class="win-btn win-minimize"><svg viewBox="0 0 10 10"><line x1="1" y1="5" x2="9" y2="5" stroke="currentColor" stroke-width="1.2"/></svg></button>
@@ -680,6 +771,11 @@
           <path d="M2.5 13.5H11V22H2.5V13.5Z"/>
           <path d="M13 13.5H21.5V22H13V13.5Z"/>
         </svg>
+      </button>
+
+      <!-- Portal Gun Taskbar Action -->
+      <button class="taskbar-btn" onclick="window.firePortalGun()" title="Fire Portal Gun (Change Dimension)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#39FF14" stroke-width="2.2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4" fill="#39FF14"/></svg>
       </button>
 
       <!-- Taskbar App 1: This PC / About -->
