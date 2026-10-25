@@ -3,12 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Mwiko Sinyangwe | Fullstack Engineer (Windows Edition)</title>
+  <title>Mwiko Sinyangwe | Fullstack Engineer &bull; Windows Edition</title>
   
+  <!-- SEO & Social Open Graph Tags -->
+  <meta name="description" content="Mwiko Sinyangwe is a Fullstack Software Engineer specializing in Laravel, React, and the TALL stack. Explore projects, engineering blogs, and system architecture in an interactive desktop OS.">
+  <meta name="author" content="Mwiko Sinyangwe">
+  <meta property="og:title" content="Mwiko Sinyangwe | Fullstack Engineer (MwikoOS 11)">
+  <meta property="og:description" content="Interactive Windows 11 portfolio featuring Laravel & React production apps, engineering blogs, and interdimensional portal jumps.">
+  <meta property="og:image" content="https://mdsnn.github.io/images/citadel_wallpaper.jpg">
+  <meta property="og:url" content="https://mdsnn.github.io">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@andmds__">
+  <meta name="twitter:creator" content="@andmds__">
+  <meta name="twitter:title" content="Mwiko Sinyangwe | Fullstack Engineer">
+  <meta name="twitter:description" content="Interactive Windows 11 portfolio featuring Laravel & React production apps, engineering blogs, and interdimensional portal jumps.">
+  <meta name="twitter:image" content="https://mdsnn.github.io/images/citadel_wallpaper.jpg">
+
   <!-- Windows Fluent Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="os.css">
 </head>
@@ -36,6 +51,10 @@
       <span>Fire Portal Gun (Next Dimension)</span>
     </div>
     <div class="context-menu-separator"></div>
+    <div class="context-menu-item" data-open-window="win-blog">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#A855F7" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+      <span>Open Engineering Blog</span>
+    </div>
     <div class="context-menu-item" data-open-window="win-projects">
       <svg viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
       <span>Open File Explorer</span>
@@ -57,11 +76,6 @@
       <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
       <span>GitHub Profile</span>
     </a>
-    <div class="context-menu-separator"></div>
-    <div class="context-menu-item" data-open-window="win-about">
-      <svg viewBox="0 0 24 24" fill="none" stroke="#0078D4" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
-      <span>About MwikoOS</span>
-    </div>
   </div>
 
   <!-- =========================================
@@ -123,7 +137,22 @@
       <span class="icon-label">Projects</span>
     </div>
 
-    <!-- Icon 3: Portal Gun -->
+    <!-- Icon 3: Engineering Blog -->
+    <div class="desktop-icon" data-open-window="win-blog">
+      <div class="icon-graphic">
+        <svg viewBox="0 0 48 48" fill="none">
+          <rect x="8" y="4" width="32" height="40" rx="4" fill="#A855F7"/>
+          <rect x="12" y="8" width="24" height="32" rx="2" fill="#2E1065"/>
+          <line x1="16" y1="14" x2="28" y2="14" stroke="#C084FC" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="16" y1="20" x2="32" y2="20" stroke="#E9D5FF" stroke-width="2" stroke-linecap="round"/>
+          <line x1="16" y1="26" x2="32" y2="26" stroke="#E9D5FF" stroke-width="2" stroke-linecap="round"/>
+          <line x1="16" y1="32" x2="24" y2="32" stroke="#E9D5FF" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <span class="icon-label">Blog.exe</span>
+    </div>
+
+    <!-- Icon 4: Portal Gun -->
     <div class="desktop-icon" onclick="window.firePortalGun()">
       <div class="icon-graphic">
         <svg viewBox="0 0 48 48" fill="none">
@@ -135,7 +164,7 @@
       <span class="icon-label">Portal_Gun.exe</span>
     </div>
 
-    <!-- Icon 4: Notepad About Me -->
+    <!-- Icon 5: Notepad About Me -->
     <div class="desktop-icon" data-open-window="win-about">
       <div class="icon-graphic">
         <svg viewBox="0 0 48 48" fill="none">
@@ -143,14 +172,12 @@
           <rect x="12" y="8" width="24" height="32" rx="2" fill="#FFFFFF"/>
           <line x1="16" y1="14" x2="28" y2="14" stroke="#60A5FA" stroke-width="2.5" stroke-linecap="round"/>
           <line x1="16" y1="20" x2="32" y2="20" stroke="#93C5FD" stroke-width="2" stroke-linecap="round"/>
-          <line x1="16" y1="26" x2="32" y2="26" stroke="#93C5FD" stroke-width="2" stroke-linecap="round"/>
-          <line x1="16" y1="32" x2="26" y2="32" stroke="#93C5FD" stroke-width="2" stroke-linecap="round"/>
         </svg>
       </div>
       <span class="icon-label">About_Me.txt</span>
     </div>
 
-    <!-- Icon 5: Windows PowerShell -->
+    <!-- Icon 6: Windows PowerShell -->
     <div class="desktop-icon" data-open-window="win-terminal">
       <div class="icon-graphic">
         <svg viewBox="0 0 48 48" fill="none">
@@ -162,7 +189,7 @@
       <span class="icon-label">PowerShell</span>
     </div>
 
-    <!-- Icon 6: Tech Stack -->
+    <!-- Icon 7: Tech Stack -->
     <div class="desktop-icon" data-open-window="win-skills">
       <div class="icon-graphic">
         <svg viewBox="0 0 48 48" fill="none">
@@ -173,7 +200,7 @@
       <span class="icon-label">Stack.json</span>
     </div>
 
-    <!-- Icon 7: Dashboard.exe -->
+    <!-- Icon 8: Dashboard.exe -->
     <div class="desktop-icon" data-open-window="win-dashboard">
       <div class="icon-graphic">
         <svg viewBox="0 0 48 48" fill="none">
@@ -182,13 +209,12 @@
           <rect x="12" y="24" width="5" height="10" rx="1" fill="#38BDF8"/>
           <rect x="19" y="18" width="5" height="16" rx="1" fill="#818CF8"/>
           <rect x="26" y="14" width="5" height="20" rx="1" fill="#34D399"/>
-          <rect x="33" y="20" width="5" height="14" rx="1" fill="#F472B6"/>
         </svg>
       </div>
       <span class="icon-label">Dashboard.exe</span>
     </div>
 
-    <!-- Icon 8: PotBELLY.exe -->
+    <!-- Icon 9: PotBELLY.exe -->
     <div class="desktop-icon" data-open-window="win-calc">
       <div class="icon-graphic">
         <svg viewBox="0 0 48 48" fill="none">
@@ -196,16 +222,12 @@
           <rect x="13" y="9" width="22" height="8" rx="2" fill="#831843"/>
           <circle cx="17" cy="23" r="2.5" fill="#FFFFFF"/>
           <circle cx="24" cy="23" r="2.5" fill="#FFFFFF"/>
-          <circle cx="31" cy="23" r="2.5" fill="#FFFFFF"/>
-          <circle cx="17" cy="30" r="2.5" fill="#FFFFFF"/>
-          <circle cx="24" cy="30" r="2.5" fill="#FFFFFF"/>
-          <circle cx="31" cy="30" r="2.5" fill="#FFFFFF"/>
         </svg>
       </div>
       <span class="icon-label">PotBELLY.exe</span>
     </div>
 
-    <!-- Icon 9: Resume PDF -->
+    <!-- Icon 10: Resume PDF -->
     <div class="desktop-icon" data-open-window="win-resume">
       <div class="icon-graphic">
         <svg viewBox="0 0 48 48" fill="none">
@@ -216,20 +238,6 @@
       </div>
       <span class="icon-label">Resume.pdf</span>
     </div>
-
-    <!-- Icon 10: Recycle Bin -->
-    <div class="desktop-icon" onclick="alert('Recycle Bin: 0 bugs found. Rick calibrated all servers.')">
-      <div class="icon-graphic">
-        <svg viewBox="0 0 48 48" fill="none">
-          <rect x="12" y="14" width="24" height="28" rx="3" fill="#9CA3AF"/>
-          <rect x="8" y="10" width="32" height="4" rx="2" fill="#6B7280"/>
-          <line x1="18" y1="20" x2="18" y2="34" stroke="#4B5563" stroke-width="2.5" stroke-linecap="round"/>
-          <line x1="24" y1="20" x2="24" y2="34" stroke="#4B5563" stroke-width="2.5" stroke-linecap="round"/>
-          <line x1="30" y1="20" x2="30" y2="34" stroke="#4B5563" stroke-width="2.5" stroke-linecap="round"/>
-        </svg>
-      </div>
-      <span class="icon-label">Recycle Bin</span>
-    </div>
   </main>
 
   <!-- =========================================
@@ -238,7 +246,7 @@
   <div class="start-menu" id="win-start-menu">
     <div class="start-search-bar">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-      <input type="text" placeholder="Type here to search apps and files...">
+      <input type="text" placeholder="Type here to search apps, articles, or projects...">
     </div>
 
     <div class="start-section-header">
@@ -252,6 +260,13 @@
           <svg viewBox="0 0 48 48" fill="none"><rect x="4" y="6" width="40" height="26" rx="3" fill="#0078D4"/><rect x="7" y="9" width="34" height="20" rx="1" fill="#202020"/></svg>
         </div>
         <span>About Me</span>
+      </div>
+
+      <div class="start-pinned-item" data-open-window="win-blog">
+        <div class="icon-graphic" style="width:36px; height:36px;">
+          <svg viewBox="0 0 48 48" fill="none"><rect x="8" y="4" width="32" height="40" rx="4" fill="#A855F7"/><rect x="12" y="8" width="24" height="32" rx="2" fill="#2E1065"/><line x1="16" y1="14" x2="28" y2="14" stroke="#C084FC" stroke-width="2.5"/></svg>
+        </div>
+        <span>Dev Blog</span>
       </div>
 
       <div class="start-pinned-item" data-open-window="win-projects">
@@ -287,13 +302,6 @@
           <svg viewBox="0 0 48 48" fill="none"><rect x="4" y="6" width="40" height="36" rx="4" fill="#3B82F6"/></svg>
         </div>
         <span>Dashboard</span>
-      </div>
-
-      <div class="start-pinned-item" data-open-window="win-resume">
-        <div class="icon-graphic" style="width:36px; height:36px;">
-          <svg viewBox="0 0 48 48" fill="none"><rect x="8" y="4" width="32" height="40" rx="3" fill="#EF4444"/><rect x="12" y="8" width="24" height="32" rx="2" fill="#FFFFFF"/></svg>
-        </div>
-        <span>Resume PDF</span>
       </div>
 
       <div class="start-pinned-item" data-open-window="win-contact">
@@ -389,18 +397,61 @@
         <button class="btn-primary" data-open-window="win-projects">
           <span>Explore Projects</span>
         </button>
-        <button class="btn-secondary" data-open-window="win-contact">
-          <span>Send Message</span>
+        <button class="btn-secondary" data-open-window="win-blog">
+          <span>Read Engineering Blog</span>
         </button>
-        <a class="btn-secondary" href="resume.pdf" target="_blank">
-          <span>Resume PDF</span>
-        </a>
+        <button class="btn-secondary" data-open-window="win-contact">
+          <span>Contact Mwiko</span>
+        </button>
       </div>
     </div>
   </div>
 
   <!-- =========================================
-       WINDOW 2: PROJECTS (FILE EXPLORER)
+       WINDOW 2: ENGINEERING BLOG (BLOG.EXE)
+       ========================================= -->
+  <div class="os-window hidden" id="win-blog">
+    <div class="window-header">
+      <div class="window-title">
+        <svg viewBox="0 0 24 24" fill="#A855F7"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+        <span>Blog.exe &bull; Mwiko Sinyangwe — Technical Articles &amp; Insights</span>
+      </div>
+      <div class="win-controls">
+        <button class="win-btn win-minimize"><svg viewBox="0 0 10 10"><line x1="1" y1="5" x2="9" y2="5" stroke="currentColor" stroke-width="1.2"/></svg></button>
+        <button class="win-btn win-maximize"><svg viewBox="0 0 10 10"><rect x="1" y="1" width="8" height="8" fill="none" stroke="currentColor" stroke-width="1.2"/></svg></button>
+        <button class="win-btn win-close"><svg viewBox="0 0 10 10"><path d="M1,1 L9,9 M9,1 L1,9" stroke="currentColor" stroke-width="1.2"/></svg></button>
+      </div>
+    </div>
+    <div class="window-body" style="padding: 0; overflow: hidden;">
+      <div class="blog-layout">
+        <!-- Left Article Index -->
+        <div class="blog-sidebar" id="blog-list"></div>
+        <!-- Right Article Reader -->
+        <div class="blog-reader-pane" id="blog-reader"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================
+       WINDOW 3: IN-OS CASE STUDY READER (READER.EXE)
+       ========================================= -->
+  <div class="os-window hidden" id="win-reader">
+    <div class="window-header">
+      <div class="window-title">
+        <svg viewBox="0 0 24 24" fill="#10B981"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        <span>Reader.exe &bull; Project Architecture Deep-Dive</span>
+      </div>
+      <div class="win-controls">
+        <button class="win-btn win-minimize"><svg viewBox="0 0 10 10"><line x1="1" y1="5" x2="9" y2="5" stroke="currentColor" stroke-width="1.2"/></svg></button>
+        <button class="win-btn win-maximize"><svg viewBox="0 0 10 10"><rect x="1" y="1" width="8" height="8" fill="none" stroke="currentColor" stroke-width="1.2"/></svg></button>
+        <button class="win-btn win-close"><svg viewBox="0 0 10 10"><path d="M1,1 L9,9 M9,1 L1,9" stroke="currentColor" stroke-width="1.2"/></svg></button>
+      </div>
+    </div>
+    <div class="window-body" id="case-study-body"></div>
+  </div>
+
+  <!-- =========================================
+       WINDOW 4: PROJECTS (FILE EXPLORER)
        ========================================= -->
   <div class="os-window hidden" id="win-projects">
     <div class="window-header">
@@ -436,7 +487,7 @@
               <span class="project-tag">Tailwind</span>
             </div>
             <div class="project-links">
-              <a class="project-btn project-btn-primary" href="postJob.html">Details &amp; Story</a>
+              <button class="project-btn project-btn-primary" onclick="window.openCaseStudy('laragigs')">Case Study</button>
               <a class="project-btn project-btn-outline" href="https://github.com/mdsnn" target="_blank">Repository</a>
             </div>
           </div>
@@ -476,7 +527,7 @@
               <span class="project-tag">E-Commerce</span>
             </div>
             <div class="project-links">
-              <a class="project-btn project-btn-primary" href="postEcom.html">Case Study</a>
+              <button class="project-btn project-btn-primary" onclick="window.openCaseStudy('store')">Case Study</button>
               <a class="project-btn project-btn-outline" href="https://github.com/mdsnn" target="_blank">Repository</a>
             </div>
           </div>
@@ -546,7 +597,7 @@
   </div>
 
   <!-- =========================================
-       WINDOW 3: WINDOWS POWERSHELL
+       WINDOW 5: WINDOWS POWERSHELL
        ========================================= -->
   <div class="os-window hidden" id="win-terminal">
     <div class="window-header" style="background: #012456; border-bottom: 1px solid rgba(255, 255, 255, 0.1);">
@@ -565,7 +616,7 @@
         <div class="ps-line">Windows PowerShell [Version 10.0.22621.1]</div>
         <div class="ps-line">Copyright (C) Microsoft Corporation. All rights reserved.</div>
         <div class="ps-line">&nbsp;</div>
-        <div class="ps-line">Type <span class="ps-highlight">help</span>, <span class="ps-highlight">portal</span>, or <span class="ps-highlight">dir</span> to view available commands.</div>
+        <div class="ps-line">Type <span class="ps-highlight">help</span>, <span class="ps-highlight">blog</span>, <span class="ps-highlight">portal</span>, or <span class="ps-highlight">dir</span> to view available commands.</div>
       </div>
       <div class="powershell-input-row">
         <span class="ps-prompt">PS C:\Users\Mwiko&gt;</span>
@@ -575,7 +626,7 @@
   </div>
 
   <!-- =========================================
-       WINDOW 4: TECH STACK
+       WINDOW 6: TECH STACK
        ========================================= -->
   <div class="os-window hidden" id="win-skills">
     <div class="window-header">
@@ -642,7 +693,7 @@
   </div>
 
   <!-- =========================================
-       WINDOW 5: DASHBOARD (LIVE IFRAME)
+       WINDOW 7: DASHBOARD (LIVE IFRAME)
        ========================================= -->
   <div class="os-window hidden" id="win-dashboard">
     <div class="window-header">
@@ -662,7 +713,7 @@
   </div>
 
   <!-- =========================================
-       WINDOW 6: POTBELLY (LIVE IFRAME)
+       WINDOW 8: POTBELLY (LIVE IFRAME)
        ========================================= -->
   <div class="os-window hidden" id="win-calc">
     <div class="window-header">
@@ -682,7 +733,7 @@
   </div>
 
   <!-- =========================================
-       WINDOW 7: RESUME APP
+       WINDOW 9: RESUME APP
        ========================================= -->
   <div class="os-window hidden" id="win-resume">
     <div class="window-header">
@@ -714,13 +765,13 @@
   </div>
 
   <!-- =========================================
-       WINDOW 8: CONTACT / MAIL
+       WINDOW 10: CONTACT / MAIL
        ========================================= -->
   <div class="os-window hidden" id="win-contact">
     <div class="window-header">
       <div class="window-title">
         <svg viewBox="0 0 24 24" fill="#6366F1"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/></svg>
-        <span>Windows Mail &bull; New Message</span>
+        <span>Windows Mail &bull; Direct Message to Mwiko</span>
       </div>
       <div class="win-controls">
         <button class="win-btn win-minimize"><svg viewBox="0 0 10 10"><line x1="1" y1="5" x2="9" y2="5" stroke="currentColor" stroke-width="1.2"/></svg></button>
@@ -736,19 +787,19 @@
         </div>
         <div class="form-group">
           <label class="form-label">Your Name</label>
-          <input class="form-input" type="text" placeholder="Sarah or Alex" required>
+          <input class="form-input" type="text" name="name" placeholder="Sarah or Alex" required>
         </div>
         <div class="form-group">
           <label class="form-label">Your Email</label>
-          <input class="form-input" type="email" placeholder="name@company.com" required>
+          <input class="form-input" type="email" name="email" placeholder="name@company.com" required>
         </div>
         <div class="form-group">
           <label class="form-label">Subject</label>
-          <input class="form-input" type="text" placeholder="Fullstack Collaboration / Project Inquiry" required>
+          <input class="form-input" type="text" name="subject" placeholder="Fullstack Collaboration / Project Inquiry" required>
         </div>
         <div class="form-group">
           <label class="form-label">Message</label>
-          <textarea class="form-textarea" placeholder="Hi Mwiko, I'd like to talk about..." required></textarea>
+          <textarea class="form-textarea" name="message" placeholder="Hi Mwiko, I'd like to talk about..." required></textarea>
         </div>
         <div class="form-status" id="form-status"></div>
         <button type="submit" class="btn-primary" style="align-self: flex-start;">
@@ -784,27 +835,27 @@
         <span class="taskbar-indicator"></span>
       </button>
 
-      <!-- Taskbar App 2: File Explorer -->
+      <!-- Taskbar App 2: Engineering Blog -->
+      <button class="taskbar-btn" data-app="win-blog" data-open-window="win-blog" title="Engineering Blog (Blog.exe)">
+        <svg viewBox="0 0 24 24" fill="#A855F7"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+        <span class="taskbar-indicator"></span>
+      </button>
+
+      <!-- Taskbar App 3: File Explorer -->
       <button class="taskbar-btn" data-app="win-projects" data-open-window="win-projects" title="File Explorer (Projects)">
         <svg viewBox="0 0 24 24" fill="#F59E0B"><path d="M2 6a2 2 0 0 1 2-2h5l2 2h9a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6z"/></svg>
         <span class="taskbar-indicator"></span>
       </button>
 
-      <!-- Taskbar App 3: Windows PowerShell -->
+      <!-- Taskbar App 4: Windows PowerShell -->
       <button class="taskbar-btn" data-app="win-terminal" data-open-window="win-terminal" title="Windows PowerShell">
         <svg viewBox="0 0 24 24" fill="#60A5FA"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="8 10 12 14 8 18"/></svg>
         <span class="taskbar-indicator"></span>
       </button>
 
-      <!-- Taskbar App 4: Stack -->
+      <!-- Taskbar App 5: Stack -->
       <button class="taskbar-btn" data-app="win-skills" data-open-window="win-skills" title="Tech Stack">
         <svg viewBox="0 0 24 24" fill="#10B981"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-        <span class="taskbar-indicator"></span>
-      </button>
-
-      <!-- Taskbar App 5: Dashboard -->
-      <button class="taskbar-btn" data-app="win-dashboard" data-open-window="win-dashboard" title="Dashboard">
-        <svg viewBox="0 0 24 24" fill="#3B82F6"><rect x="3" y="3" width="18" height="18" rx="2"/></svg>
         <span class="taskbar-indicator"></span>
       </button>
 
@@ -828,12 +879,14 @@
         <span>Open for Hire</span>
       </div>
 
-      <div class="tray-item" title="Network: Connected">
+      <!-- Network Icon -->
+      <div class="tray-item" title="Network: Connected (Online)">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12.55a11 11 0 0 1 14.08 0"></path><path d="M1.42 9a16 16 0 0 1 21.16 0"></path><path d="M8.53 16.11a6 6 0 0 1 6.95 0"></path><line x1="12" y1="20" x2="12.01" y2="20"></line></svg>
       </div>
 
-      <div class="tray-item" title="Audio: 100%">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
+      <!-- Synthesized Audio Toggle Icon -->
+      <div class="tray-item" id="tray-sound-btn" title="Toggle System &amp; Portal Audio FX">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path><path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path></svg>
       </div>
 
       <!-- Windows Date & Time (Stacked) -->
@@ -847,6 +900,7 @@
     </div>
   </footer>
 
+  <script src="blogs.js"></script>
   <script src="os.js"></script>
 </body>
 </html>
