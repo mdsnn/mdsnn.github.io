@@ -819,47 +819,46 @@ Ethernet adapter vEthernet (MwikoOS):
         submitBtn.disabled = true;
       }
 
-      // Try sending via Web3Forms free endpoint or Formspree
+      // Send via FormSubmit direct AJAX endpoint to mwikosinyangwe@gmail.com
       try {
-        const response = await fetch('https://api.web3forms.com/submit', {
+        const response = await fetch('https://formsubmit.co/ajax/mwikosinyangwe@gmail.com', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json'
           },
           body: JSON.stringify({
-            access_key: 'YOUR_ACCESS_KEY_HERE', // User can add their free key anytime
             name: name,
             email: email,
-            subject: `[MwikoOS Contact] ${subject}`,
+            _subject: `[Portfolio Inquiry] ${subject}`,
             message: message,
-            from_name: 'MwikoOS Portfolio'
+            _template: 'table'
           })
         });
 
         const resData = await response.json();
-        if (resData.success) {
+        if (response.ok && (resData.success === 'true' || resData.success === true || resData.message)) {
           if (formStatus) {
             formStatus.className = 'form-status success';
-            formStatus.textContent = '✓ Message delivered directly to Mwiko!';
+            formStatus.textContent = '✓ Message delivered directly to Mwiko\'s inbox!';
           }
           contactForm.reset();
         } else {
-          throw new Error('Fallback to direct dispatch');
+          throw new Error('Fallback dispatch');
         }
       } catch (err) {
-        // Fallback: Opens user's default email client
-        window.location.href = `mailto:contact@mwiko.dev?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent("Name: " + name + "\nEmail: " + email + "\n\n" + message)}`;
+        // Fallback: Opens user's default email client prefilled to Mwiko
+        window.location.href = `mailto:mwikosinyangwe@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent("Name: " + name + "\nEmail: " + email + "\n\n" + message)}`;
         if (formStatus) {
           formStatus.className = 'form-status success';
-          formStatus.textContent = '✓ Opening your mail client to send message to Mwiko...';
+          formStatus.textContent = '✓ Opening email client to send message to Mwiko...';
         }
       } finally {
         if (submitBtn) {
           submitBtn.textContent = 'Sent Successfully';
           submitBtn.disabled = false;
         }
-        showToast('Message Dispatched', 'Inquiry processed. Mwiko will respond promptly.');
+        showToast('Message Dispatched', 'Inquiry processed for mwikosinyangwe@gmail.com');
       }
     });
   }
