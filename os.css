@@ -1553,4 +1553,381 @@ html, body {
   margin-top: 3px;
 }
 
+/* =========================================
+   ADOBE ACROBAT READER DC SIMULATION
+   ========================================= */
+.acrobat-window {
+  display: flex;
+  flex-direction: column;
+  background: #323639;
+  height: 100%;
+  width: 100%;
+  color: #d1d5db;
+  font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+  overflow: hidden;
+}
+
+/* Acrobat Menu Bar */
+.acrobat-menubar {
+  height: 28px;
+  background: #202224;
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  gap: 14px;
+  font-size: 11.5px;
+  color: #cccccc;
+  border-bottom: 1px solid #18191a;
+  user-select: none;
+}
+
+.acrobat-menu-item {
+  cursor: pointer;
+  padding: 2px 6px;
+  border-radius: 3px;
+  transition: background 0.12s;
+}
+
+.acrobat-menu-item:hover {
+  background: #3e4246;
+  color: #fff;
+}
+
+/* Acrobat Tab Strip */
+.acrobat-tabs {
+  height: 34px;
+  background: #282a2d;
+  display: flex;
+  align-items: flex-end;
+  padding: 0 8px;
+  gap: 4px;
+  border-bottom: 1px solid #1a1c1e;
+  overflow-x: auto;
+}
+
+.acrobat-tab {
+  height: 30px;
+  background: #1e2022;
+  border-radius: 6px 6px 0 0;
+  padding: 0 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: #9ca3af;
+  cursor: pointer;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: none;
+  transition: all 0.15s;
+  white-space: nowrap;
+}
+
+.acrobat-tab.active {
+  background: #323639;
+  color: #ffffff;
+  font-weight: 500;
+  border-top: 2px solid #ed1c24;
+}
+
+.acrobat-tab:hover:not(.active) {
+  background: #2d3033;
+  color: #e5e7eb;
+}
+
+.acrobat-tab svg {
+  width: 14px;
+  height: 14px;
+  color: #ed1c24;
+}
+
+/* Acrobat Action Toolbar */
+.acrobat-toolbar {
+  height: 40px;
+  background: #2b2e31;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 12px;
+  border-bottom: 1px solid #1a1c1e;
+  font-size: 12px;
+}
+
+.acrobat-tool-group {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.acrobat-tool-btn {
+  height: 28px;
+  padding: 0 8px;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  color: #cccccc;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: 12px;
+  transition: all 0.12s;
+}
+
+.acrobat-tool-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+.acrobat-tool-btn.active {
+  background: #ed1c24;
+  color: #fff;
+}
+
+.acrobat-divider {
+  width: 1px;
+  height: 18px;
+  background: rgba(255, 255, 255, 0.15);
+  margin: 0 4px;
+}
+
+.acrobat-page-stepper {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  color: #cccccc;
+}
+
+.acrobat-page-input {
+  width: 32px;
+  height: 24px;
+  background: #1e2022;
+  border: 1px solid #4a4e52;
+  border-radius: 3px;
+  color: #fff;
+  text-align: center;
+  font-size: 11.5px;
+  font-family: var(--font-mono);
+}
+
+/* Acrobat Main Workspace (Sidebar + Canvas) */
+.acrobat-workspace {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+  position: relative;
+}
+
+.acrobat-sidebar-strip {
+  width: 44px;
+  background: #202224;
+  border-right: 1px solid #18191a;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 8px;
+  gap: 8px;
+}
+
+.acrobat-side-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #9ca3af;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.acrobat-side-icon:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+.acrobat-side-icon.active {
+  background: #323639;
+  color: #ed1c24;
+}
+
+/* Left Thumbnail Flyout Pane */
+.acrobat-thumb-pane {
+  width: 140px;
+  background: #282a2d;
+  border-right: 1px solid #1e2022;
+  display: flex;
+  flex-direction: column;
+  padding: 12px 8px;
+  gap: 12px;
+  overflow-y: auto;
+}
+
+.thumb-preview-box {
+  width: 100%;
+  height: 150px;
+  background: #fff;
+  border: 2px solid transparent;
+  border-radius: 3px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  padding: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  transition: all 0.15s;
+}
+
+.thumb-preview-box.active {
+  border-color: #ed1c24;
+}
+
+.thumb-line {
+  height: 4px;
+  background: #e2e8f0;
+  border-radius: 2px;
+}
+
+.thumb-page-num {
+  text-align: center;
+  font-size: 11px;
+  color: #9ca3af;
+  margin-top: 4px;
+}
+
+/* Document Canvas View */
+.acrobat-canvas {
+  flex: 1;
+  background: #525659; /* Official Adobe canvas grey */
+  overflow-y: auto;
+  overflow-x: auto;
+  padding: 30px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+/* The White PDF Sheet */
+.pdf-page-sheet {
+  width: 680px;
+  min-height: 940px;
+  background: #ffffff;
+  color: #1a1a1a;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(0, 0, 0, 0.1);
+  padding: 48px 54px;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  line-height: 1.6;
+  border-radius: 2px;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  user-select: text;
+  -webkit-user-select: text;
+}
+
+/* PDF Document Header */
+.pdf-doc-header {
+  border-bottom: 2px solid #ed1c24;
+  padding-bottom: 14px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.pdf-doc-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #111827;
+  letter-spacing: -0.3px;
+}
+
+.pdf-doc-subtitle {
+  font-size: 13.5px;
+  color: #ed1c24;
+  font-weight: 600;
+  margin-top: 2px;
+}
+
+.pdf-doc-contact {
+  font-size: 11px;
+  color: #4b5563;
+  text-align: right;
+  line-height: 1.4;
+}
+
+.pdf-section-title {
+  font-size: 13.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: #111827;
+  border-bottom: 1px solid #e5e7eb;
+  padding-bottom: 4px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.pdf-exp-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-top: 10px;
+}
+
+.pdf-exp-role {
+  font-size: 13px;
+  font-weight: 700;
+  color: #1f2937;
+}
+
+.pdf-exp-company {
+  font-size: 12px;
+  color: #4b5563;
+  font-weight: 500;
+}
+
+.pdf-exp-date {
+  font-size: 11px;
+  color: #6b7280;
+  font-family: var(--font-mono);
+}
+
+.pdf-exp-desc {
+  font-size: 12px;
+  color: #374151;
+  margin-top: 4px;
+  margin-bottom: 8px;
+  line-height: 1.55;
+}
+
+.pdf-skill-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 6px;
+}
+
+.pdf-chip {
+  font-size: 10.5px;
+  background: #f3f4f6;
+  border: 1px solid #e5e7eb;
+  padding: 2px 7px;
+  border-radius: 4px;
+  color: #1f2937;
+  font-weight: 500;
+}
+
+/* Yellow Highlighter simulation */
+.pdf-page-sheet.highlighter-mode {
+  cursor: crosshair;
+}
+
+.pdf-page-sheet ::selection {
+  background: #ffeb3b;
+  color: #000;
+}
+
+
 
