@@ -733,13 +733,16 @@
   </div>
 
   <!-- =========================================
-       WINDOW 9: RESUME APP
+       WINDOW 9: ADOBE ACROBAT READER DC SIMULATION
        ========================================= -->
-  <div class="os-window hidden" id="win-resume">
-    <div class="window-header">
-      <div class="window-title">
-        <svg viewBox="0 0 24 24" fill="#EF4444"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg>
-        <span>Adobe Acrobat &bull; Resume.pdf</span>
+  <div class="os-window hidden" id="win-resume" style="min-width: 740px; min-height: 580px;">
+    <!-- Windows Window Header (Acrobat Chrome) -->
+    <div class="window-header" style="background: #202224; border-bottom: 1px solid #141517;">
+      <div class="window-title" style="color: #fff;">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="#ED1C24">
+          <path d="M14.07 3h4.43L12 14.86 5.5 3h4.43l2.07 4.14L14.07 3zm5.43 14.86c-1.36 0-3.64-.64-6.36-2.14-3.57 2.14-6.57 2.14-7.64 2.14-2.57 0-3.5-1.57-3.5-2.86 0-2.36 2.71-3.64 6.71-3.64.43 0 .86.07 1.29.14l1.86-3.86C10 5.29 8.21 3 6.07 3H3.93C1.79 3 0 5.29 0 7.64c0 3.79 4.29 8.36 10.71 8.36 1.43 0 2.86-.21 4.14-.64 2.5 1.57 4.5 1.71 5.64 1.71 1.79 0 3.5-.86 3.5-2.64 0-2.14-2.07-2.57-4.5-2.57z"/>
+        </svg>
+        <span id="acrobat-window-title">Adobe Acrobat Reader (64-bit) &bull; Resume_Mwiko_Sinyangwe.pdf</span>
       </div>
       <div class="win-controls">
         <button class="win-btn win-minimize"><svg viewBox="0 0 10 10"><line x1="1" y1="5" x2="9" y2="5" stroke="currentColor" stroke-width="1.2"/></svg></button>
@@ -747,18 +750,129 @@
         <button class="win-btn win-close"><svg viewBox="0 0 10 10"><path d="M1,1 L9,9 M9,1 L1,9" stroke="currentColor" stroke-width="1.2"/></svg></button>
       </div>
     </div>
-    <div class="window-body">
-      <div class="bio-card" style="text-align: center; padding: 28px;">
-        <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#EF4444" stroke-width="2" style="margin-bottom: 12px;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-        <h2 style="font-size: 18px; color: #fff; margin-bottom: 6px;">Mwiko Sinyangwe &bull; Fullstack Resume</h2>
-        <p style="margin-bottom: 20px;">Curriculum Vitae documenting engineering achievements, technical leadership, and fullstack proficiencies.</p>
-        <div style="display: flex; justify-content: center; gap: 10px;">
-          <a class="btn-primary" href="resume.pdf" target="_blank" download>
-            <span>Download PDF</span>
-          </a>
-          <a class="btn-secondary" href="resume.pdf" target="_blank">
-            <span>View PDF</span>
-          </a>
+
+    <!-- Acrobat Interface Container -->
+    <div class="window-body" style="padding: 0; overflow: hidden; display: flex; flex-direction: column;">
+      <div class="acrobat-window">
+        <!-- Acrobat Menu Bar -->
+        <div class="acrobat-menubar">
+          <span class="acrobat-menu-item">File</span>
+          <span class="acrobat-menu-item">Edit</span>
+          <span class="acrobat-menu-item">View</span>
+          <span class="acrobat-menu-item">E-Sign</span>
+          <span class="acrobat-menu-item">Window</span>
+          <span class="acrobat-menu-item">Help</span>
+        </div>
+
+        <!-- Acrobat Document Tabs -->
+        <div class="acrobat-tabs">
+          <div class="acrobat-tab active" data-doc="resume" onclick="window.switchAcrobatDoc('resume')">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg>
+            <span>Resume_Mwiko_Sinyangwe.pdf</span>
+          </div>
+          <div class="acrobat-tab" data-doc="tall" onclick="window.switchAcrobatDoc('tall')">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg>
+            <span>TALL_Stack_Superpower_2026.pdf</span>
+          </div>
+          <div class="acrobat-tab" data-doc="multi" onclick="window.switchAcrobatDoc('multi')">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg>
+            <span>MultiTenant_Architecture_Spec.pdf</span>
+          </div>
+        </div>
+
+        <!-- Acrobat Action Toolbar -->
+        <div class="acrobat-toolbar">
+          <div class="acrobat-tool-group">
+            <a class="acrobat-tool-btn" href="resume.pdf" target="_blank" download title="Save / Download PDF">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+            </a>
+            <button class="acrobat-tool-btn" onclick="window.print()" title="Print Document">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+            </button>
+            <div class="acrobat-divider"></div>
+            <!-- Page Stepper -->
+            <div class="acrobat-page-stepper">
+              <button class="acrobat-tool-btn" style="padding: 0 4px;" onclick="window.acrobatPrevPage()">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+              </button>
+              <input type="text" class="acrobat-page-input" id="acrobat-current-page" value="1" readonly>
+              <span>/ <span id="acrobat-total-pages">2</span></span>
+              <button class="acrobat-tool-btn" style="padding: 0 4px;" onclick="window.acrobatNextPage()">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+              </button>
+            </div>
+            <div class="acrobat-divider"></div>
+            <!-- Zoom Controls -->
+            <button class="acrobat-tool-btn" onclick="window.acrobatZoomOut()" title="Zoom Out">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+            </button>
+            <span id="acrobat-zoom-label" style="font-family: var(--font-mono); font-size: 11px; min-width: 38px; text-align: center;">100%</span>
+            <button class="acrobat-tool-btn" onclick="window.acrobatZoomIn()" title="Zoom In">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+            </button>
+            <button class="acrobat-tool-btn" onclick="window.acrobatResetZoom()" title="Fit to 100%">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><polyline points="9 9 9 3 15 3 15 9"/></svg>
+            </button>
+          </div>
+
+          <!-- Right Tools (Highlighter, Sticky, Sign) -->
+          <div class="acrobat-tool-group">
+            <button class="acrobat-tool-btn" id="acrobat-highlighter-btn" onclick="window.toggleAcrobatHighlighter()" title="Yellow Highlighter Tool">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FBBF24" stroke-width="2"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/></svg>
+              <span>Highlight</span>
+            </button>
+            <button class="acrobat-tool-btn" data-open-window="win-contact" title="Add Sticky Note / Message Mwiko">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+              <span>Comment</span>
+            </button>
+            <button class="acrobat-tool-btn active" data-open-window="win-contact" title="Sign &amp; Hire">
+              <span>Sign / Hire</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Acrobat Main Workspace -->
+        <div class="acrobat-workspace">
+          <!-- Left Icon Strip -->
+          <div class="acrobat-sidebar-strip">
+            <div class="acrobat-side-icon active" id="acrobat-thumb-toggle" onclick="window.toggleAcrobatThumbPane()" title="Page Thumbnails">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+            </div>
+            <div class="acrobat-side-icon" title="Bookmarks">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+            </div>
+            <div class="acrobat-side-icon" title="Attachments">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>
+            </div>
+          </div>
+
+          <!-- Thumbnail Flyout Pane -->
+          <div class="acrobat-thumb-pane" id="acrobat-thumb-pane">
+            <div class="thumb-preview-box active" onclick="window.setAcrobatPage(1)">
+              <div class="thumb-line" style="width: 70%; background: #ed1c24;"></div>
+              <div class="thumb-line" style="width: 90%;"></div>
+              <div class="thumb-line" style="width: 80%;"></div>
+              <div class="thumb-line" style="width: 85%;"></div>
+              <div class="thumb-line" style="width: 60%;"></div>
+              <div class="thumb-line" style="width: 75%;"></div>
+              <div class="thumb-page-num">1</div>
+            </div>
+            <div class="thumb-preview-box" onclick="window.setAcrobatPage(2)">
+              <div class="thumb-line" style="width: 50%;"></div>
+              <div class="thumb-line" style="width: 85%;"></div>
+              <div class="thumb-line" style="width: 70%;"></div>
+              <div class="thumb-line" style="width: 90%;"></div>
+              <div class="thumb-line" style="width: 40%;"></div>
+              <div class="thumb-page-num">2</div>
+            </div>
+          </div>
+
+          <!-- Document Canvas Sheet -->
+          <div class="acrobat-canvas" id="acrobat-canvas">
+            <div class="pdf-page-sheet" id="pdf-page-sheet">
+              <!-- Content rendered dynamically via os.js -->
+            </div>
+          </div>
         </div>
       </div>
     </div>
