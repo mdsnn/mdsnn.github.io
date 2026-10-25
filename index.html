@@ -3,208 +3,246 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Mwiko Sinyangwe | Fullstack Engineer (MwikoOS 2.0)</title>
+  <title>Mwiko Sinyangwe | Fullstack Engineer (Windows Edition)</title>
   
-  <!-- Modern Typography -->
+  <!-- Windows Fluent Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="os.css">
 </head>
 <body>
 
   <!-- =========================================
-       TOP SYSTEM MENUBAR
-       ========================================= -->
-  <header class="menubar">
-    <div class="menubar-left">
-      <div class="logo-badge" data-open-window="win-about">
-        <!-- Monogram / OS Logo -->
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-          <polyline points="4 17 10 11 4 5"></polyline>
-          <line x1="12" y1="19" x2="20" y2="19"></line>
-        </svg>
-        <span>MwikoOS</span>
-      </div>
-      <span class="menu-item" data-open-window="win-about">About</span>
-      <span class="menu-item" data-open-window="win-projects">Projects</span>
-      <span class="menu-item" data-open-window="win-skills">Stack</span>
-      <span class="menu-item" data-open-window="win-terminal">Terminal</span>
-      <span class="menu-item" data-open-window="win-contact">Contact</span>
-    </div>
-
-    <div class="menubar-right">
-      <div class="status-badge">
-        <span class="status-dot"></span>
-        <span>Open to Opportunities</span>
-      </div>
-
-      <!-- Sound FX Toggle -->
-      <button class="control-btn" id="sound-toggle-btn" title="Toggle Sound Feedback">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-          <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
-          <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
-        </svg>
-      </button>
-
-      <!-- Wallpaper & Theme Switcher -->
-      <div class="dropdown-wrapper">
-        <button class="control-btn" id="theme-toggle-btn" title="Change Theme & Wallpaper">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="10"></circle>
-            <path d="M12 2a14.5 14.5 0 0 0 0 20 10 10 0 0 0 0-20"></path>
-          </svg>
-        </button>
-        <div class="dropdown-menu" id="theme-dropdown">
-          <div class="dropdown-item" data-set-theme="default">
-            <span class="theme-color-preview" style="background: linear-gradient(135deg, #6366f1, #38bdf8);"></span>
-            <span>Aurora Dusk</span>
-          </div>
-          <div class="dropdown-item" data-set-theme="cyber">
-            <span class="theme-color-preview" style="background: linear-gradient(135deg, #00f2fe, #ff007f);"></span>
-            <span>Cyberpunk Neon</span>
-          </div>
-          <div class="dropdown-item" data-set-theme="obsidian">
-            <span class="theme-color-preview" style="background: linear-gradient(135deg, #374151, #111827);"></span>
-            <span>Obsidian Minimal</span>
-          </div>
-          <div class="dropdown-item" data-set-theme="sunset">
-            <span class="theme-color-preview" style="background: linear-gradient(135deg, #fb923c, #d946ef);"></span>
-            <span>Solar Sunset</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="clock" id="system-clock">--:--</div>
-    </div>
-  </header>
-
-  <!-- =========================================
-       DESKTOP WORKSPACE & ICONS
+       WINDOWS DESKTOP WORKSPACE & ICONS
        ========================================= -->
   <main class="desktop">
-    <!-- Icon 1: About Me -->
+    <!-- Icon 1: This PC -->
     <div class="desktop-icon" data-open-window="win-about">
-      <div class="icon-graphic icon-about">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-          <circle cx="12" cy="7" r="4"></circle>
+      <div class="icon-graphic">
+        <svg viewBox="0 0 48 48" fill="none">
+          <rect x="4" y="6" width="40" height="26" rx="3" fill="#0078D4"/>
+          <rect x="7" y="9" width="34" height="20" rx="1" fill="#202020"/>
+          <path d="M20 36H28V40H20V36Z" fill="#9CA3AF"/>
+          <rect x="14" y="40" width="20" height="3" rx="1.5" fill="#6B7280"/>
         </svg>
       </div>
-      <span class="icon-label">About_Me.txt</span>
+      <span class="icon-label">This PC</span>
     </div>
 
-    <!-- Icon 2: Projects -->
+    <!-- Icon 2: Projects Folder -->
     <div class="desktop-icon" data-open-window="win-projects">
-      <div class="icon-graphic icon-projects">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+      <div class="icon-graphic">
+        <svg viewBox="0 0 48 48" fill="none">
+          <path d="M4 12C4 9.79086 5.79086 8 8 8H18.5858C19.6466 8 20.664 8.42143 21.4142 9.17157L24.8284 12.5858C25.5786 13.3359 26.596 13.7574 27.6569 13.7574H40C42.2091 13.7574 44 15.5482 44 17.7574V38C44 40.2091 42.2091 42 40 42H8C5.79086 42 4 40.2091 4 38V12Z" fill="#FBBF24"/>
+          <path d="M4 18H44V38C44 40.2091 42.2091 42 40 42H8C5.79086 42 4 40.2091 4 38V18Z" fill="#F59E0B"/>
         </svg>
       </div>
       <span class="icon-label">Projects</span>
     </div>
 
-    <!-- Icon 3: Skills -->
+    <!-- Icon 3: Notepad About Me -->
+    <div class="desktop-icon" data-open-window="win-about">
+      <div class="icon-graphic">
+        <svg viewBox="0 0 48 48" fill="none">
+          <rect x="8" y="4" width="32" height="40" rx="3" fill="#3B82F6"/>
+          <rect x="12" y="8" width="24" height="32" rx="2" fill="#FFFFFF"/>
+          <line x1="16" y1="14" x2="28" y2="14" stroke="#60A5FA" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="16" y1="20" x2="32" y2="20" stroke="#93C5FD" stroke-width="2" stroke-linecap="round"/>
+          <line x1="16" y1="26" x2="32" y2="26" stroke="#93C5FD" stroke-width="2" stroke-linecap="round"/>
+          <line x1="16" y1="32" x2="26" y2="32" stroke="#93C5FD" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <span class="icon-label">About_Me.txt</span>
+    </div>
+
+    <!-- Icon 4: Windows PowerShell -->
+    <div class="desktop-icon" data-open-window="win-terminal">
+      <div class="icon-graphic">
+        <svg viewBox="0 0 48 48" fill="none">
+          <rect x="4" y="8" width="40" height="32" rx="3" fill="#012456"/>
+          <path d="M12 18L19 24L12 30" stroke="#60A5FA" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          <line x1="22" y1="30" x2="32" y2="30" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <span class="icon-label">PowerShell</span>
+    </div>
+
+    <!-- Icon 5: Tech Stack -->
     <div class="desktop-icon" data-open-window="win-skills">
-      <div class="icon-graphic icon-skills">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+      <div class="icon-graphic">
+        <svg viewBox="0 0 48 48" fill="none">
+          <circle cx="24" cy="24" r="20" fill="#10B981"/>
+          <polygon points="26 6 12 26 24 26 22 42 36 22 24 22 26 6" fill="#FFFFFF"/>
         </svg>
       </div>
       <span class="icon-label">Stack.json</span>
     </div>
 
-    <!-- Icon 4: Terminal -->
-    <div class="desktop-icon" data-open-window="win-terminal">
-      <div class="icon-graphic icon-terminal">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <polyline points="4 17 10 11 4 5"></polyline>
-          <line x1="12" y1="19" x2="20" y2="19"></line>
-        </svg>
-      </div>
-      <span class="icon-label">Terminal.sh</span>
-    </div>
-
-    <!-- Icon 5: Dashboard Live App -->
+    <!-- Icon 6: Dashboard.exe -->
     <div class="desktop-icon" data-open-window="win-dashboard">
-      <div class="icon-graphic icon-dashboard">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
-          <line x1="3" y1="9" x2="21" y2="9"></line>
-          <line x1="9" y1="21" x2="9" y2="9"></line>
+      <div class="icon-graphic">
+        <svg viewBox="0 0 48 48" fill="none">
+          <rect x="4" y="6" width="40" height="36" rx="4" fill="#3B82F6"/>
+          <rect x="8" y="10" width="32" height="28" rx="2" fill="#1E293B"/>
+          <rect x="12" y="24" width="5" height="10" rx="1" fill="#38BDF8"/>
+          <rect x="19" y="18" width="5" height="16" rx="1" fill="#818CF8"/>
+          <rect x="26" y="14" width="5" height="20" rx="1" fill="#34D399"/>
+          <rect x="33" y="20" width="5" height="14" rx="1" fill="#F472B6"/>
         </svg>
       </div>
-      <span class="icon-label">Dashboard.app</span>
+      <span class="icon-label">Dashboard.exe</span>
     </div>
 
-    <!-- Icon 6: PotBELLY Live App -->
+    <!-- Icon 7: PotBELLY.exe -->
     <div class="desktop-icon" data-open-window="win-calc">
-      <div class="icon-graphic icon-calc">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <rect x="4" y="2" width="16" height="20" rx="2"></rect>
-          <line x1="8" y1="6" x2="16" y2="6"></line>
-          <line x1="16" y1="14" x2="16" y2="18"></line>
-          <path d="M16 10h.01"></path>
-          <path d="M12 10h.01"></path>
-          <path d="M8 10h.01"></path>
-          <path d="M12 14h.01"></path>
-          <path d="M8 14h.01"></path>
-          <path d="M12 18h.01"></path>
-          <path d="M8 18h.01"></path>
+      <div class="icon-graphic">
+        <svg viewBox="0 0 48 48" fill="none">
+          <rect x="8" y="4" width="32" height="40" rx="5" fill="#EC4899"/>
+          <rect x="13" y="9" width="22" height="8" rx="2" fill="#831843"/>
+          <circle cx="17" cy="23" r="2.5" fill="#FFFFFF"/>
+          <circle cx="24" cy="23" r="2.5" fill="#FFFFFF"/>
+          <circle cx="31" cy="23" r="2.5" fill="#FFFFFF"/>
+          <circle cx="17" cy="30" r="2.5" fill="#FFFFFF"/>
+          <circle cx="24" cy="30" r="2.5" fill="#FFFFFF"/>
+          <circle cx="31" cy="30" r="2.5" fill="#FFFFFF"/>
+          <circle cx="17" cy="37" r="2.5" fill="#FFFFFF"/>
+          <rect x="23" y="35" width="10" height="4" rx="2" fill="#FBCFE8"/>
         </svg>
       </div>
-      <span class="icon-label">PotBELLY.app</span>
+      <span class="icon-label">PotBELLY.exe</span>
     </div>
 
-    <!-- Icon 7: Resume -->
+    <!-- Icon 8: Resume PDF -->
     <div class="desktop-icon" data-open-window="win-resume">
-      <div class="icon-graphic icon-resume">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-          <polyline points="14 2 14 8 20 8"></polyline>
-          <line x1="16" y1="13" x2="8" y2="13"></line>
-          <line x1="16" y1="17" x2="8" y2="17"></line>
-          <polyline points="10 9 9 9 8 9"></polyline>
+      <div class="icon-graphic">
+        <svg viewBox="0 0 48 48" fill="none">
+          <rect x="8" y="4" width="32" height="40" rx="3" fill="#EF4444"/>
+          <rect x="12" y="8" width="24" height="32" rx="2" fill="#FFFFFF"/>
+          <path d="M16 16H32M16 22H32M16 28H26" stroke="#EF4444" stroke-width="2.5" stroke-linecap="round"/>
         </svg>
       </div>
       <span class="icon-label">Resume.pdf</span>
     </div>
 
-    <!-- Icon 8: Contact -->
-    <div class="desktop-icon" data-open-window="win-contact">
-      <div class="icon-graphic icon-contact">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-          <polyline points="22,6 12,13 2,6"></polyline>
+    <!-- Icon 9: Recycle Bin -->
+    <div class="desktop-icon" onclick="alert('Recycle Bin: 0 bugs found. All code is running cleanly!')">
+      <div class="icon-graphic">
+        <svg viewBox="0 0 48 48" fill="none">
+          <rect x="12" y="14" width="24" height="28" rx="3" fill="#9CA3AF"/>
+          <rect x="8" y="10" width="32" height="4" rx="2" fill="#6B7280"/>
+          <line x1="18" y1="20" x2="18" y2="34" stroke="#4B5563" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="24" y1="20" x2="24" y2="34" stroke="#4B5563" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="30" y1="20" x2="30" y2="34" stroke="#4B5563" stroke-width="2.5" stroke-linecap="round"/>
         </svg>
       </div>
-      <span class="icon-label">Contact.app</span>
+      <span class="icon-label">Recycle Bin</span>
     </div>
   </main>
 
   <!-- =========================================
-       WINDOW 1: ABOUT ME
+       WINDOWS 11 START MENU
+       ========================================= -->
+  <div class="start-menu" id="win-start-menu">
+    <div class="start-search-bar">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+      <input type="text" placeholder="Type here to search apps and files...">
+    </div>
+
+    <div class="start-section-header">
+      <span class="start-section-title">Pinned Applications</span>
+      <span class="start-section-badge">Mwiko Edition</span>
+    </div>
+
+    <div class="start-pinned-grid">
+      <div class="start-pinned-item" data-open-window="win-about">
+        <div class="icon-graphic" style="width:36px; height:36px;">
+          <svg viewBox="0 0 48 48" fill="none"><rect x="4" y="6" width="40" height="26" rx="3" fill="#0078D4"/><rect x="7" y="9" width="34" height="20" rx="1" fill="#202020"/></svg>
+        </div>
+        <span>About Me</span>
+      </div>
+
+      <div class="start-pinned-item" data-open-window="win-projects">
+        <div class="icon-graphic" style="width:36px; height:36px;">
+          <svg viewBox="0 0 48 48" fill="none"><path d="M4 12C4 9.79086 5.79086 8 8 8H18.5858L24.8284 12.5858H40C42.2091 12.5858 44 14.3767 44 16.5858V38C44 40.2091 42.2091 42 40 42H8C5.79086 42 4 40.2091 4 38V12Z" fill="#F59E0B"/></svg>
+        </div>
+        <span>Projects</span>
+      </div>
+
+      <div class="start-pinned-item" data-open-window="win-skills">
+        <div class="icon-graphic" style="width:36px; height:36px;">
+          <svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="20" fill="#10B981"/><polygon points="26 6 12 26 24 26 22 42 36 22 24 22 26 6" fill="#FFFFFF"/></svg>
+        </div>
+        <span>Tech Stack</span>
+      </div>
+
+      <div class="start-pinned-item" data-open-window="win-terminal">
+        <div class="icon-graphic" style="width:36px; height:36px;">
+          <svg viewBox="0 0 48 48" fill="none"><rect x="4" y="8" width="40" height="32" rx="3" fill="#012456"/><path d="M12 18L19 24L12 30" stroke="#60A5FA" stroke-width="3"/></svg>
+        </div>
+        <span>PowerShell</span>
+      </div>
+
+      <div class="start-pinned-item" data-open-window="win-dashboard">
+        <div class="icon-graphic" style="width:36px; height:36px;">
+          <svg viewBox="0 0 48 48" fill="none"><rect x="4" y="6" width="40" height="36" rx="4" fill="#3B82F6"/></svg>
+        </div>
+        <span>Dashboard</span>
+      </div>
+
+      <div class="start-pinned-item" data-open-window="win-calc">
+        <div class="icon-graphic" style="width:36px; height:36px;">
+          <svg viewBox="0 0 48 48" fill="none"><rect x="8" y="4" width="32" height="40" rx="5" fill="#EC4899"/></svg>
+        </div>
+        <span>PotBELLY</span>
+      </div>
+
+      <div class="start-pinned-item" data-open-window="win-resume">
+        <div class="icon-graphic" style="width:36px; height:36px;">
+          <svg viewBox="0 0 48 48" fill="none"><rect x="8" y="4" width="32" height="40" rx="3" fill="#EF4444"/><rect x="12" y="8" width="24" height="32" rx="2" fill="#FFFFFF"/></svg>
+        </div>
+        <span>Resume PDF</span>
+      </div>
+
+      <div class="start-pinned-item" data-open-window="win-contact">
+        <div class="icon-graphic" style="width:36px; height:36px;">
+          <svg viewBox="0 0 48 48" fill="none"><rect x="4" y="8" width="40" height="32" rx="4" fill="#6366F1"/><path d="M6 10L24 24L42 10" stroke="#FFFFFF" stroke-width="3"/></svg>
+        </div>
+        <span>Contact Mail</span>
+      </div>
+    </div>
+
+    <!-- Start Footer -->
+    <div class="start-footer">
+      <div class="start-user" data-open-window="win-about">
+        <img src="images/mwiko.jpg" alt="Mwiko Sinyangwe">
+        <div>
+          <div class="start-user-name">Mwiko Sinyangwe</div>
+          <div class="start-user-role">Fullstack Engineer &bull; Administrator</div>
+        </div>
+      </div>
+
+      <button class="start-power-btn" onclick="location.reload()" title="Restart System">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18.36 6.64a9 9 0 1 1-12.73 0"></path><line x1="12" y1="2" x2="12" y2="12"></line></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- =========================================
+       WINDOW 1: ABOUT ME (THIS PC)
        ========================================= -->
   <div class="os-window hidden" id="win-about">
     <div class="window-header">
-      <div class="traffic-lights">
-        <button class="traffic-light traffic-close" title="Close">
-          <svg viewBox="0 0 10 10"><path d="M1,1 L9,9 M9,1 L1,9" stroke="currentColor" stroke-width="1.5"/></svg>
-        </button>
-        <button class="traffic-light traffic-minimize" title="Minimize">
-          <svg viewBox="0 0 10 10"><line x1="1" y1="5" x2="9" y2="5" stroke="currentColor" stroke-width="1.5"/></svg>
-        </button>
-        <button class="traffic-light traffic-maximize" title="Maximize">
-          <svg viewBox="0 0 10 10"><rect x="1" y="1" width="8" height="8" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
-        </button>
-      </div>
       <div class="window-title">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-        <span>About_Me.txt — Mwiko Sinyangwe</span>
+        <svg viewBox="0 0 24 24" fill="#0078D4"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8m-4-4v4"/></svg>
+        <span>This PC &bull; Mwiko Sinyangwe — System Overview</span>
       </div>
-      <div class="window-actions"></div>
+      <div class="win-controls">
+        <button class="win-btn win-minimize" title="Minimize"><svg viewBox="0 0 10 10"><line x1="1" y1="5" x2="9" y2="5" stroke="currentColor" stroke-width="1.2"/></svg></button>
+        <button class="win-btn win-maximize" title="Maximize"><svg viewBox="0 0 10 10"><rect x="1" y="1" width="8" height="8" fill="none" stroke="currentColor" stroke-width="1.2"/></svg></button>
+        <button class="win-btn win-close" title="Close"><svg viewBox="0 0 10 10"><path d="M1,1 L9,9 M9,1 L1,9" stroke="currentColor" stroke-width="1.2"/></svg></button>
+      </div>
     </div>
     <div class="window-body">
       <div class="about-hero">
@@ -222,7 +260,7 @@
               <span>Twitter</span>
             </a>
             <a class="social-pill" href="https://instagram.com/mwikosinyangwe" target="_blank" rel="noopener">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path></svg>
               <span>Instagram</span>
             </a>
           </div>
@@ -248,52 +286,47 @@
         </div>
         <div class="stat-box">
           <div class="stat-number">Full-Stack</div>
-          <div class="stat-label">Architecture</div>
+          <div class="stat-label">Engineering</div>
         </div>
         <div class="stat-box">
           <div class="stat-number">100%</div>
-          <div class="stat-label">Commitment</div>
+          <div class="stat-label">Dedication</div>
         </div>
       </div>
 
       <div class="cta-row">
         <button class="btn-primary" data-open-window="win-projects">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
           <span>Explore Projects</span>
         </button>
         <button class="btn-secondary" data-open-window="win-contact">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path></svg>
-          <span>Get in Touch</span>
+          <span>Send Message</span>
         </button>
         <a class="btn-secondary" href="resume.pdf" target="_blank">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-          <span>Resume</span>
+          <span>Resume PDF</span>
         </a>
       </div>
     </div>
   </div>
 
   <!-- =========================================
-       WINDOW 2: PROJECTS
+       WINDOW 2: PROJECTS (FILE EXPLORER)
        ========================================= -->
   <div class="os-window hidden" id="win-projects">
     <div class="window-header">
-      <div class="traffic-lights">
-        <button class="traffic-light traffic-close"><svg viewBox="0 0 10 10"><path d="M1,1 L9,9 M9,1 L1,9" stroke="currentColor" stroke-width="1.5"/></svg></button>
-        <button class="traffic-light traffic-minimize"><svg viewBox="0 0 10 10"><line x1="1" y1="5" x2="9" y2="5" stroke="currentColor" stroke-width="1.5"/></svg></button>
-        <button class="traffic-light traffic-maximize"><svg viewBox="0 0 10 10"><rect x="1" y="1" width="8" height="8" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
-      </div>
       <div class="window-title">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
-        <span>Projects — File Manager</span>
+        <svg viewBox="0 0 24 24" fill="#F59E0B"><path d="M2 6a2 2 0 0 1 2-2h5l2 2h9a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6z"/></svg>
+        <span>File Explorer &bull; C:\Users\Mwiko\Projects</span>
       </div>
-      <div class="window-actions"></div>
+      <div class="win-controls">
+        <button class="win-btn win-minimize"><svg viewBox="0 0 10 10"><line x1="1" y1="5" x2="9" y2="5" stroke="currentColor" stroke-width="1.2"/></svg></button>
+        <button class="win-btn win-maximize"><svg viewBox="0 0 10 10"><rect x="1" y="1" width="8" height="8" fill="none" stroke="currentColor" stroke-width="1.2"/></svg></button>
+        <button class="win-btn win-close"><svg viewBox="0 0 10 10"><path d="M1,1 L9,9 M9,1 L1,9" stroke="currentColor" stroke-width="1.2"/></svg></button>
+      </div>
     </div>
     <div class="window-body">
-      <!-- Filter Bar -->
       <div class="projects-filter">
-        <button class="filter-btn active" data-filter="all">All Projects</button>
-        <button class="filter-btn" data-filter="laravel">Laravel & PHP</button>
+        <button class="filter-btn active" data-filter="all">All Items</button>
+        <button class="filter-btn" data-filter="laravel">Laravel &amp; PHP</button>
         <button class="filter-btn" data-filter="fullstack">Fullstack / React</button>
       </div>
 
@@ -305,7 +338,7 @@
           </div>
           <div class="project-info">
             <h3 class="project-title">Laragigs</h3>
-            <p class="project-desc">A specialized job portal for Laravel developers with authentication, tag filtering, and job listings management.</p>
+            <p class="project-desc">Specialized job portal for Laravel developers with authentication, tag filtering, and job listings management.</p>
             <div class="project-tags">
               <span class="project-tag">Laravel</span>
               <span class="project-tag">MySQL</span>
@@ -313,7 +346,7 @@
             </div>
             <div class="project-links">
               <a class="project-btn project-btn-primary" href="postJob.html">Details &amp; Story</a>
-              <a class="project-btn project-btn-outline" href="https://github.com/mdsnn" target="_blank">Source Code</a>
+              <a class="project-btn project-btn-outline" href="https://github.com/mdsnn" target="_blank">Repository</a>
             </div>
           </div>
         </div>
@@ -325,14 +358,14 @@
           </div>
           <div class="project-info">
             <h3 class="project-title">PotBELLY</h3>
-            <p class="project-desc">Food marketplace with an integrated interactive pricing calculator and dynamic menu management.</p>
+            <p class="project-desc">Food marketplace with integrated interactive pricing calculator and dynamic menu management.</p>
             <div class="project-tags">
               <span class="project-tag">JavaScript</span>
               <span class="project-tag">CSS Grid</span>
               <span class="project-tag">Interactive UI</span>
             </div>
             <div class="project-links">
-              <button class="project-btn project-btn-primary" data-open-window="win-calc">Run in OS</button>
+              <button class="project-btn project-btn-primary" data-open-window="win-calc">Run App</button>
               <a class="project-btn project-btn-outline" href="calc/index.html" target="_blank">Full Demo</a>
             </div>
           </div>
@@ -345,7 +378,7 @@
           </div>
           <div class="project-info">
             <h3 class="project-title">Online Store</h3>
-            <p class="project-desc">Full e-commerce platform with automated PayPal checkout flow, guest shopping cart, and orders admin.</p>
+            <p class="project-desc">E-commerce platform with automated PayPal checkout flow, guest shopping cart, and order admin.</p>
             <div class="project-tags">
               <span class="project-tag">PHP</span>
               <span class="project-tag">PayPal SDK</span>
@@ -364,7 +397,7 @@
             <img class="project-thumb" src="images/dashboard.jpg" alt="Analytics Dashboard">
           </div>
           <div class="project-info">
-            <h3 class="project-title">Analytics &amp; Sales Dashboard</h3>
+            <h3 class="project-title">Sales &amp; Analytics Dashboard</h3>
             <p class="project-desc">Real-time revenue metrics, financial reports visualization, interactive charts, and user analytics.</p>
             <div class="project-tags">
               <span class="project-tag">JS Charts</span>
@@ -372,7 +405,7 @@
               <span class="project-tag">Data Viz</span>
             </div>
             <div class="project-links">
-              <button class="project-btn project-btn-primary" data-open-window="win-dashboard">Launch in OS</button>
+              <button class="project-btn project-btn-primary" data-open-window="win-dashboard">Launch App</button>
               <a class="project-btn project-btn-outline" href="dashboard/index.html" target="_blank">Direct View</a>
             </div>
           </div>
@@ -422,63 +455,55 @@
   </div>
 
   <!-- =========================================
-       WINDOW 3: INTERACTIVE TERMINAL
+       WINDOW 3: WINDOWS POWERSHELL
        ========================================= -->
   <div class="os-window hidden" id="win-terminal">
-    <div class="window-header">
-      <div class="traffic-lights">
-        <button class="traffic-light traffic-close"><svg viewBox="0 0 10 10"><path d="M1,1 L9,9 M9,1 L1,9" stroke="currentColor" stroke-width="1.5"/></svg></button>
-        <button class="traffic-light traffic-minimize"><svg viewBox="0 0 10 10"><line x1="1" y1="5" x2="9" y2="5" stroke="currentColor" stroke-width="1.5"/></svg></button>
-        <button class="traffic-light traffic-maximize"><svg viewBox="0 0 10 10"><rect x="1" y="1" width="8" height="8" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+    <div class="window-header" style="background: #012456; border-bottom: 1px solid rgba(255, 255, 255, 0.1);">
+      <div class="window-title" style="color: #fff;">
+        <svg viewBox="0 0 24 24" fill="#60A5FA"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="8 10 12 14 8 18"/></svg>
+        <span>Windows PowerShell</span>
       </div>
-      <div class="window-title">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 17 10 11 4 5"></polyline><line x1="12" y1="19" x2="20" y2="19"></line></svg>
-        <span>guest@mwiko-os: ~ (zsh)</span>
+      <div class="win-controls">
+        <button class="win-btn win-minimize"><svg viewBox="0 0 10 10"><line x1="1" y1="5" x2="9" y2="5" stroke="currentColor" stroke-width="1.2"/></svg></button>
+        <button class="win-btn win-maximize"><svg viewBox="0 0 10 10"><rect x="1" y="1" width="8" height="8" fill="none" stroke="currentColor" stroke-width="1.2"/></svg></button>
+        <button class="win-btn win-close"><svg viewBox="0 0 10 10"><path d="M1,1 L9,9 M9,1 L1,9" stroke="currentColor" stroke-width="1.2"/></svg></button>
       </div>
-      <div class="window-actions"></div>
     </div>
-    <div class="window-body terminal-body">
-      <div class="terminal-output" id="terminal-output">
-        <div class="terminal-line">
-          Welcome to <span class="term-highlight">MwikoOS Interactive Shell [Version 2.0.4]</span>
-        </div>
-        <div class="terminal-line">
-          Type <span class="term-cmd">help</span> for a list of available system commands.
-        </div>
-        <div class="terminal-line">
-          Try typing <span class="term-cmd">skills</span>, <span class="term-cmd">projects</span>, or <span class="term-cmd">sudo hire</span>.
-        </div>
+    <div class="window-body powershell-body">
+      <div class="powershell-output" id="powershell-output">
+        <div class="ps-line">Windows PowerShell</div>
+        <div class="ps-line">Copyright (C) Microsoft Corporation. All rights reserved.</div>
+        <div class="ps-line">&nbsp;</div>
+        <div class="ps-line">Type <span class="ps-highlight">help</span> or <span class="ps-highlight">dir</span> to view available commands.</div>
       </div>
-      <div class="terminal-input-row">
-        <span class="term-prompt">guest@mwiko-os:~$</span>
-        <input type="text" id="terminal-input" class="terminal-input" autocomplete="off" spellcheck="false" autofocus>
+      <div class="powershell-input-row">
+        <span class="ps-prompt">PS C:\Users\Mwiko&gt;</span>
+        <input type="text" id="powershell-input" class="powershell-input" autocomplete="off" spellcheck="false" autofocus>
       </div>
     </div>
   </div>
 
   <!-- =========================================
-       WINDOW 4: TECH STACK (SKILLS)
+       WINDOW 4: TECH STACK
        ========================================= -->
   <div class="os-window hidden" id="win-skills">
     <div class="window-header">
-      <div class="traffic-lights">
-        <button class="traffic-light traffic-close"><svg viewBox="0 0 10 10"><path d="M1,1 L9,9 M9,1 L1,9" stroke="currentColor" stroke-width="1.5"/></svg></button>
-        <button class="traffic-light traffic-minimize"><svg viewBox="0 0 10 10"><line x1="1" y1="5" x2="9" y2="5" stroke="currentColor" stroke-width="1.5"/></svg></button>
-        <button class="traffic-light traffic-maximize"><svg viewBox="0 0 10 10"><rect x="1" y="1" width="8" height="8" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
-      </div>
       <div class="window-title">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
-        <span>Stack.json — Technical Proficiencies</span>
+        <svg viewBox="0 0 24 24" fill="#10B981"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        <span>Stack.json &bull; Technical Proficiencies</span>
       </div>
-      <div class="window-actions"></div>
+      <div class="win-controls">
+        <button class="win-btn win-minimize"><svg viewBox="0 0 10 10"><line x1="1" y1="5" x2="9" y2="5" stroke="currentColor" stroke-width="1.2"/></svg></button>
+        <button class="win-btn win-maximize"><svg viewBox="0 0 10 10"><rect x="1" y="1" width="8" height="8" fill="none" stroke="currentColor" stroke-width="1.2"/></svg></button>
+        <button class="win-btn win-close"><svg viewBox="0 0 10 10"><path d="M1,1 L9,9 M9,1 L1,9" stroke="currentColor" stroke-width="1.2"/></svg></button>
+      </div>
     </div>
     <div class="window-body">
       <div class="skills-grid">
-        <!-- Backend -->
         <div class="skill-category">
           <div class="skill-cat-title">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect><rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect><line x1="6" y1="6" x2="6.01" y2="6"></line><line x1="6" y1="18" x2="6.01" y2="18"></line></svg>
-            <span>Backend &amp; Architecture</span>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
+            <span>Backend Architecture</span>
           </div>
           <div class="skill-items">
             <span class="skill-badge">PHP</span>
@@ -491,10 +516,9 @@
           </div>
         </div>
 
-        <!-- Frontend -->
         <div class="skill-category">
           <div class="skill-cat-title">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
             <span>Frontend &amp; UI</span>
           </div>
           <div class="skill-items">
@@ -508,10 +532,9 @@
           </div>
         </div>
 
-        <!-- Database & Systems -->
         <div class="skill-category">
           <div class="skill-cat-title">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
             <span>Databases &amp; Mobile</span>
           </div>
           <div class="skill-items">
@@ -532,16 +555,15 @@
        ========================================= -->
   <div class="os-window hidden" id="win-dashboard">
     <div class="window-header">
-      <div class="traffic-lights">
-        <button class="traffic-light traffic-close"><svg viewBox="0 0 10 10"><path d="M1,1 L9,9 M9,1 L1,9" stroke="currentColor" stroke-width="1.5"/></svg></button>
-        <button class="traffic-light traffic-minimize"><svg viewBox="0 0 10 10"><line x1="1" y1="5" x2="9" y2="5" stroke="currentColor" stroke-width="1.5"/></svg></button>
-        <button class="traffic-light traffic-maximize"><svg viewBox="0 0 10 10"><rect x="1" y="1" width="8" height="8" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
-      </div>
       <div class="window-title">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
-        <span>Dashboard.app — Live Analytics Sandbox</span>
+        <svg viewBox="0 0 24 24" fill="#3B82F6"><rect x="3" y="3" width="18" height="18" rx="2"/></svg>
+        <span>Dashboard.exe &bull; Live Sales &amp; Financial Analytics</span>
       </div>
-      <div class="window-actions"></div>
+      <div class="win-controls">
+        <button class="win-btn win-minimize"><svg viewBox="0 0 10 10"><line x1="1" y1="5" x2="9" y2="5" stroke="currentColor" stroke-width="1.2"/></svg></button>
+        <button class="win-btn win-maximize"><svg viewBox="0 0 10 10"><rect x="1" y="1" width="8" height="8" fill="none" stroke="currentColor" stroke-width="1.2"/></svg></button>
+        <button class="win-btn win-close"><svg viewBox="0 0 10 10"><path d="M1,1 L9,9 M9,1 L1,9" stroke="currentColor" stroke-width="1.2"/></svg></button>
+      </div>
     </div>
     <div class="window-body" style="padding: 0; overflow: hidden;">
       <iframe class="iframe-container" src="dashboard/index.html" title="Live Dashboard"></iframe>
@@ -553,16 +575,15 @@
        ========================================= -->
   <div class="os-window hidden" id="win-calc">
     <div class="window-header">
-      <div class="traffic-lights">
-        <button class="traffic-light traffic-close"><svg viewBox="0 0 10 10"><path d="M1,1 L9,9 M9,1 L1,9" stroke="currentColor" stroke-width="1.5"/></svg></button>
-        <button class="traffic-light traffic-minimize"><svg viewBox="0 0 10 10"><line x1="1" y1="5" x2="9" y2="5" stroke="currentColor" stroke-width="1.5"/></svg></button>
-        <button class="traffic-light traffic-maximize"><svg viewBox="0 0 10 10"><rect x="1" y="1" width="8" height="8" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
-      </div>
       <div class="window-title">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2"></rect><line x1="8" y1="6" x2="16" y2="6"></line></svg>
-        <span>PotBELLY.app — Interactive Demo</span>
+        <svg viewBox="0 0 24 24" fill="#EC4899"><rect x="4" y="2" width="16" height="20" rx="2"/></svg>
+        <span>PotBELLY.exe &bull; Interactive Food Marketplace</span>
       </div>
-      <div class="window-actions"></div>
+      <div class="win-controls">
+        <button class="win-btn win-minimize"><svg viewBox="0 0 10 10"><line x1="1" y1="5" x2="9" y2="5" stroke="currentColor" stroke-width="1.2"/></svg></button>
+        <button class="win-btn win-maximize"><svg viewBox="0 0 10 10"><rect x="1" y="1" width="8" height="8" fill="none" stroke="currentColor" stroke-width="1.2"/></svg></button>
+        <button class="win-btn win-close"><svg viewBox="0 0 10 10"><path d="M1,1 L9,9 M9,1 L1,9" stroke="currentColor" stroke-width="1.2"/></svg></button>
+      </div>
     </div>
     <div class="window-body" style="padding: 0; overflow: hidden;">
       <iframe class="iframe-container" src="calc/index.html" title="PotBELLY Calculator"></iframe>
@@ -574,30 +595,27 @@
        ========================================= -->
   <div class="os-window hidden" id="win-resume">
     <div class="window-header">
-      <div class="traffic-lights">
-        <button class="traffic-light traffic-close"><svg viewBox="0 0 10 10"><path d="M1,1 L9,9 M9,1 L1,9" stroke="currentColor" stroke-width="1.5"/></svg></button>
-        <button class="traffic-light traffic-minimize"><svg viewBox="0 0 10 10"><line x1="1" y1="5" x2="9" y2="5" stroke="currentColor" stroke-width="1.5"/></svg></button>
-        <button class="traffic-light traffic-maximize"><svg viewBox="0 0 10 10"><rect x="1" y="1" width="8" height="8" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
-      </div>
       <div class="window-title">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path></svg>
-        <span>Resume.pdf — Mwiko Sinyangwe</span>
+        <svg viewBox="0 0 24 24" fill="#EF4444"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg>
+        <span>Adobe Acrobat &bull; Resume.pdf</span>
       </div>
-      <div class="window-actions"></div>
+      <div class="win-controls">
+        <button class="win-btn win-minimize"><svg viewBox="0 0 10 10"><line x1="1" y1="5" x2="9" y2="5" stroke="currentColor" stroke-width="1.2"/></svg></button>
+        <button class="win-btn win-maximize"><svg viewBox="0 0 10 10"><rect x="1" y="1" width="8" height="8" fill="none" stroke="currentColor" stroke-width="1.2"/></svg></button>
+        <button class="win-btn win-close"><svg viewBox="0 0 10 10"><path d="M1,1 L9,9 M9,1 L1,9" stroke="currentColor" stroke-width="1.2"/></svg></button>
+      </div>
     </div>
     <div class="window-body">
-      <div class="bio-card" style="text-align: center; padding: 30px;">
-        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--accent-cyan)" stroke-width="2" style="margin-bottom: 14px;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-        <h2 style="font-size: 20px; color: #fff; margin-bottom: 8px;">Mwiko Sinyangwe — Fullstack Resume</h2>
-        <p style="margin-bottom: 24px;">PDF document includes comprehensive work history, key engineering deliverables, education, and technical competencies.</p>
-        <div style="display: flex; justify-content: center; gap: 12px;">
+      <div class="bio-card" style="text-align: center; padding: 28px;">
+        <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#EF4444" stroke-width="2" style="margin-bottom: 12px;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        <h2 style="font-size: 18px; color: #fff; margin-bottom: 6px;">Mwiko Sinyangwe &bull; Fullstack Resume</h2>
+        <p style="margin-bottom: 20px;">Curriculum Vitae documenting engineering achievements, technical leadership, and fullstack proficiencies.</p>
+        <div style="display: flex; justify-content: center; gap: 10px;">
           <a class="btn-primary" href="resume.pdf" target="_blank" download>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
             <span>Download PDF</span>
           </a>
           <a class="btn-secondary" href="resume.pdf" target="_blank">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-            <span>Open in Browser</span>
+            <span>View PDF</span>
           </a>
         </div>
       </div>
@@ -609,16 +627,15 @@
        ========================================= -->
   <div class="os-window hidden" id="win-contact">
     <div class="window-header">
-      <div class="traffic-lights">
-        <button class="traffic-light traffic-close"><svg viewBox="0 0 10 10"><path d="M1,1 L9,9 M9,1 L1,9" stroke="currentColor" stroke-width="1.5"/></svg></button>
-        <button class="traffic-light traffic-minimize"><svg viewBox="0 0 10 10"><line x1="1" y1="5" x2="9" y2="5" stroke="currentColor" stroke-width="1.5"/></svg></button>
-        <button class="traffic-light traffic-maximize"><svg viewBox="0 0 10 10"><rect x="1" y="1" width="8" height="8" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
-      </div>
       <div class="window-title">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-        <span>Mail.app — New Message</span>
+        <svg viewBox="0 0 24 24" fill="#6366F1"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/></svg>
+        <span>Windows Mail &bull; New Message</span>
       </div>
-      <div class="window-actions"></div>
+      <div class="win-controls">
+        <button class="win-btn win-minimize"><svg viewBox="0 0 10 10"><line x1="1" y1="5" x2="9" y2="5" stroke="currentColor" stroke-width="1.2"/></svg></button>
+        <button class="win-btn win-maximize"><svg viewBox="0 0 10 10"><rect x="1" y="1" width="8" height="8" fill="none" stroke="currentColor" stroke-width="1.2"/></svg></button>
+        <button class="win-btn win-close"><svg viewBox="0 0 10 10"><path d="M1,1 L9,9 M9,1 L1,9" stroke="currentColor" stroke-width="1.2"/></svg></button>
+      </div>
     </div>
     <div class="window-body">
       <form class="contact-form" id="contact-form">
@@ -636,15 +653,14 @@
         </div>
         <div class="form-group">
           <label class="form-label">Subject</label>
-          <input class="form-input" type="text" placeholder="Fullstack Role / Collaboration" required>
+          <input class="form-input" type="text" placeholder="Fullstack Collaboration / Project Inquiry" required>
         </div>
         <div class="form-group">
           <label class="form-label">Message</label>
-          <textarea class="form-textarea" placeholder="Hi Mwiko, I came across your portfolio and wanted to discuss..." required></textarea>
+          <textarea class="form-textarea" placeholder="Hi Mwiko, I'd like to talk about..." required></textarea>
         </div>
         <div class="form-status" id="form-status"></div>
         <button type="submit" class="btn-primary" style="align-self: flex-start;">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
           <span>Send Message</span>
         </button>
       </form>
@@ -652,81 +668,88 @@
   </div>
 
   <!-- =========================================
-       FROSTED FLOATING DOCK
+       WINDOWS 11 TASKBAR (BOTTOM)
        ========================================= -->
-  <div class="dock-wrapper">
-    <nav class="dock">
-      <!-- 1. About -->
-      <div class="dock-item" data-app="win-about" data-open-window="win-about">
-        <div class="dock-tooltip">About Me</div>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-        <span class="dock-dot"></span>
+  <footer class="taskbar">
+    <div class="taskbar-center">
+      <!-- Windows 11 Start Button -->
+      <button class="taskbar-btn win-start-btn" id="win-start-btn" title="Start">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M2.5 3H11V11.5H2.5V3Z"/>
+          <path d="M13 3H21.5V11.5H13V3Z"/>
+          <path d="M2.5 13.5H11V22H2.5V13.5Z"/>
+          <path d="M13 13.5H21.5V22H13V13.5Z"/>
+        </svg>
+      </button>
+
+      <!-- Taskbar App 1: This PC / About -->
+      <button class="taskbar-btn" data-app="win-about" data-open-window="win-about" title="This PC / About">
+        <svg viewBox="0 0 24 24" fill="#0078D4"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8m-4-4v4"/></svg>
+        <span class="taskbar-indicator"></span>
+      </button>
+
+      <!-- Taskbar App 2: File Explorer -->
+      <button class="taskbar-btn" data-app="win-projects" data-open-window="win-projects" title="File Explorer (Projects)">
+        <svg viewBox="0 0 24 24" fill="#F59E0B"><path d="M2 6a2 2 0 0 1 2-2h5l2 2h9a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6z"/></svg>
+        <span class="taskbar-indicator"></span>
+      </button>
+
+      <!-- Taskbar App 3: Windows PowerShell -->
+      <button class="taskbar-btn" data-app="win-terminal" data-open-window="win-terminal" title="Windows PowerShell">
+        <svg viewBox="0 0 24 24" fill="#60A5FA"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="8 10 12 14 8 18"/></svg>
+        <span class="taskbar-indicator"></span>
+      </button>
+
+      <!-- Taskbar App 4: Stack -->
+      <button class="taskbar-btn" data-app="win-skills" data-open-window="win-skills" title="Tech Stack">
+        <svg viewBox="0 0 24 24" fill="#10B981"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        <span class="taskbar-indicator"></span>
+      </button>
+
+      <!-- Taskbar App 5: Dashboard -->
+      <button class="taskbar-btn" data-app="win-dashboard" data-open-window="win-dashboard" title="Dashboard">
+        <svg viewBox="0 0 24 24" fill="#3B82F6"><rect x="3" y="3" width="18" height="18" rx="2"/></svg>
+        <span class="taskbar-indicator"></span>
+      </button>
+
+      <!-- Taskbar App 6: Mail -->
+      <button class="taskbar-btn" data-app="win-contact" data-open-window="win-contact" title="Windows Mail">
+        <svg viewBox="0 0 24 24" fill="#6366F1"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/></svg>
+        <span class="taskbar-indicator"></span>
+      </button>
+
+      <!-- Taskbar App 7: Resume -->
+      <button class="taskbar-btn" data-app="win-resume" data-open-window="win-resume" title="Resume PDF">
+        <svg viewBox="0 0 24 24" fill="#EF4444"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg>
+        <span class="taskbar-indicator"></span>
+      </button>
+    </div>
+
+    <!-- Windows System Tray (Right) -->
+    <div class="taskbar-tray">
+      <div class="tray-status">
+        <span class="status-dot"></span>
+        <span>Open for Hire</span>
       </div>
 
-      <!-- 2. Projects -->
-      <div class="dock-item" data-app="win-projects" data-open-window="win-projects">
-        <div class="dock-tooltip">Projects</div>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
-        <span class="dock-dot"></span>
+      <div class="tray-item" title="Network: Connected">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12.55a11 11 0 0 1 14.08 0"></path><path d="M1.42 9a16 16 0 0 1 21.16 0"></path><path d="M8.53 16.11a6 6 0 0 1 6.95 0"></path><line x1="12" y1="20" x2="12.01" y2="20"></line></svg>
       </div>
 
-      <!-- 3. Terminal -->
-      <div class="dock-item" data-app="win-terminal" data-open-window="win-terminal">
-        <div class="dock-tooltip">Terminal</div>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 17 10 11 4 5"></polyline><line x1="12" y1="19" x2="20" y2="19"></line></svg>
-        <span class="dock-dot"></span>
+      <div class="tray-item" title="Audio: 100%">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
       </div>
 
-      <!-- 4. Skills -->
-      <div class="dock-item" data-app="win-skills" data-open-window="win-skills">
-        <div class="dock-tooltip">Tech Stack</div>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
-        <span class="dock-dot"></span>
+      <!-- Windows Date & Time (Stacked) -->
+      <div class="tray-item tray-clock">
+        <div class="tray-time" id="tray-time">--:--</div>
+        <div class="tray-date" id="tray-date">--/--/----</div>
       </div>
 
-      <!-- 5. Dashboard -->
-      <div class="dock-item" data-app="win-dashboard" data-open-window="win-dashboard">
-        <div class="dock-tooltip">Dashboard App</div>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
-        <span class="dock-dot"></span>
-      </div>
-
-      <!-- 6. PotBELLY -->
-      <div class="dock-item" data-app="win-calc" data-open-window="win-calc">
-        <div class="dock-tooltip">PotBELLY App</div>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2"></rect><line x1="8" y1="6" x2="16" y2="6"></line></svg>
-        <span class="dock-dot"></span>
-      </div>
-
-      <!-- 7. Mail -->
-      <div class="dock-item" data-app="win-contact" data-open-window="win-contact">
-        <div class="dock-tooltip">Mail / Contact</div>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-        <span class="dock-dot"></span>
-      </div>
-
-      <!-- 8. Resume -->
-      <div class="dock-item" data-app="win-resume" data-open-window="win-resume">
-        <div class="dock-tooltip">Resume PDF</div>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
-        <span class="dock-dot"></span>
-      </div>
-
-      <div class="dock-divider"></div>
-
-      <!-- 9. External GitHub -->
-      <a class="dock-item" href="https://github.com/mdsnn" target="_blank" rel="noopener">
-        <div class="dock-tooltip">GitHub: @mdsnn</div>
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-      </a>
-
-      <!-- 10. External Twitter -->
-      <a class="dock-item" href="https://twitter.com/andmds__" target="_blank" rel="noopener">
-        <div class="dock-tooltip">Twitter / X</div>
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-      </a>
-    </nav>
-  </div>
+      <!-- Windows Peek Desktop Line -->
+      <div class="peek-desktop" id="peek-desktop-btn" title="Show Desktop"></div>
+    </div>
+  </footer>
 
   <script src="os.js"></script>
 </body>
