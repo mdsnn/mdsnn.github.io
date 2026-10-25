@@ -1,113 +1,65 @@
 /**
- * MwikoOS 2.0 - Window Manager & Desktop Interactivity
+ * Windows 11 (Mwiko Edition) - Window Manager & System Logic
  */
 
 document.addEventListener('DOMContentLoaded', () => {
   let highestZ = 100;
   let activeWindow = null;
   const windows = {};
-  let soundEnabled = false;
+  let startMenuOpen = false;
 
-  // Initialize Audio Context for subtle tactile feedback
-  let audioCtx = null;
-  function playClickSound(freq = 600, duration = 0.03) {
-    if (!soundEnabled) return;
-    try {
-      if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-      const osc = audioCtx.createOscillator();
-      const gain = audioCtx.createGain();
-      osc.type = 'sine';
-      osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
-      gain.gain.setValueAtTime(0.05, audioCtx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
-      osc.connect(gain);
-      gain.connect(audioCtx.destination);
-      osc.start();
-      osc.stop(audioCtx.currentTime + duration);
-    } catch (e) {
-      // Audio autoplay policy
-    }
-  }
+  // --- Windows Tray Clock (Time on top, Date below) ---
+  function updateTrayClock() {
+    const timeEl = document.getElementById('tray-time');
+    const dateEl = document.getElementById('tray-date');
+    if (!timeEl || !dateEl) return;
 
-  // --- Clock ---
-  function updateClock() {
-    const clockEl = document.getElementById('system-clock');
-    if (!clockEl) return;
     const now = new Date();
-    const hours = String(now.getHours()).padStart(2, '0');
-    const minutes = String(now.getMinutes()).padStart(2, '0');
-    const dayName = now.toLocaleDateString('en-US', { weekday: 'short' });
-    const month = now.toLocaleDateString('en-US', { month: 'short' });
-    const day = now.getDate();
-    clockEl.textContent = `${dayName} ${month} ${day}  ${hours}:${minutes}`;
+    timeEl.textContent = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    dateEl.textContent = now.toLocaleDateString([], { month: 'numeric', day: 'numeric', year: 'numeric' });
   }
-  updateClock();
-  setInterval(updateClock, 1000);
+  updateTrayClock();
+  setInterval(updateTrayClock, 1000);
 
-  // --- Sound Toggle ---
-  const soundBtn = document.getElementById('sound-toggle-btn');
-  if (soundBtn) {
-    soundBtn.addEventListener('click', () => {
-      soundEnabled = !soundEnabled;
-      soundBtn.style.color = soundEnabled ? 'var(--accent-cyan)' : 'var(--menubar-text)';
-      if (soundEnabled) playClickSound(880, 0.05);
-    });
-  }
+  // --- Windows Start Menu ---
+  const startBtn = document.getElementById('win-start-btn');
+  const startMenu = document.getElementById('win-start-menu');
 
-  // --- Theme / Wallpaper Switcher ---
-  const themeToggle = document.getElementById('theme-toggle-btn');
-  const themeDropdown = document.getElementById('theme-dropdown');
-  if (themeToggle && themeDropdown) {
-    themeToggle.addEventListener('click', (e) => {
+  if (startBtn && startMenu) {
+    startBtn.addEventListener('click', (e) => {
       e.stopPropagation();
-      themeDropdown.classList.toggle('active');
+      startMenuOpen = !startMenuOpen;
+      startMenu.classList.toggle('open', startMenuOpen);
     });
 
-    document.addEventListener('click', () => {
-      themeDropdown.classList.remove('active');
+    // Close Start Menu when clicking anywhere else
+    document.addEventListener('click', (e) => {
+      if (!startMenu.contains(e.target) && !startBtn.contains(e.target)) {
+        startMenu.classList.remove('open');
+        startMenuOpen = false;
+      }
     });
-
-    document.querySelectorAll('.dropdown-item[data-set-theme]').forEach(item => {
-      item.addEventListener('click', () => {
-        const theme = item.getAttribute('data-set-theme');
-        if (theme === 'default') {
-          document.body.removeAttribute('data-theme');
-          localStorage.removeItem('mwiko_os_theme');
-        } else {
-          document.body.setAttribute('data-theme', theme);
-          localStorage.setItem('mwiko_os_theme', theme);
-        }
-        playClickSound(750, 0.04);
-      });
-    });
-
-    // Restore saved theme
-    const savedTheme = localStorage.getItem('mwiko_os_theme');
-    if (savedTheme) {
-      document.body.setAttribute('data-theme', savedTheme);
-    }
   }
 
-  // --- Window Management ---
+  // --- Windows Management ---
   document.querySelectorAll('.os-window').forEach((win) => {
     const id = win.id;
     windows[id] = win;
 
-    // Bring window to front on mousedown
+    // Bring to front on click
     win.addEventListener('mousedown', () => {
       bringToFront(win);
     });
 
-    // Window controls
-    const closeBtn = win.querySelector('.traffic-close');
-    const minBtn = win.querySelector('.traffic-minimize');
-    const maxBtn = win.querySelector('.traffic-maximize');
+    // Windows controls (Minimize, Maximize, Close)
+    const minBtn = win.querySelector('.win-minimize');
+    const maxBtn = win.querySelector('.win-maximize');
+    const closeBtn = win.querySelector('.win-close');
 
-    if (closeBtn) closeBtn.addEventListener('click', () => closeWindow(id));
     if (minBtn) minBtn.addEventListener('click', () => minimizeWindow(id));
     if (maxBtn) maxBtn.addEventListener('click', () => toggleMaximize(id));
+    if (closeBtn) closeBtn.addEventListener('click', () => closeWindow(id));
 
-    // Make window draggable
     makeDraggable(win);
   });
 
@@ -115,19 +67,23 @@ document.addEventListener('DOMContentLoaded', () => {
     highestZ += 1;
     win.style.zIndex = highestZ;
     activeWindow = win;
+    updateTaskbarButtons();
   }
 
   function openWindow(id) {
     const win = windows[id];
     if (!win) return;
 
+    // Close Start Menu if open
+    if (startMenu) {
+      startMenu.classList.remove('open');
+      startMenuOpen = false;
+    }
+
     win.classList.remove('hidden');
     win.classList.remove('minimized');
     bringToFront(win);
-    playClickSound(520, 0.04);
-
-    // Update Dock dot
-    updateDockIndicators();
+    updateTaskbarButtons();
   }
 
   function closeWindow(id) {
@@ -135,37 +91,60 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!win) return;
     win.classList.add('hidden');
     win.classList.remove('maximized');
-    playClickSound(380, 0.04);
-    updateDockIndicators();
+    updateTaskbarButtons();
   }
 
   function minimizeWindow(id) {
     const win = windows[id];
     if (!win) return;
     win.classList.add('minimized');
-    playClickSound(320, 0.04);
+    updateTaskbarButtons();
   }
 
   function toggleMaximize(id) {
     const win = windows[id];
     if (!win) return;
     win.classList.toggle('maximized');
-    playClickSound(640, 0.04);
   }
 
-  function updateDockIndicators() {
-    document.querySelectorAll('.dock-item[data-app]').forEach(item => {
-      const appId = item.getAttribute('data-app');
+  // --- Show Desktop (Peek strip on bottom right) ---
+  const peekBtn = document.getElementById('peek-desktop-btn');
+  let desktopHidden = false;
+  if (peekBtn) {
+    peekBtn.addEventListener('click', () => {
+      desktopHidden = !desktopHidden;
+      Object.values(windows).forEach(win => {
+        if (desktopHidden) {
+          win.classList.add('minimized');
+        } else {
+          win.classList.remove('minimized');
+        }
+      });
+      updateTaskbarButtons();
+    });
+  }
+
+  // --- Update Taskbar Button Indicators ---
+  function updateTaskbarButtons() {
+    document.querySelectorAll('.taskbar-btn[data-app]').forEach(btn => {
+      const appId = btn.getAttribute('data-app');
       const win = windows[appId];
+
       if (win && !win.classList.contains('hidden')) {
-        item.classList.add('running');
+        btn.classList.add('running');
+        if (win === activeWindow && !win.classList.contains('minimized')) {
+          btn.classList.add('active');
+        } else {
+          btn.classList.remove('active');
+        }
       } else {
-        item.classList.remove('running');
+        btn.classList.remove('running');
+        btn.classList.remove('active');
       }
     });
   }
 
-  // --- Draggable logic with boundary checking ---
+  // --- Make Draggable ---
   function makeDraggable(win) {
     const header = win.querySelector('.window-header');
     if (!header) return;
@@ -177,8 +156,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let initialTop = 0;
 
     const onPointerDown = (e) => {
-      // Don't drag if clicking buttons
-      if (e.target.closest('.traffic-light')) return;
+      if (e.target.closest('.win-btn')) return;
       if (win.classList.contains('maximized')) return;
 
       isDragging = true;
@@ -213,9 +191,8 @@ document.addEventListener('DOMContentLoaded', () => {
       let newLeft = initialLeft + dx;
       let newTop = initialTop + dy;
 
-      // Keep inside bounds
-      const minTop = 34; // menubar
-      const maxTop = window.innerHeight - 80;
+      const minTop = 0;
+      const maxTop = window.innerHeight - 50;
       const minLeft = -win.offsetWidth + 100;
       const maxLeft = window.innerWidth - 100;
 
@@ -238,16 +215,23 @@ document.addEventListener('DOMContentLoaded', () => {
     header.addEventListener('touchstart', onPointerDown, { passive: false });
   }
 
-  // --- App Launcher Triggers (Desktop Icons & Dock Items) ---
+  // --- App Launcher Triggers (Desktop Icons, Taskbar, Start Menu) ---
   document.querySelectorAll('[data-open-window]').forEach(trigger => {
     trigger.addEventListener('click', (e) => {
       e.preventDefault();
       const targetId = trigger.getAttribute('data-open-window');
-      openWindow(targetId);
+      const win = windows[targetId];
+
+      // If clicked from taskbar and already active, minimize it
+      if (trigger.classList.contains('taskbar-btn') && win && !win.classList.contains('hidden') && win === activeWindow && !win.classList.contains('minimized')) {
+        minimizeWindow(targetId);
+      } else {
+        openWindow(targetId);
+      }
     });
   });
 
-  // Default opening state: open "About Me" and "Projects" centered nicely
+  // --- Initial Positions ---
   function initWindowPositions() {
     const width = window.innerWidth;
     const height = window.innerHeight;
@@ -256,31 +240,31 @@ document.addEventListener('DOMContentLoaded', () => {
       const aboutWin = windows['win-about'];
       if (aboutWin) {
         aboutWin.style.left = `${Math.max(40, Math.floor(width * 0.12))}px`;
-        aboutWin.style.top = '70px';
-        aboutWin.style.width = '520px';
-        aboutWin.style.height = '480px';
+        aboutWin.style.top = '60px';
+        aboutWin.style.width = '540px';
+        aboutWin.style.height = '490px';
       }
 
       const projectsWin = windows['win-projects'];
       if (projectsWin) {
-        projectsWin.style.left = `${Math.max(80, Math.floor(width * 0.42))}px`;
-        projectsWin.style.top = '100px';
+        projectsWin.style.left = `${Math.max(80, Math.floor(width * 0.4))}px`;
+        projectsWin.style.top = '80px';
         projectsWin.style.width = '640px';
         projectsWin.style.height = '520px';
       }
 
       const terminalWin = windows['win-terminal'];
       if (terminalWin) {
-        terminalWin.style.left = `${Math.max(60, Math.floor(width * 0.22))}px`;
-        terminalWin.style.top = '180px';
-        terminalWin.style.width = '560px';
-        terminalWin.style.height = '360px';
+        terminalWin.style.left = `${Math.max(60, Math.floor(width * 0.24))}px`;
+        terminalWin.style.top = '140px';
+        terminalWin.style.width = '620px';
+        terminalWin.style.height = '380px';
       }
 
       const skillsWin = windows['win-skills'];
       if (skillsWin) {
         skillsWin.style.left = `${Math.max(50, Math.floor(width * 0.28))}px`;
-        skillsWin.style.top = '120px';
+        skillsWin.style.top = '100px';
         skillsWin.style.width = '580px';
         skillsWin.style.height = '460px';
       }
@@ -288,25 +272,25 @@ document.addEventListener('DOMContentLoaded', () => {
       const contactWin = windows['win-contact'];
       if (contactWin) {
         contactWin.style.left = `${Math.max(50, Math.floor(width * 0.3))}px`;
-        contactWin.style.top = '110px';
-        contactWin.style.width = '480px';
-        contactWin.style.height = '440px';
+        contactWin.style.top = '90px';
+        contactWin.style.width = '500px';
+        contactWin.style.height = '460px';
       }
 
       const dashWin = windows['win-dashboard'];
       if (dashWin) {
         dashWin.style.left = '60px';
-        dashWin.style.top = '60px';
-        dashWin.style.width = `${Math.min(900, width - 120)}px`;
-        dashWin.style.height = `${Math.min(620, height - 160)}px`;
+        dashWin.style.top = '40px';
+        dashWin.style.width = `${Math.min(940, width - 120)}px`;
+        dashWin.style.height = `${Math.min(640, height - 120)}px`;
       }
 
       const calcWin = windows['win-calc'];
       if (calcWin) {
         calcWin.style.left = '80px';
-        calcWin.style.top = '70px';
+        calcWin.style.top = '50px';
         calcWin.style.width = `${Math.min(840, width - 160)}px`;
-        calcWin.style.height = `${Math.min(580, height - 180)}px`;
+        calcWin.style.height = `${Math.min(600, height - 140)}px`;
       }
     }
   }
@@ -329,128 +313,126 @@ document.addEventListener('DOMContentLoaded', () => {
           card.style.display = 'none';
         }
       });
-      playClickSound(700, 0.03);
     });
   });
 
-  // --- Interactive Terminal ---
-  const termInput = document.getElementById('terminal-input');
-  const termOutput = document.getElementById('terminal-output');
+  // --- Windows PowerShell Interactive Terminal ---
+  const psInput = document.getElementById('powershell-input');
+  const psOutput = document.getElementById('powershell-output');
 
-  if (termInput && termOutput) {
+  if (psInput && psOutput) {
     const history = [];
     let historyIdx = -1;
 
     const commands = {
       help: () => `
-Available Commands:
-  <span class="term-highlight">bio</span>        - Learn about Mwiko
-  <span class="term-highlight">skills</span>     - List technical proficiencies
-  <span class="term-highlight">projects</span>   - View highlighted applications
-  <span class="term-highlight">sudo hire</span>  - Fast-track hiring transmission 🎉
-  <span class="term-highlight">contact</span>    - Open message composer
-  <span class="term-highlight">specs</span>      - Display MwikoOS specifications
-  <span class="term-highlight">date</span>       - Current timestamp
-  <span class="term-highlight">clear</span>      - Clear terminal screen
+Windows PowerShell Commands:
+  <span class="ps-highlight">dir / ls</span>      - List projects & files
+  <span class="ps-highlight">Get-Bio</span>       - Mwiko Sinyangwe's background
+  <span class="ps-highlight">Get-Skills</span>    - Technical stack & proficiencies
+  <span class="ps-highlight">sudo hire</span>     - Launch high-priority contact channel
+  <span class="ps-highlight">contact</span>       - Open Mail
+  <span class="ps-highlight">ipconfig</span>      - Connection details
+  <span class="ps-highlight">cls / clear</span>   - Clear terminal
       `,
-      bio: () => `
+      dir: () => `
+    Directory: C:\\Users\\Mwiko\\Portfolio
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-----         2026-10-25  23:30           <DIR>  Projects
+-a----         2026-10-25  23:30            4201  About_Me.txt
+-a----         2026-10-25  23:30            1337  Stack.json
+-a----         2026-10-25  23:30          586664  Resume.pdf
+-a----         2026-10-25  23:30           18492  Laragigs.lar
+-a----         2026-10-25  23:30           24910  PotBELLY.exe
+      `,
+      ls: () => commands.dir(),
+      'get-bio': () => `
 Mwiko Sinyangwe
-Full-stack software engineer specializing in Laravel, React, Livewire, and the TALL stack.
-Focused on architecting scalable web applications, fluid responsive interfaces, and pragmatic developer experiences.
+Fullstack Software Engineer specializing in Laravel, React, and the TALL stack.
+Mission: Building clean, resilient, and human-valuable web applications.
+Location: Zambia (CAT / UTC+2)
       `,
-      skills: () => `
-<span class="term-highlight">[Backend]</span>   PHP, Laravel, Python, Django, Ruby on Rails, MySQL, PostgreSQL
-<span class="term-highlight">[Frontend]</span>  Tailwind CSS, Alpine.js, Livewire, React, JavaScript (ES6+), HTML5/CSS3
-<span class="term-highlight">[Mobile]</span>    React Native
-<span class="term-highlight">[Tools]</span>     Git, Composer, npm, REST APIs, Linux CLI
+      bio: () => commands['get-bio'](),
+      'get-skills': () => `
+[Backend]   PHP, Laravel Framework, Livewire, Python, Django, Ruby on Rails
+[Frontend]  Tailwind CSS, Alpine.js, React, JavaScript (ES6+), HTML5/CSS3
+[Databases] MySQL, PostgreSQL, SQLite
+[Tools]     Git, GitHub, Composer, npm, REST APIs, Linux/Windows CLI
       `,
-      projects: () => `
-Highlighted Projects:
-  1. <span class="term-highlight">PotBELLY</span>: Food marketplace and financial calculator
-  2. <span class="term-highlight">Laragigs</span>: Laravel developer employment portal
-  3. <span class="term-highlight">Online Store</span>: E-commerce platform with PayPal integration
-  4. <span class="term-highlight">Social Network</span>: Community interaction platform
-  5. <span class="term-highlight">Financial Dashboard</span>: Sales reports and analytics visualization
-  6. <span class="term-highlight">Lending Firm Website</span>: Financial service portal
+      skills: () => commands['get-skills'](),
+      ipconfig: () => `
+Windows IP Configuration
+
+Ethernet adapter vEthernet (MwikoOS):
+   IPv4 Address. . . . . . . . . . . : 192.168.1.137
+   Subnet Mask . . . . . . . . . . . : 255.255.255.0
+   Default Gateway . . . . . . . . . : 192.168.1.1
+   Status. . . . . . . . . . . . . . : Online (Available for Hire)
       `,
-      specs: () => `
-  <span class="term-prompt">OS</span>: MwikoOS v2.0 (Web Architecture)
-  <span class="term-prompt">Host</span>: GitHub Pages / Edge CDN
-  <span class="term-prompt">Kernel</span>: HTML5 + Modern CSS + Vanilla JS
-  <span class="term-prompt">Uptime</span>: 100% resilient
-  <span class="term-prompt">Core Focus</span>: TALL Stack + Modern React
-      `,
-      date: () => new Date().toString(),
       'sudo hire': () => {
         openWindow('win-contact');
-        return `
-🚀 <span class="term-highlight">ACCESS GRANTED: Priority Contact Channel Initiated!</span>
-Opening Mail.app to connect directly with Mwiko...
-        `;
+        return '🚀 <span class="ps-highlight">Permission Granted!</span> Opening Mail client for Mwiko...';
       },
       contact: () => {
         openWindow('win-contact');
-        return 'Opening Mail.app...';
+        return 'Opening Contact window...';
       }
     };
 
-    termInput.addEventListener('keydown', (e) => {
+    psInput.addEventListener('keydown', (e) => {
       if (e.key === 'Enter') {
-        const rawCmd = termInput.value.trim();
+        const rawCmd = psInput.value.trim();
         const cmd = rawCmd.toLowerCase();
-        playClickSound(800, 0.02);
 
-        // Add to history
         if (rawCmd) {
           history.push(rawCmd);
           historyIdx = history.length;
         }
 
-        // Print command row
         const cmdRow = document.createElement('div');
-        cmdRow.className = 'terminal-line';
-        cmdRow.innerHTML = `<span class="term-prompt">guest@mwiko-os:~$</span> <span class="term-cmd">${rawCmd}</span>`;
-        termOutput.appendChild(cmdRow);
+        cmdRow.className = 'ps-line';
+        cmdRow.innerHTML = `<span class="ps-prompt">PS C:\\Users\\Mwiko&gt;</span> <span class="ps-cmd">${rawCmd}</span>`;
+        psOutput.appendChild(cmdRow);
 
-        // Process command
-        if (cmd === 'clear') {
-          termOutput.innerHTML = '';
+        if (cmd === 'cls' || cmd === 'clear') {
+          psOutput.innerHTML = '';
         } else if (commands[cmd]) {
           const res = commands[cmd]();
           const resRow = document.createElement('div');
-          resRow.className = 'terminal-line term-text';
+          resRow.className = 'ps-line';
           resRow.innerHTML = res.trim().replace(/\n/g, '<br>');
-          termOutput.appendChild(resRow);
+          psOutput.appendChild(resRow);
         } else if (cmd !== '') {
           const errRow = document.createElement('div');
-          errRow.className = 'terminal-line';
+          errRow.className = 'ps-line';
           errRow.style.color = '#f87171';
-          errRow.textContent = `zsh: command not found: ${rawCmd}. Type "help" for a list of commands.`;
-          termOutput.appendChild(errRow);
+          errRow.textContent = `'${rawCmd}' is not recognized as the name of a cmdlet or function. Type 'help' for available commands.`;
+          psOutput.appendChild(errRow);
         }
 
-        termInput.value = '';
-        // Scroll terminal to bottom
-        const termBody = document.querySelector('.terminal-body');
-        if (termBody) termBody.scrollTop = termBody.scrollHeight;
+        psInput.value = '';
+        const psBody = document.querySelector('.powershell-body');
+        if (psBody) psBody.scrollTop = psBody.scrollHeight;
       } else if (e.key === 'ArrowUp') {
         if (historyIdx > 0) {
           historyIdx--;
-          termInput.value = history[historyIdx];
+          psInput.value = history[historyIdx];
         }
       } else if (e.key === 'ArrowDown') {
         if (historyIdx < history.length - 1) {
           historyIdx++;
-          termInput.value = history[historyIdx];
+          psInput.value = history[historyIdx];
         } else {
           historyIdx = history.length;
-          termInput.value = '';
+          psInput.value = '';
         }
       }
     });
   }
 
-  // --- Contact Form Submission Simulation ---
+  // --- Contact Form ---
   const contactForm = document.getElementById('contact-form');
   const formStatus = document.getElementById('form-status');
   if (contactForm) {
@@ -458,22 +440,21 @@ Opening Mail.app to connect directly with Mwiko...
       e.preventDefault();
       const submitBtn = contactForm.querySelector('button[type="submit"]');
       if (submitBtn) {
-        submitBtn.textContent = 'Transmitting...';
+        submitBtn.textContent = 'Sending...';
         submitBtn.disabled = true;
       }
 
       setTimeout(() => {
         if (formStatus) {
           formStatus.className = 'form-status success';
-          formStatus.textContent = '✓ Message received! Mwiko will reply promptly.';
+          formStatus.textContent = '✓ Message sent! Mwiko will reply promptly.';
         }
         contactForm.reset();
         if (submitBtn) {
           submitBtn.textContent = 'Sent Successfully';
           submitBtn.disabled = false;
         }
-        playClickSound(950, 0.08);
-      }, 1000);
+      }, 800);
     });
   }
 });
