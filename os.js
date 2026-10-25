@@ -605,6 +605,346 @@ document.addEventListener('DOMContentLoaded', () => {
     openWindow('win-reader');
   };
 
+  // =========================================
+  // ADOBE ACROBAT READER DC SIMULATION
+  // =========================================
+  let currentDocKey = 'resume';
+  let currentDocPage = 1;
+  let acrobatZoom = 1.0;
+  let highlighterActive = false;
+
+  const acrobatDocs = {
+    resume: {
+      title: 'Resume_Mwiko_Sinyangwe.pdf',
+      totalPages: 2,
+      pages: {
+        1: `
+          <div class="pdf-doc-header">
+            <div>
+              <div class="pdf-doc-title">MWIKO SINYANGWE</div>
+              <div class="pdf-doc-subtitle">Full-Stack Software Engineer &bull; TALL Stack Specialist</div>
+            </div>
+            <div class="pdf-doc-contact">
+              Lusaka, Zambia (CAT / UTC+2)<br>
+              mwikosinyangwe@gmail.com<br>
+              github.com/mdsnn &bull; twitter.com/andmds__
+            </div>
+          </div>
+
+          <div class="pdf-section-title">Professional Summary</div>
+          <p style="font-size: 12px; color: #374151; line-height: 1.6; margin-bottom: 12px;">
+            Full-stack software engineer with deep expertise in designing, shipping, and scaling web applications utilizing <strong>Laravel, Livewire, Tailwind CSS, Alpine.js</strong>, and <strong>React</strong>. Proven track record in multi-tenant architectures, payment gateway integrations, and fluid micro-interactions.
+          </p>
+
+          <div class="pdf-section-title">Core Competencies &amp; Technical Skills</div>
+          <div class="pdf-skill-chips">
+            <span class="pdf-chip">PHP (7.x / 8.x)</span>
+            <span class="pdf-chip">Laravel 10 / 11</span>
+            <span class="pdf-chip">Livewire</span>
+            <span class="pdf-chip">Tailwind CSS</span>
+            <span class="pdf-chip">Alpine.js</span>
+            <span class="pdf-chip">React.js</span>
+            <span class="pdf-chip">JavaScript (ES6+)</span>
+            <span class="pdf-chip">Python / Django</span>
+            <span class="pdf-chip">Ruby on Rails</span>
+            <span class="pdf-chip">MySQL / PostgreSQL</span>
+            <span class="pdf-chip">RESTful APIs</span>
+            <span class="pdf-chip">Git / CI/CD</span>
+            <span class="pdf-chip">Linux Environment</span>
+          </div>
+
+          <div class="pdf-section-title">Professional Experience &amp; Engineering Deliverables</div>
+          
+          <div class="pdf-exp-row">
+            <div>
+              <span class="pdf-exp-role">Full-Stack Software Engineer</span> &bull; <span class="pdf-exp-company">Contract / Freelance</span>
+            </div>
+            <span class="pdf-exp-date">2023 &ndash; Present</span>
+          </div>
+          <p class="pdf-exp-desc">
+            &bull; Engineered production web platforms utilizing Laravel, Livewire, and Tailwind CSS with sub-150ms query response times.<br>
+            &bull; Implemented multi-tenant database schemas with strict global scopes, preventing data crossover across corporate clients.<br>
+            &bull; Integrated automated webhook processing for PayPal and mobile money checkout gateways with 99.9% uptime.
+          </p>
+
+          <div class="pdf-exp-row">
+            <div>
+              <span class="pdf-exp-role">Web Developer</span> &bull; <span class="pdf-exp-company">Independent Projects &amp; Open Source</span>
+            </div>
+            <span class="pdf-exp-date">2021 &ndash; 2023</span>
+          </div>
+          <p class="pdf-exp-desc">
+            &bull; Built <em>Laragigs</em>, a high-traffic developer recruitment platform featuring custom auth, tag-based faceted search, and resume upload workflows.<br>
+            &bull; Designed and developed real-time financial dashboards and lending calculators supporting diverse credit categories.
+          </p>
+
+          <div style="margin-top: 30px; text-align: right; font-size: 10px; color: #9ca3af; font-family: var(--font-mono);">
+            Page 1 of 2 &bull; Adobe Acrobat Document Stream &bull; SHA-256 Verified
+          </div>
+        `,
+        2: `
+          <div class="pdf-doc-header">
+            <div>
+              <div class="pdf-doc-title">MWIKO SINYANGWE</div>
+              <div class="pdf-doc-subtitle">Project Portfolio &amp; Technical Methodologies</div>
+            </div>
+            <div class="pdf-doc-contact">
+              Page 2 of 2<br>
+              mwikosinyangwe@gmail.com
+            </div>
+          </div>
+
+          <div class="pdf-section-title">Highlighted Production Projects</div>
+
+          <div class="pdf-exp-row">
+            <div>
+              <span class="pdf-exp-role">Laragigs &mdash; Developer Portal</span>
+            </div>
+            <span class="pdf-exp-date">Laravel / MySQL / Tailwind</span>
+          </div>
+          <p class="pdf-exp-desc">
+            Full recruitment portal built with custom authentication policies, tag indexing, and automated candidate filtering.
+          </p>
+
+          <div class="pdf-exp-row">
+            <div>
+              <span class="pdf-exp-role">PotBELLY &mdash; Food Marketplace</span>
+            </div>
+            <span class="pdf-exp-date">JavaScript / CSS Grid / Alpine</span>
+          </div>
+          <p class="pdf-exp-desc">
+            Interactive food marketplace with dynamic menu pricing calculations and checkout carts.
+          </p>
+
+          <div class="pdf-exp-row">
+            <div>
+              <span class="pdf-exp-role">Online Store &mdash; E-Commerce Platform</span>
+            </div>
+            <span class="pdf-exp-date">PHP / PayPal SDK / MySQL</span>
+          </div>
+          <p class="pdf-exp-desc">
+            Full e-commerce platform with automated PayPal checkout flow, guest shopping carts, and order management admin.
+          </p>
+
+          <div class="pdf-section-title">Education &amp; Methodologies</div>
+          <p class="pdf-exp-desc">
+            &bull; <strong>Clean Architecture:</strong> Strong adherence to SOLID design principles, modular service layers, and repository patterns.<br>
+            &bull; <strong>Testing:</strong> Unit &amp; integration testing via PHPUnit and Pest.<br>
+            &bull; <strong>Pragmatic Execution:</strong> Focused on shipping real business value with high speed and zero bloat.
+          </p>
+
+          <div class="pdf-section-title">Multiverse Authorization Stamp</div>
+          <div style="background: #fdf2f8; border: 1px dashed #ec4899; padding: 12px; border-radius: 6px; margin-top: 10px; font-size: 11px; color: #9d174d;">
+            <strong>CERTIFIED C-137 CANDIDATE:</strong> Recommended by Rick Sanchez for high-impact software engineering roles across all dimensions.
+          </div>
+
+          <div style="margin-top: 80px; text-align: right; font-size: 10px; color: #9ca3af; font-family: var(--font-mono);">
+            Page 2 of 2 &bull; End of Document
+          </div>
+        `
+      }
+    },
+    tall: {
+      title: 'TALL_Stack_Superpower_2026.pdf',
+      totalPages: 2,
+      pages: {
+        1: `
+          <div class="pdf-doc-header">
+            <div>
+              <div class="pdf-doc-title">THE TALL STACK IN 2026</div>
+              <div class="pdf-doc-subtitle">Engineering Whitepaper by Mwiko Sinyangwe</div>
+            </div>
+            <div class="pdf-doc-contact">
+              Technical Architecture Series<br>
+              mwikosinyangwe@gmail.com
+            </div>
+          </div>
+
+          <div class="pdf-section-title">Abstract</div>
+          <p style="font-size: 12px; color: #374151; line-height: 1.6;">
+            As frontend build tooling grows in complexity, solo engineers and small product teams require stacks that minimize glue code while maximizing shipping speed. The TALL stack (Tailwind CSS, Alpine.js, Laravel, Livewire) provides a unified fullstack model where the server remains the single source of truth without sacrificing interface reactivity.
+          </p>
+
+          <div class="pdf-section-title">Core Pillars of the Stack</div>
+          <p class="pdf-exp-desc">
+            <strong>1. Tailwind CSS:</strong> Rapid UI construction directly in template files, avoiding CSS bundle bloat.<br>
+            <strong>2. Alpine.js:</strong> Micro-reactivity handled natively in the DOM without virtual DOM overhead.<br>
+            <strong>3. Laravel 11:</strong> Robust backend primitives including queues, events, and Eloquent ORM.<br>
+            <strong>4. Livewire 3:</strong> Component-driven DOM morphing that eliminates the need for separate REST API endpoints.
+          </p>
+
+          <div style="margin-top: 60px; text-align: right; font-size: 10px; color: #9ca3af; font-family: var(--font-mono);">
+            Page 1 of 2 &bull; Adobe Acrobat Whitepaper
+          </div>
+        `,
+        2: `
+          <div class="pdf-doc-header">
+            <div>
+              <div class="pdf-doc-title">THE TALL STACK IN 2026</div>
+              <div class="pdf-doc-subtitle">Section 2: Velocity &amp; Benchmarks</div>
+            </div>
+            <div class="pdf-doc-contact">
+              Page 2 of 2
+            </div>
+          </div>
+
+          <div class="pdf-section-title">Shipping Velocity Comparison</div>
+          <p style="font-size: 12px; color: #374151; line-height: 1.6;">
+            Teams utilizing the TALL stack report up to a <strong>60% reduction</strong> in code duplication between backend models and frontend view states. Because validation rules and database logic reside in a single ecosystem, security vulnerabilities and state synchronization bugs are dramatically minimized.
+          </p>
+
+          <div class="pdf-section-title">Conclusion</div>
+          <p style="font-size: 12px; color: #374151; line-height: 1.6;">
+            For ambitious products and modern SaaS platforms, the TALL stack remains one of the highest leverage technical choices available today.
+          </p>
+
+          <div style="margin-top: 120px; text-align: right; font-size: 10px; color: #9ca3af; font-family: var(--font-mono);">
+            Page 2 of 2 &bull; End of Whitepaper
+          </div>
+        `
+      }
+    },
+    multi: {
+      title: 'MultiTenant_Architecture_Spec.pdf',
+      totalPages: 1,
+      pages: {
+        1: `
+          <div class="pdf-doc-header">
+            <div>
+              <div class="pdf-doc-title">MULTI-TENANT SAAS ARCHITECTURE</div>
+              <div class="pdf-doc-subtitle">Database Scoping &amp; Security Protocols</div>
+            </div>
+            <div class="pdf-doc-contact">
+              System Specification<br>
+              Author: Mwiko Sinyangwe
+            </div>
+          </div>
+
+          <div class="pdf-section-title">1. Architectural Objective</div>
+          <p style="font-size: 12px; color: #374151; line-height: 1.6;">
+            Establish zero-leakage tenant isolation across shared relational infrastructure, maintaining sub-100ms response times while simplifying automated tenant migrations.
+          </p>
+
+          <div class="pdf-section-title">2. Global Scope Enforcement</div>
+          <p style="font-size: 12px; color: #374151; line-height: 1.6;">
+            Every Eloquent database model inherits a tenant scope trait that automatically injects tenant constraints on all queries, updates, and deletes at compile-time.
+          </p>
+
+          <div style="margin-top: 180px; text-align: right; font-size: 10px; color: #9ca3af; font-family: var(--font-mono);">
+            Page 1 of 1 &bull; Technical Specification Complete
+          </div>
+        `
+      }
+    }
+  };
+
+  window.renderAcrobatDocument = function() {
+    const doc = acrobatDocs[currentDocKey];
+    if (!doc) return;
+
+    // Window Title
+    const titleEl = document.getElementById('acrobat-window-title');
+    if (titleEl) titleEl.textContent = `Adobe Acrobat Reader (64-bit) • ${doc.title}`;
+
+    // Stepper
+    const currentInput = document.getElementById('acrobat-current-page');
+    const totalInput = document.getElementById('acrobat-total-pages');
+    if (currentInput) currentInput.value = currentDocPage;
+    if (totalInput) totalInput.textContent = doc.totalPages;
+
+    // Sheet Content
+    const sheet = document.getElementById('pdf-page-sheet');
+    if (sheet) {
+      sheet.innerHTML = doc.pages[currentDocPage] || doc.pages[1];
+      sheet.style.transform = `scale(${acrobatZoom})`;
+      sheet.classList.toggle('highlighter-mode', highlighterActive);
+    }
+
+    // Update thumbnail active states
+    document.querySelectorAll('.thumb-preview-box').forEach((box, idx) => {
+      box.classList.toggle('active', idx + 1 === currentDocPage);
+    });
+  };
+
+  window.switchAcrobatDoc = function(docKey) {
+    if (!acrobatDocs[docKey]) return;
+    currentDocKey = docKey;
+    currentDocPage = 1;
+
+    document.querySelectorAll('.acrobat-tab').forEach(tab => {
+      tab.classList.toggle('active', tab.getAttribute('data-doc') === docKey);
+    });
+
+    renderAcrobatDocument();
+    playClickSound();
+  };
+
+  window.setAcrobatPage = function(pageNum) {
+    const doc = acrobatDocs[currentDocKey];
+    if (!doc) return;
+    if (pageNum >= 1 && pageNum <= doc.totalPages) {
+      currentDocPage = pageNum;
+      renderAcrobatDocument();
+      playClickSound();
+    }
+  };
+
+  window.acrobatNextPage = function() {
+    window.setAcrobatPage(currentDocPage + 1);
+  };
+
+  window.acrobatPrevPage = function() {
+    window.setAcrobatPage(currentDocPage - 1);
+  };
+
+  window.acrobatZoomIn = function() {
+    acrobatZoom = Math.min(1.5, acrobatZoom + 0.1);
+    updateAcrobatZoomLabel();
+  };
+
+  window.acrobatZoomOut = function() {
+    acrobatZoom = Math.max(0.6, acrobatZoom - 0.1);
+    updateAcrobatZoomLabel();
+  };
+
+  window.acrobatResetZoom = function() {
+    acrobatZoom = 1.0;
+    updateAcrobatZoomLabel();
+  };
+
+  function updateAcrobatZoomLabel() {
+    const label = document.getElementById('acrobat-zoom-label');
+    if (label) label.textContent = `${Math.round(acrobatZoom * 100)}%`;
+    const sheet = document.getElementById('pdf-page-sheet');
+    if (sheet) sheet.style.transform = `scale(${acrobatZoom})`;
+    playClickSound();
+  }
+
+  window.toggleAcrobatHighlighter = function() {
+    highlighterActive = !highlighterActive;
+    const btn = document.getElementById('acrobat-highlighter-btn');
+    if (btn) btn.classList.toggle('active', highlighterActive);
+    const sheet = document.getElementById('pdf-page-sheet');
+    if (sheet) sheet.classList.toggle('highlighter-mode', highlighterActive);
+    showToast('Acrobat Tool', highlighterActive ? 'Highlighter Mode Active: Select text to highlight in yellow.' : 'Highlighter Mode Off.');
+    playClickSound();
+  };
+
+  window.toggleAcrobatThumbPane = function() {
+    const pane = document.getElementById('acrobat-thumb-pane');
+    const icon = document.getElementById('acrobat-thumb-toggle');
+    if (pane) {
+      const isVisible = pane.style.display !== 'none';
+      pane.style.display = isVisible ? 'none' : 'flex';
+      if (icon) icon.classList.toggle('active', !isVisible);
+    }
+    playClickSound();
+  };
+
+  // Render initial document
+  renderAcrobatDocument();
+
+
   // Stack-to-Project Finder
   document.querySelectorAll('.skill-badge').forEach(badge => {
     badge.style.cursor = 'pointer';
