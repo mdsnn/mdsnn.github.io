@@ -1,238 +1,733 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-	<title>Mwiko Sinyangwe</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Mwiko Sinyangwe | Fullstack Engineer (MwikoOS 2.0)</title>
+  
+  <!-- Modern Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1" />
-
-	<link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
-
-	<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500&family=Russo+One&display=swap" rel="stylesheet">
-
-	<link rel="stylesheet" type="text/css" href="default.css">
-	<link id="theme-style" rel="stylesheet" type="text/css" href="">
+  <link rel="stylesheet" href="os.css">
 </head>
 <body>
 
-	<section class="s1">
-		<div class="main-container">
-			<div class="greeting-wrapper">
-				<h2>Hi, I'm Mwiko Sinyangwe</h2>
-			</div>
+  <!-- =========================================
+       TOP SYSTEM MENUBAR
+       ========================================= -->
+  <header class="menubar">
+    <div class="menubar-left">
+      <div class="logo-badge" data-open-window="win-about">
+        <!-- Monogram / OS Logo -->
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="4 17 10 11 4 5"></polyline>
+          <line x1="12" y1="19" x2="20" y2="19"></line>
+        </svg>
+        <span>MwikoOS</span>
+      </div>
+      <span class="menu-item" data-open-window="win-about">About</span>
+      <span class="menu-item" data-open-window="win-projects">Projects</span>
+      <span class="menu-item" data-open-window="win-skills">Stack</span>
+      <span class="menu-item" data-open-window="win-terminal">Terminal</span>
+      <span class="menu-item" data-open-window="win-contact">Contact</span>
+    </div>
 
+    <div class="menubar-right">
+      <div class="status-badge">
+        <span class="status-dot"></span>
+        <span>Open to Opportunities</span>
+      </div>
 
-			<div class="intro-wrapper">
-				<div class="nav-wrapper">
+      <!-- Sound FX Toggle -->
+      <button class="control-btn" id="sound-toggle-btn" title="Toggle Sound Feedback">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+          <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+          <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+        </svg>
+      </button>
 
-					<!-- Link around dots-wrapper added after tutorial video -->
-					<a href="index.html">
-						<div class="dots-wrapper">
-							<div id="dot-1" class="browser-dot"></div>
-							<div id="dot-2" class="browser-dot"></div>
-							<div id="dot-3" class="browser-dot"></div>
-						</div>
-					</a>
-					
+      <!-- Wallpaper & Theme Switcher -->
+      <div class="dropdown-wrapper">
+        <button class="control-btn" id="theme-toggle-btn" title="Change Theme & Wallpaper">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <path d="M12 2a14.5 14.5 0 0 0 0 20 10 10 0 0 0 0-20"></path>
+          </svg>
+        </button>
+        <div class="dropdown-menu" id="theme-dropdown">
+          <div class="dropdown-item" data-set-theme="default">
+            <span class="theme-color-preview" style="background: linear-gradient(135deg, #6366f1, #38bdf8);"></span>
+            <span>Aurora Dusk</span>
+          </div>
+          <div class="dropdown-item" data-set-theme="cyber">
+            <span class="theme-color-preview" style="background: linear-gradient(135deg, #00f2fe, #ff007f);"></span>
+            <span>Cyberpunk Neon</span>
+          </div>
+          <div class="dropdown-item" data-set-theme="obsidian">
+            <span class="theme-color-preview" style="background: linear-gradient(135deg, #374151, #111827);"></span>
+            <span>Obsidian Minimal</span>
+          </div>
+          <div class="dropdown-item" data-set-theme="sunset">
+            <span class="theme-color-preview" style="background: linear-gradient(135deg, #fb923c, #d946ef);"></span>
+            <span>Solar Sunset</span>
+          </div>
+        </div>
+      </div>
 
-					<ul id="navigation">
-						<li><a href="index.html#contact">Contact</a></li>
+      <div class="clock" id="system-clock">--:--</div>
+    </div>
+  </header>
 
-					</ul>
-				</div>
+  <!-- =========================================
+       DESKTOP WORKSPACE & ICONS
+       ========================================= -->
+  <main class="desktop">
+    <!-- Icon 1: About Me -->
+    <div class="desktop-icon" data-open-window="win-about">
+      <div class="icon-graphic icon-about">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+          <circle cx="12" cy="7" r="4"></circle>
+        </svg>
+      </div>
+      <span class="icon-label">About_Me.txt</span>
+    </div>
 
-				<div class="left-column">
-					<img style="border-radius: 50%;" id="profile_pic" src="images/mwiko.jpg">
-					<h5 style="text-align: center;line-height: 0;">Personalize Theme</h5>
+    <!-- Icon 2: Projects -->
+    <div class="desktop-icon" data-open-window="win-projects">
+      <div class="icon-graphic icon-projects">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+        </svg>
+      </div>
+      <span class="icon-label">Projects</span>
+    </div>
 
-					<div id="theme-options-wrapper">
-						<div data-mode="light" id="light-mode" class="theme-dot"></div>
-						<div data-mode="blue" id="blue-mode" class="theme-dot"></div>
-						<div data-mode="green" id="green-mode" class="theme-dot"></div>
-						<div data-mode="purple" id="purple-mode" class="theme-dot"></div>
-					</div>
+    <!-- Icon 3: Skills -->
+    <div class="desktop-icon" data-open-window="win-skills">
+      <div class="icon-graphic icon-skills">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+        </svg>
+      </div>
+      <span class="icon-label">Stack.json</span>
+    </div>
 
-					<p id="settings-note">*Theme settings will be saved for<br>your next vist</p>
-				</div>
+    <!-- Icon 4: Terminal -->
+    <div class="desktop-icon" data-open-window="win-terminal">
+      <div class="icon-graphic icon-terminal">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="4 17 10 11 4 5"></polyline>
+          <line x1="12" y1="19" x2="20" y2="19"></line>
+        </svg>
+      </div>
+      <span class="icon-label">Terminal.sh</span>
+    </div>
 
-				<div class="right-column">
+    <!-- Icon 5: Dashboard Live App -->
+    <div class="desktop-icon" data-open-window="win-dashboard">
+      <div class="icon-graphic icon-dashboard">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+          <line x1="3" y1="9" x2="21" y2="9"></line>
+          <line x1="9" y1="21" x2="9" y2="9"></line>
+        </svg>
+      </div>
+      <span class="icon-label">Dashboard.app</span>
+    </div>
 
-					<div id="preview-shadow">
-						<div id="preview">
-							<div id="corner-tl" class="corner"></div>
-							<div id="corner-tr" class="corner"></div>
-							<h3></h3>
-							<p>Self finding missions in my past life led me to becoming a fullstack developer in this life</p>
-							<div id="corner-br" class="corner"></div>
-							<div id="corner-bl" class="corner"></div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
+    <!-- Icon 6: PotBELLY Live App -->
+    <div class="desktop-icon" data-open-window="win-calc">
+      <div class="icon-graphic icon-calc">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="4" y="2" width="16" height="20" rx="2"></rect>
+          <line x1="8" y1="6" x2="16" y2="6"></line>
+          <line x1="16" y1="14" x2="16" y2="18"></line>
+          <path d="M16 10h.01"></path>
+          <path d="M12 10h.01"></path>
+          <path d="M8 10h.01"></path>
+          <path d="M12 14h.01"></path>
+          <path d="M8 14h.01"></path>
+          <path d="M12 18h.01"></path>
+          <path d="M8 18h.01"></path>
+        </svg>
+      </div>
+      <span class="icon-label">PotBELLY.app</span>
+    </div>
 
-	<section class="s2">
-		<div class="main-container">
+    <!-- Icon 7: Resume -->
+    <div class="desktop-icon" data-open-window="win-resume">
+      <div class="icon-graphic icon-resume">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+          <polyline points="14 2 14 8 20 8"></polyline>
+          <line x1="16" y1="13" x2="8" y2="13"></line>
+          <line x1="16" y1="17" x2="8" y2="17"></line>
+          <polyline points="10 9 9 9 8 9"></polyline>
+        </svg>
+      </div>
+      <span class="icon-label">Resume.pdf</span>
+    </div>
 
-			<div class="about-wrapper">
-				<div class="about-me">
-					<h4>More about me</h4>
+    <!-- Icon 8: Contact -->
+    <div class="desktop-icon" data-open-window="win-contact">
+      <div class="icon-graphic icon-contact">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+          <polyline points="22,6 12,13 2,6"></polyline>
+        </svg>
+      </div>
+      <span class="icon-label">Contact.app</span>
+    </div>
+  </main>
 
-					<p>building fun and cool projects just to tickle my brain and love teaching others how they're made.</p>
+  <!-- =========================================
+       WINDOW 1: ABOUT ME
+       ========================================= -->
+  <div class="os-window hidden" id="win-about">
+    <div class="window-header">
+      <div class="traffic-lights">
+        <button class="traffic-light traffic-close" title="Close">
+          <svg viewBox="0 0 10 10"><path d="M1,1 L9,9 M9,1 L1,9" stroke="currentColor" stroke-width="1.5"/></svg>
+        </button>
+        <button class="traffic-light traffic-minimize" title="Minimize">
+          <svg viewBox="0 0 10 10"><line x1="1" y1="5" x2="9" y2="5" stroke="currentColor" stroke-width="1.5"/></svg>
+        </button>
+        <button class="traffic-light traffic-maximize" title="Maximize">
+          <svg viewBox="0 0 10 10"><rect x="1" y="1" width="8" height="8" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+        </button>
+      </div>
+      <div class="window-title">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+        <span>About_Me.txt — Mwiko Sinyangwe</span>
+      </div>
+      <div class="window-actions"></div>
+    </div>
+    <div class="window-body">
+      <div class="about-hero">
+        <img class="about-avatar" src="images/mwiko.jpg" alt="Mwiko Sinyangwe">
+        <div>
+          <h1 class="about-name">Mwiko Sinyangwe</h1>
+          <div class="about-role">Fullstack Engineer &bull; TALL Stack Artisan</div>
+          <div class="about-socials">
+            <a class="social-pill" href="https://github.com/mdsnn" target="_blank" rel="noopener">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+              <span>GitHub</span>
+            </a>
+            <a class="social-pill" href="https://twitter.com/andmds__" target="_blank" rel="noopener">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+              <span>Twitter</span>
+            </a>
+            <a class="social-pill" href="https://instagram.com/mwikosinyangwe" target="_blank" rel="noopener">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+              <span>Instagram</span>
+            </a>
+          </div>
+        </div>
+      </div>
 
-					<p>immersing my head in everything programming is how i'm kept busy, still take interviews in search of a great team & projects that are of value to mankind.</p>
+      <div class="bio-card">
+        <p>
+          <strong>"Self finding missions in my past life led me to becoming a fullstack developer in this life."</strong>
+        </p>
+        <p>
+          I specialize in building performant, production-ready web applications with the <strong>TALL stack</strong> (Tailwind CSS, Alpine.js, Laravel, Livewire), paired with modern <strong>React</strong> and robust relational databases.
+        </p>
+        <p>
+          Passionate about clean architecture, responsive UX design, and teaching others how resilient software is engineered. Always interested in collaborative engineering teams and high-impact products.
+        </p>
+      </div>
 
+      <div class="about-stats">
+        <div class="stat-box">
+          <div class="stat-number">6+</div>
+          <div class="stat-label">Core Projects</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-number">Full-Stack</div>
+          <div class="stat-label">Architecture</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-number">100%</div>
+          <div class="stat-label">Commitment</div>
+        </div>
+      </div>
 
-					<hr>
+      <div class="cta-row">
+        <button class="btn-primary" data-open-window="win-projects">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+          <span>Explore Projects</span>
+        </button>
+        <button class="btn-secondary" data-open-window="win-contact">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path></svg>
+          <span>Get in Touch</span>
+        </button>
+        <a class="btn-secondary" href="resume.pdf" target="_blank">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+          <span>Resume</span>
+        </a>
+      </div>
+    </div>
+  </div>
 
-					<h4>TOP EXPERTISE</h4>
+  <!-- =========================================
+       WINDOW 2: PROJECTS
+       ========================================= -->
+  <div class="os-window hidden" id="win-projects">
+    <div class="window-header">
+      <div class="traffic-lights">
+        <button class="traffic-light traffic-close"><svg viewBox="0 0 10 10"><path d="M1,1 L9,9 M9,1 L1,9" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <button class="traffic-light traffic-minimize"><svg viewBox="0 0 10 10"><line x1="1" y1="5" x2="9" y2="5" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <button class="traffic-light traffic-maximize"><svg viewBox="0 0 10 10"><rect x="1" y="1" width="8" height="8" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+      </div>
+      <div class="window-title">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+        <span>Projects — File Manager</span>
+      </div>
+      <div class="window-actions"></div>
+    </div>
+    <div class="window-body">
+      <!-- Filter Bar -->
+      <div class="projects-filter">
+        <button class="filter-btn active" data-filter="all">All Projects</button>
+        <button class="filter-btn" data-filter="laravel">Laravel & PHP</button>
+        <button class="filter-btn" data-filter="fullstack">Fullstack / React</button>
+      </div>
 
-					<p>Fullstack developer with primary focus on the TALL stack: <a target="_blank" href="resume.pdf">Download Resume</a></p>
+      <div class="projects-grid">
+        <!-- Project 1: Laragigs -->
+        <div class="project-card" data-category="laravel fullstack">
+          <div class="project-thumb-wrapper">
+            <img class="project-thumb" src="images/screen.png" alt="Laragigs Job Portal">
+          </div>
+          <div class="project-info">
+            <h3 class="project-title">Laragigs</h3>
+            <p class="project-desc">A specialized job portal for Laravel developers with authentication, tag filtering, and job listings management.</p>
+            <div class="project-tags">
+              <span class="project-tag">Laravel</span>
+              <span class="project-tag">MySQL</span>
+              <span class="project-tag">Tailwind</span>
+            </div>
+            <div class="project-links">
+              <a class="project-btn project-btn-primary" href="postJob.html">Details &amp; Story</a>
+              <a class="project-btn project-btn-outline" href="https://github.com/mdsnn" target="_blank">Source Code</a>
+            </div>
+          </div>
+        </div>
 
-					<div id="skills">
-						<ul>
-							<li>PHP</li>
-							<li>JavaScript</li>
-							<li>Laravel</li>
-							<li>React</li>
-							<li>Ruby on Rails</li>							
-						</ul>
+        <!-- Project 2: PotBELLY -->
+        <div class="project-card" data-category="fullstack">
+          <div class="project-thumb-wrapper">
+            <img class="project-thumb" src="images/calc.jpg" alt="PotBELLY Marketplace">
+          </div>
+          <div class="project-info">
+            <h3 class="project-title">PotBELLY</h3>
+            <p class="project-desc">Food marketplace with an integrated interactive pricing calculator and dynamic menu management.</p>
+            <div class="project-tags">
+              <span class="project-tag">JavaScript</span>
+              <span class="project-tag">CSS Grid</span>
+              <span class="project-tag">Interactive UI</span>
+            </div>
+            <div class="project-links">
+              <button class="project-btn project-btn-primary" data-open-window="win-calc">Run in OS</button>
+              <a class="project-btn project-btn-outline" href="calc/index.html" target="_blank">Full Demo</a>
+            </div>
+          </div>
+        </div>
 
-						<ul>							
-							<li>Python</li>
-							<li>Django</li>
-							<li>Tailwind</li>
-							<li>React Native</li>
-							<li>JS Charts</li>
-						</ul>
+        <!-- Project 3: Online Store -->
+        <div class="project-card" data-category="laravel fullstack">
+          <div class="project-thumb-wrapper">
+            <img class="project-thumb" src="images/ecom.jpg" alt="Online Store">
+          </div>
+          <div class="project-info">
+            <h3 class="project-title">Online Store</h3>
+            <p class="project-desc">Full e-commerce platform with automated PayPal checkout flow, guest shopping cart, and orders admin.</p>
+            <div class="project-tags">
+              <span class="project-tag">PHP</span>
+              <span class="project-tag">PayPal SDK</span>
+              <span class="project-tag">E-Commerce</span>
+            </div>
+            <div class="project-links">
+              <a class="project-btn project-btn-primary" href="postEcom.html">Case Study</a>
+              <a class="project-btn project-btn-outline" href="https://github.com/mdsnn" target="_blank">Repository</a>
+            </div>
+          </div>
+        </div>
 
+        <!-- Project 4: Financial Dashboard -->
+        <div class="project-card" data-category="fullstack">
+          <div class="project-thumb-wrapper">
+            <img class="project-thumb" src="images/dashboard.jpg" alt="Analytics Dashboard">
+          </div>
+          <div class="project-info">
+            <h3 class="project-title">Analytics &amp; Sales Dashboard</h3>
+            <p class="project-desc">Real-time revenue metrics, financial reports visualization, interactive charts, and user analytics.</p>
+            <div class="project-tags">
+              <span class="project-tag">JS Charts</span>
+              <span class="project-tag">Dashboard</span>
+              <span class="project-tag">Data Viz</span>
+            </div>
+            <div class="project-links">
+              <button class="project-btn project-btn-primary" data-open-window="win-dashboard">Launch in OS</button>
+              <a class="project-btn project-btn-outline" href="dashboard/index.html" target="_blank">Direct View</a>
+            </div>
+          </div>
+        </div>
 
-					</div>
+        <!-- Project 5: Social Networking Platform -->
+        <div class="project-card" data-category="fullstack">
+          <div class="project-thumb-wrapper">
+            <img class="project-thumb" src="images/blog.jpg" alt="Social Media Platform">
+          </div>
+          <div class="project-info">
+            <h3 class="project-title">Social Network Platform</h3>
+            <p class="project-desc">Community collaboration hub allowing developers and creators to share updates, comment, and connect.</p>
+            <div class="project-tags">
+              <span class="project-tag">Full-Stack</span>
+              <span class="project-tag">Feed System</span>
+              <span class="project-tag">Auth</span>
+            </div>
+            <div class="project-links">
+              <a class="project-btn project-btn-primary" href="postSocial.html">Explore Platform</a>
+              <a class="project-btn project-btn-outline" href="https://github.com/mdsnn" target="_blank">GitHub</a>
+            </div>
+          </div>
+        </div>
 
-				</div>
+        <!-- Project 6: Lending Firm Portal -->
+        <div class="project-card" data-category="fullstack">
+          <div class="project-thumb-wrapper">
+            <img class="project-thumb" src="images/loan.jpg" alt="Lending Firm Website">
+          </div>
+          <div class="project-info">
+            <h3 class="project-title">Lending Firm Web Portal</h3>
+            <p class="project-desc">Financial service portal showcasing diverse credit tiers, loan estimation calculators, and client intake forms.</p>
+            <div class="project-tags">
+              <span class="project-tag">Financial UI</span>
+              <span class="project-tag">Calculators</span>
+              <span class="project-tag">Responsive</span>
+            </div>
+            <div class="project-links">
+              <a class="project-btn project-btn-primary" href="loan/index.html" target="_blank">Live Portal</a>
+              <a class="project-btn project-btn-outline" href="postLoan.html">Overview</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-				
-				<div class="social-links">
-					
-					<h3>Find me on Socials</h3>
+  <!-- =========================================
+       WINDOW 3: INTERACTIVE TERMINAL
+       ========================================= -->
+  <div class="os-window hidden" id="win-terminal">
+    <div class="window-header">
+      <div class="traffic-lights">
+        <button class="traffic-light traffic-close"><svg viewBox="0 0 10 10"><path d="M1,1 L9,9 M9,1 L1,9" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <button class="traffic-light traffic-minimize"><svg viewBox="0 0 10 10"><line x1="1" y1="5" x2="9" y2="5" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <button class="traffic-light traffic-maximize"><svg viewBox="0 0 10 10"><rect x="1" y="1" width="8" height="8" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+      </div>
+      <div class="window-title">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 17 10 11 4 5"></polyline><line x1="12" y1="19" x2="20" y2="19"></line></svg>
+        <span>guest@mwiko-os: ~ (zsh)</span>
+      </div>
+      <div class="window-actions"></div>
+    </div>
+    <div class="window-body terminal-body">
+      <div class="terminal-output" id="terminal-output">
+        <div class="terminal-line">
+          Welcome to <span class="term-highlight">MwikoOS Interactive Shell [Version 2.0.4]</span>
+        </div>
+        <div class="terminal-line">
+          Type <span class="term-cmd">help</span> for a list of available system commands.
+        </div>
+        <div class="terminal-line">
+          Try typing <span class="term-cmd">skills</span>, <span class="term-cmd">projects</span>, or <span class="term-cmd">sudo hire</span>.
+        </div>
+      </div>
+      <div class="terminal-input-row">
+        <span class="term-prompt">guest@mwiko-os:~$</span>
+        <input type="text" id="terminal-input" class="terminal-input" autocomplete="off" spellcheck="false" autofocus>
+      </div>
+    </div>
+  </div>
 
-					<a target="_blank" href="https://www.github.com/mdsnn">Github: @Mwikosinyangwe</a>
-					<br>
-					<a target="_blank" href="https://www.instagram.com/mwikosinyangwe">Instagram: @Mwikosinyangwe</a>
-					<br>
-					<a target="_blank" href="https://twitter.com/andmds__">Twitter: @andmds__</a>
-				</div>
-			</div>
+  <!-- =========================================
+       WINDOW 4: TECH STACK (SKILLS)
+       ========================================= -->
+  <div class="os-window hidden" id="win-skills">
+    <div class="window-header">
+      <div class="traffic-lights">
+        <button class="traffic-light traffic-close"><svg viewBox="0 0 10 10"><path d="M1,1 L9,9 M9,1 L1,9" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <button class="traffic-light traffic-minimize"><svg viewBox="0 0 10 10"><line x1="1" y1="5" x2="9" y2="5" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <button class="traffic-light traffic-maximize"><svg viewBox="0 0 10 10"><rect x="1" y="1" width="8" height="8" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+      </div>
+      <div class="window-title">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+        <span>Stack.json — Technical Proficiencies</span>
+      </div>
+      <div class="window-actions"></div>
+    </div>
+    <div class="window-body">
+      <div class="skills-grid">
+        <!-- Backend -->
+        <div class="skill-category">
+          <div class="skill-cat-title">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect><rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect><line x1="6" y1="6" x2="6.01" y2="6"></line><line x1="6" y1="18" x2="6.01" y2="18"></line></svg>
+            <span>Backend &amp; Architecture</span>
+          </div>
+          <div class="skill-items">
+            <span class="skill-badge">PHP</span>
+            <span class="skill-badge">Laravel Framework</span>
+            <span class="skill-badge">Livewire</span>
+            <span class="skill-badge">Python</span>
+            <span class="skill-badge">Django</span>
+            <span class="skill-badge">Ruby on Rails</span>
+            <span class="skill-badge">RESTful APIs</span>
+          </div>
+        </div>
 
-		</div>
-	</section>
+        <!-- Frontend -->
+        <div class="skill-category">
+          <div class="skill-cat-title">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+            <span>Frontend &amp; UI</span>
+          </div>
+          <div class="skill-items">
+            <span class="skill-badge">Tailwind CSS</span>
+            <span class="skill-badge">Alpine.js</span>
+            <span class="skill-badge">React.js</span>
+            <span class="skill-badge">JavaScript (ES6+)</span>
+            <span class="skill-badge">HTML5 / Semantic Web</span>
+            <span class="skill-badge">CSS Grid &amp; Flexbox</span>
+            <span class="skill-badge">Responsive Design</span>
+          </div>
+        </div>
 
-	<section class="s1">
-		<div class="main-container">
-			<h3 style="text-align: center;">Some of my past projects</h3>
-             
+        <!-- Database & Systems -->
+        <div class="skill-category">
+          <div class="skill-cat-title">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg>
+            <span>Databases &amp; Mobile</span>
+          </div>
+          <div class="skill-items">
+            <span class="skill-badge">MySQL</span>
+            <span class="skill-badge">PostgreSQL</span>
+            <span class="skill-badge">React Native</span>
+            <span class="skill-badge">JS Charts &amp; Analytics</span>
+            <span class="skill-badge">Git &amp; GitHub</span>
+            <span class="skill-badge">Composer &amp; npm</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
+  <!-- =========================================
+       WINDOW 5: DASHBOARD (LIVE IFRAME)
+       ========================================= -->
+  <div class="os-window hidden" id="win-dashboard">
+    <div class="window-header">
+      <div class="traffic-lights">
+        <button class="traffic-light traffic-close"><svg viewBox="0 0 10 10"><path d="M1,1 L9,9 M9,1 L1,9" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <button class="traffic-light traffic-minimize"><svg viewBox="0 0 10 10"><line x1="1" y1="5" x2="9" y2="5" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <button class="traffic-light traffic-maximize"><svg viewBox="0 0 10 10"><rect x="1" y="1" width="8" height="8" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+      </div>
+      <div class="window-title">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
+        <span>Dashboard.app — Live Analytics Sandbox</span>
+      </div>
+      <div class="window-actions"></div>
+    </div>
+    <div class="window-body" style="padding: 0; overflow: hidden;">
+      <iframe class="iframe-container" src="dashboard/index.html" title="Live Dashboard"></iframe>
+    </div>
+  </div>
 
-			<div class="post-wrapper">
+  <!-- =========================================
+       WINDOW 6: POTBELLY (LIVE IFRAME)
+       ========================================= -->
+  <div class="os-window hidden" id="win-calc">
+    <div class="window-header">
+      <div class="traffic-lights">
+        <button class="traffic-light traffic-close"><svg viewBox="0 0 10 10"><path d="M1,1 L9,9 M9,1 L1,9" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <button class="traffic-light traffic-minimize"><svg viewBox="0 0 10 10"><line x1="1" y1="5" x2="9" y2="5" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <button class="traffic-light traffic-maximize"><svg viewBox="0 0 10 10"><rect x="1" y="1" width="8" height="8" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+      </div>
+      <div class="window-title">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2"></rect><line x1="8" y1="6" x2="16" y2="6"></line></svg>
+        <span>PotBELLY.app — Interactive Demo</span>
+      </div>
+      <div class="window-actions"></div>
+    </div>
+    <div class="window-body" style="padding: 0; overflow: hidden;">
+      <iframe class="iframe-container" src="calc/index.html" title="PotBELLY Calculator"></iframe>
+    </div>
+  </div>
 
-				<div>
-					<div class="post">
-						<img class="thumbnail" src="images/calc.jpg">
-						<div class="post-preview">
-							<h6 class="post-title">PotBELLY</h6>
-							<p class="post-intro">Food Marketplace</p>
-							<a href="calc/index.html">See More</a>
-						</div>
-					</div>
-				</div>
+  <!-- =========================================
+       WINDOW 7: RESUME APP
+       ========================================= -->
+  <div class="os-window hidden" id="win-resume">
+    <div class="window-header">
+      <div class="traffic-lights">
+        <button class="traffic-light traffic-close"><svg viewBox="0 0 10 10"><path d="M1,1 L9,9 M9,1 L1,9" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <button class="traffic-light traffic-minimize"><svg viewBox="0 0 10 10"><line x1="1" y1="5" x2="9" y2="5" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <button class="traffic-light traffic-maximize"><svg viewBox="0 0 10 10"><rect x="1" y="1" width="8" height="8" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+      </div>
+      <div class="window-title">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path></svg>
+        <span>Resume.pdf — Mwiko Sinyangwe</span>
+      </div>
+      <div class="window-actions"></div>
+    </div>
+    <div class="window-body">
+      <div class="bio-card" style="text-align: center; padding: 30px;">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--accent-cyan)" stroke-width="2" style="margin-bottom: 14px;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+        <h2 style="font-size: 20px; color: #fff; margin-bottom: 8px;">Mwiko Sinyangwe — Fullstack Resume</h2>
+        <p style="margin-bottom: 24px;">PDF document includes comprehensive work history, key engineering deliverables, education, and technical competencies.</p>
+        <div style="display: flex; justify-content: center; gap: 12px;">
+          <a class="btn-primary" href="resume.pdf" target="_blank" download>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+            <span>Download PDF</span>
+          </a>
+          <a class="btn-secondary" href="resume.pdf" target="_blank">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+            <span>Open in Browser</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
 
+  <!-- =========================================
+       WINDOW 8: CONTACT / MAIL
+       ========================================= -->
+  <div class="os-window hidden" id="win-contact">
+    <div class="window-header">
+      <div class="traffic-lights">
+        <button class="traffic-light traffic-close"><svg viewBox="0 0 10 10"><path d="M1,1 L9,9 M9,1 L1,9" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <button class="traffic-light traffic-minimize"><svg viewBox="0 0 10 10"><line x1="1" y1="5" x2="9" y2="5" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <button class="traffic-light traffic-maximize"><svg viewBox="0 0 10 10"><rect x="1" y="1" width="8" height="8" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+      </div>
+      <div class="window-title">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+        <span>Mail.app — New Message</span>
+      </div>
+      <div class="window-actions"></div>
+    </div>
+    <div class="window-body">
+      <form class="contact-form" id="contact-form">
+        <div class="form-group">
+          <label class="form-label">To:</label>
+          <input class="form-input" type="text" value="Mwiko Sinyangwe &lt;contact@mwiko.dev&gt;" readonly style="opacity: 0.75; cursor: default;">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Your Name</label>
+          <input class="form-input" type="text" placeholder="Sarah or Alex" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Your Email</label>
+          <input class="form-input" type="email" placeholder="name@company.com" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Subject</label>
+          <input class="form-input" type="text" placeholder="Fullstack Role / Collaboration" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Message</label>
+          <textarea class="form-textarea" placeholder="Hi Mwiko, I came across your portfolio and wanted to discuss..." required></textarea>
+        </div>
+        <div class="form-status" id="form-status"></div>
+        <button type="submit" class="btn-primary" style="align-self: flex-start;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+          <span>Send Message</span>
+        </button>
+      </form>
+    </div>
+  </div>
 
-				<div>
-					<div class="post">
-						<img class="thumbnail" src="images/screen.png">
-						<div class="post-preview">
-							<h6 class="post-title">Job portal</h6>
-							<p class="post-intro">Laragigs is a job portal for laravel developers</p>
-							<a href="postJob.html">Read More</a>
-						</div>
-					</div>
-				</div>
+  <!-- =========================================
+       FROSTED FLOATING DOCK
+       ========================================= -->
+  <div class="dock-wrapper">
+    <nav class="dock">
+      <!-- 1. About -->
+      <div class="dock-item" data-app="win-about" data-open-window="win-about">
+        <div class="dock-tooltip">About Me</div>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+        <span class="dock-dot"></span>
+      </div>
 
-				<div>
-					<div class="post">
-						<img class="thumbnail" src="images/ecom.jpg">
-						<div class="post-preview">
-							<h6 class="post-title">Online Store</h6>
-							<p class="post-intro">Online store with paypal payments intergration and guest user shopping</p>
-							<a href="postEcom.html">Read More</a>
-						</div>
-					</div>
-				</div>
+      <!-- 2. Projects -->
+      <div class="dock-item" data-app="win-projects" data-open-window="win-projects">
+        <div class="dock-tooltip">Projects</div>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+        <span class="dock-dot"></span>
+      </div>
 
-				<div>
-					<div class="post">
-						<img class="thumbnail" src="images/blog.jpg">
-						<div class="post-preview">
-							<h6 class="post-title">Social Media Website</h6>
-							<p class="post-intro">Social networking platform were users could share ideas and interact with each other</p>
-							<a href="postSocial.html">Read More</a>
-						</div>
-					</div>
-				</div>
-				<div>
-					<div class="post">
-						<img class="thumbnail" src="images/dashboard.jpg">
-						<div class="post-preview">
-							<h6 class="post-title">Dashboard</h6>
-							<p class="post-intro">Sales and financial report dashboard</p>
-							<a href="dashboard/index.html">See More</a>
-						</div>
-					</div>
-				</div>
+      <!-- 3. Terminal -->
+      <div class="dock-item" data-app="win-terminal" data-open-window="win-terminal">
+        <div class="dock-tooltip">Terminal</div>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 17 10 11 4 5"></polyline><line x1="12" y1="19" x2="20" y2="19"></line></svg>
+        <span class="dock-dot"></span>
+      </div>
 
-				
+      <!-- 4. Skills -->
+      <div class="dock-item" data-app="win-skills" data-open-window="win-skills">
+        <div class="dock-tooltip">Tech Stack</div>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+        <span class="dock-dot"></span>
+      </div>
 
-				<div>
-					<div class="post">
-						<img class="thumbnail" src="images/loan.jpg">
-						<div class="post-preview">
-							<h6 class="post-title">Lending Firm Website</h6>
-							<p class="post-intro">Landing page for a site offering diverse credit categories</p>
-							<a href="loan/index.html">See More</a>
-						</div>
-					</div>
-				</div>
+      <!-- 5. Dashboard -->
+      <div class="dock-item" data-app="win-dashboard" data-open-window="win-dashboard">
+        <div class="dock-tooltip">Dashboard App</div>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
+        <span class="dock-dot"></span>
+      </div>
 
-			</div>
-		</div>
-	</section>
+      <!-- 6. PotBELLY -->
+      <div class="dock-item" data-app="win-calc" data-open-window="win-calc">
+        <div class="dock-tooltip">PotBELLY App</div>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2"></rect><line x1="8" y1="6" x2="16" y2="6"></line></svg>
+        <span class="dock-dot"></span>
+      </div>
 
-	<section class="s2">
-		<div class="main-container">
-			<a href=""></a>
-			<h3 style="text-align: center;">Get In Touch</h3>
+      <!-- 7. Mail -->
+      <div class="dock-item" data-app="win-contact" data-open-window="win-contact">
+        <div class="dock-tooltip">Mail / Contact</div>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+        <span class="dock-dot"></span>
+      </div>
 
-			<form id="contact-form">
-				<a name="contact"></a>
+      <!-- 8. Resume -->
+      <div class="dock-item" data-app="win-resume" data-open-window="win-resume">
+        <div class="dock-tooltip">Resume PDF</div>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+        <span class="dock-dot"></span>
+      </div>
 
-				<label>Name</label>
-				<input class="input-field" type="text" name="name">
+      <div class="dock-divider"></div>
 
-				<label>Subject</label>
-				<input class="input-field" type="text" name="subject">
+      <!-- 9. External GitHub -->
+      <a class="dock-item" href="https://github.com/mdsnn" target="_blank" rel="noopener">
+        <div class="dock-tooltip">GitHub: @mdsnn</div>
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+      </a>
 
-				<label>Email</label>
-				<input class="input-field" type="text" name="email">
+      <!-- 10. External Twitter -->
+      <a class="dock-item" href="https://twitter.com/andmds__" target="_blank" rel="noopener">
+        <div class="dock-tooltip">Twitter / X</div>
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+      </a>
+    </nav>
+  </div>
 
-				<label>Message</label>
-				<textarea class="input-field" name="message"></textarea>
-
-				<input id="submit-btn" type="submit" value="Send">
-			</form>
-		</div>
-	</section> 
-
-	<script type="text/javascript" src="script.js"></script>
+  <script src="os.js"></script>
 </body>
 </html>
