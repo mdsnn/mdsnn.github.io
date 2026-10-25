@@ -1,5 +1,10 @@
 /**
- * Windows 11 (Mwiko Edition) - Window Manager & System Logic
+ * Windows 11 (Mwiko Edition) - Advanced Features:
+ * - Interdimensional Portal Gun (Wallpaper Dimensions)
+ * - Windows 11 Right-Click Context Menu
+ * - Interactive Stack-to-Project Highlighting
+ * - System Telemetry Dev Widget
+ * - Rick & Morty PowerShell Cmdlets
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -8,7 +13,107 @@ document.addEventListener('DOMContentLoaded', () => {
   const windows = {};
   let startMenuOpen = false;
 
-  // --- Windows Tray Clock (Time on top, Date below) ---
+  // --- Dimensions Collection ---
+  const dimensions = [
+    {
+      id: 'c137',
+      name: 'Dimension C-137 (Cosmic Portal)',
+      url: 'images/rick_and_morty_wallpaper.jpg',
+      tag: 'C-137'
+    },
+    {
+      id: 'citadel',
+      name: 'The Citadel of Ricks (Space Metropolis)',
+      url: 'images/citadel_wallpaper.jpg',
+      tag: 'CITADEL-001'
+    },
+    {
+      id: 'win11',
+      name: 'Classic Windows 11 Dark Bloom',
+      url: 'images/desktop wallpaper.jpg',
+      tag: 'WIN-11'
+    }
+  ];
+
+  let currentDimIndex = 0;
+
+  // --- Interdimensional Portal Gun Function ---
+  window.firePortalGun = function(targetIndex = null) {
+    if (targetIndex !== null) {
+      currentDimIndex = targetIndex % dimensions.length;
+    } else {
+      currentDimIndex = (currentDimIndex + 1) % dimensions.length;
+    }
+
+    const nextDim = dimensions[currentDimIndex];
+    const overlay = document.getElementById('portal-overlay');
+
+    // Trigger visual swirl effect
+    if (overlay) {
+      overlay.innerHTML = '<div class="portal-ring"></div>';
+      overlay.classList.add('active');
+      setTimeout(() => {
+        overlay.classList.remove('active');
+        overlay.innerHTML = '';
+      }, 750);
+    }
+
+    // Update Wallpaper
+    document.body.style.backgroundImage = `url('${nextDim.url}'), radial-gradient(circle at 50% 40%, #10b981 0%, #030712 70%)`;
+
+    // Update Telemetry Widget
+    const dimTag = document.getElementById('widget-dim-tag');
+    if (dimTag) dimTag.textContent = nextDim.tag;
+
+    // Show Windows Toast
+    showToast('Portal Gun Discharged', `Transported to ${nextDim.name}`);
+  };
+
+  // --- Windows 11 Toast Notification ---
+  function showToast(title, message) {
+    const toast = document.getElementById('win-toast');
+    if (!toast) return;
+
+    toast.querySelector('.toast-title').textContent = title;
+    toast.querySelector('.toast-body').textContent = message;
+    toast.classList.add('show');
+
+    clearTimeout(toast._timeout);
+    toast._timeout = setTimeout(() => {
+      toast.classList.remove('show');
+    }, 3500);
+  }
+
+  // --- Windows 11 Right-Click Context Menu ---
+  const contextMenu = document.getElementById('win-context-menu');
+  const desktop = document.querySelector('.desktop');
+
+  if (contextMenu && desktop) {
+    desktop.addEventListener('contextmenu', (e) => {
+      // Don't intercept right click inside windows
+      if (e.target.closest('.os-window')) return;
+      e.preventDefault();
+
+      let x = e.clientX;
+      let y = e.clientY;
+
+      // Keep within viewport
+      const menuWidth = 230;
+      const menuHeight = 220;
+      if (x + menuWidth > window.innerWidth) x = window.innerWidth - menuWidth - 10;
+      if (y + menuHeight > window.innerHeight) y = window.innerHeight - menuHeight - 50;
+
+      contextMenu.style.left = `${x}px`;
+      contextMenu.style.top = `${y}px`;
+      contextMenu.style.display = 'block';
+    });
+
+    document.addEventListener('click', () => {
+      contextMenu.style.display = 'none';
+    });
+  }
+
+  // --- Windows Tray Clock ---
   function updateTrayClock() {
     const timeEl = document.getElementById('tray-time');
     const dateEl = document.getElementById('tray-date');
@@ -32,7 +137,6 @@ document.addEventListener('DOMContentLoaded', () => {
       startMenu.classList.toggle('open', startMenuOpen);
     });
 
-    // Close Start Menu when clicking anywhere else
     document.addEventListener('click', (e) => {
       if (!startMenu.contains(e.target) && !startBtn.contains(e.target)) {
         startMenu.classList.remove('open');
@@ -41,17 +145,13 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // --- Windows Management ---
+  // --- Window Management ---
   document.querySelectorAll('.os-window').forEach((win) => {
     const id = win.id;
     windows[id] = win;
 
-    // Bring to front on click
-    win.addEventListener('mousedown', () => {
-      bringToFront(win);
-    });
+    win.addEventListener('mousedown', () => bringToFront(win));
 
-    // Windows controls (Minimize, Maximize, Close)
     const minBtn = win.querySelector('.win-minimize');
     const maxBtn = win.querySelector('.win-maximize');
     const closeBtn = win.querySelector('.win-close');
@@ -74,7 +174,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const win = windows[id];
     if (!win) return;
 
-    // Close Start Menu if open
     if (startMenu) {
       startMenu.classList.remove('open');
       startMenuOpen = false;
@@ -107,7 +206,7 @@ document.addEventListener('DOMContentLoaded', () => {
     win.classList.toggle('maximized');
   }
 
-  // --- Show Desktop (Peek strip on bottom right) ---
+  // --- Peek at Desktop ---
   const peekBtn = document.getElementById('peek-desktop-btn');
   let desktopHidden = false;
   if (peekBtn) {
@@ -124,7 +223,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // --- Update Taskbar Button Indicators ---
   function updateTaskbarButtons() {
     document.querySelectorAll('.taskbar-btn[data-app]').forEach(btn => {
       const appId = btn.getAttribute('data-app');
@@ -144,7 +242,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // --- Make Draggable ---
+  // --- Draggable Logic ---
   function makeDraggable(win) {
     const header = win.querySelector('.window-header');
     if (!header) return;
@@ -215,14 +313,13 @@ document.addEventListener('DOMContentLoaded', () => {
     header.addEventListener('touchstart', onPointerDown, { passive: false });
   }
 
-  // --- App Launcher Triggers (Desktop Icons, Taskbar, Start Menu) ---
+  // --- App Launcher Triggers ---
   document.querySelectorAll('[data-open-window]').forEach(trigger => {
     trigger.addEventListener('click', (e) => {
       e.preventDefault();
       const targetId = trigger.getAttribute('data-open-window');
       const win = windows[targetId];
 
-      // If clicked from taskbar and already active, minimize it
       if (trigger.classList.contains('taskbar-btn') && win && !win.classList.contains('hidden') && win === activeWindow && !win.classList.contains('minimized')) {
         minimizeWindow(targetId);
       } else {
@@ -231,7 +328,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // --- Initial Positions ---
+  // --- Initial Window Positions ---
   function initWindowPositions() {
     const width = window.innerWidth;
     const height = window.innerHeight;
@@ -239,23 +336,23 @@ document.addEventListener('DOMContentLoaded', () => {
     if (width > 768) {
       const aboutWin = windows['win-about'];
       if (aboutWin) {
-        aboutWin.style.left = `${Math.max(40, Math.floor(width * 0.12))}px`;
+        aboutWin.style.left = `${Math.max(40, Math.floor(width * 0.1))}px`;
         aboutWin.style.top = '60px';
-        aboutWin.style.width = '540px';
+        aboutWin.style.width = '520px';
         aboutWin.style.height = '490px';
       }
 
       const projectsWin = windows['win-projects'];
       if (projectsWin) {
-        projectsWin.style.left = `${Math.max(80, Math.floor(width * 0.4))}px`;
-        projectsWin.style.top = '80px';
+        projectsWin.style.left = `${Math.max(70, Math.floor(width * 0.38))}px`;
+        projectsWin.style.top = '70px';
         projectsWin.style.width = '640px';
         projectsWin.style.height = '520px';
       }
 
       const terminalWin = windows['win-terminal'];
       if (terminalWin) {
-        terminalWin.style.left = `${Math.max(60, Math.floor(width * 0.24))}px`;
+        terminalWin.style.left = `${Math.max(60, Math.floor(width * 0.22))}px`;
         terminalWin.style.top = '140px';
         terminalWin.style.width = '620px';
         terminalWin.style.height = '380px';
@@ -296,7 +393,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   initWindowPositions();
-  // Open About Me by default
   openWindow('win-about');
 
   // --- Project Filtering ---
@@ -316,6 +412,35 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // --- Interactive Stack-to-Project Highlighting ---
+  document.querySelectorAll('.skill-badge').forEach(badge => {
+    badge.style.cursor = 'pointer';
+    badge.title = 'Click to find projects using this tech!';
+    badge.addEventListener('click', () => {
+      const tech = badge.textContent.trim().toLowerCase();
+      openWindow('win-projects');
+
+      // Highlight matching cards
+      let matchCount = 0;
+      document.querySelectorAll('.project-card').forEach(card => {
+        const text = card.textContent.toLowerCase();
+        if (text.includes(tech) || (tech.includes('laravel') && text.includes('laravel')) || (tech.includes('php') && text.includes('php'))) {
+          card.classList.add('glow-pulse');
+          card.style.display = 'flex';
+          matchCount++;
+        } else {
+          card.classList.remove('glow-pulse');
+        }
+      });
+
+      showToast(`Stack Filter: ${badge.textContent}`, `Found ${matchCount} matching project(s) highlighted in File Explorer.`);
+
+      setTimeout(() => {
+        document.querySelectorAll('.project-card').forEach(c => c.classList.remove('glow-pulse'));
+      }, 4000);
+    });
+  });
+
   // --- Windows PowerShell Interactive Terminal ---
   const psInput = document.getElementById('powershell-input');
   const psOutput = document.getElementById('powershell-output');
@@ -327,7 +452,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const commands = {
       help: () => `
 Windows PowerShell Commands:
-  <span class="ps-highlight">dir / ls</span>      - List projects & files
+  <span class="ps-highlight">dir / ls</span>       - List projects & files
+  <span class="ps-highlight">portal</span>        - Fire Interdimensional Portal Gun 🌀
+  <span class="ps-highlight">dimension</span>     - Print current multiverse coordinate
+  <span class="ps-highlight">wubba</span>         - Interdimensional transmission
   <span class="ps-highlight">Get-Bio</span>       - Mwiko Sinyangwe's background
   <span class="ps-highlight">Get-Skills</span>    - Technical stack & proficiencies
   <span class="ps-highlight">sudo hire</span>     - Launch high-priority contact channel
@@ -335,17 +463,38 @@ Windows PowerShell Commands:
   <span class="ps-highlight">ipconfig</span>      - Connection details
   <span class="ps-highlight">cls / clear</span>   - Clear terminal
       `,
+      portal: () => {
+        window.firePortalGun();
+        return '🌀 <span class="ps-highlight">PORTAL FLUID CHARGED:</span> Transporting desktop to next dimension...';
+      },
+      dimension: () => `
+Current Multiverse Coordinates:
+  • <span class="ps-highlight">Dimension</span>: ${dimensions[currentDimIndex].name}
+  • <span class="ps-highlight">Portal Gun Status</span>: 100% Fluid Available
+  • <span class="ps-highlight">Host Engineer</span>: Mwiko Sinyangwe
+      `,
+      wubba: () => `
+🧪 <span class="ps-highlight">"Wubba Lubba Dub Dub!"</span> — Rick Sanchez
+"Sometimes science is more art than science, Morty. A lot of people don't get that."
+      `,
+      wubbalubbadubdub: () => commands.wubba(),
+      rick: () => commands.wubba(),
+      morty: () => `
+Aw jeez, Rick! Are you sure this full-stack portfolio is safe?!
+"Relax, Morty! It's built with Laravel, Tailwind, and React. It's more resilient than the entire Galactic Federation!"
+      `,
       dir: () => `
     Directory: C:\\Users\\Mwiko\\Portfolio
 
 Mode                 LastWriteTime         Length Name
 ----                 -------------         ------ ----
-d-----         2026-10-25  23:30           <DIR>  Projects
--a----         2026-10-25  23:30            4201  About_Me.txt
--a----         2026-10-25  23:30            1337  Stack.json
--a----         2026-10-25  23:30          586664  Resume.pdf
--a----         2026-10-25  23:30           18492  Laragigs.lar
--a----         2026-10-25  23:30           24910  PotBELLY.exe
+d-----         2026-10-25  23:45           <DIR>  Projects
+-a----         2026-10-25  23:45            4201  About_Me.txt
+-a----         2026-10-25  23:45            1337  Stack.json
+-a----         2026-10-25  23:45          586664  Resume.pdf
+-a----         2026-10-25  23:45           18492  Laragigs.lar
+-a----         2026-10-25  23:45           24910  PotBELLY.exe
+-a----         2026-10-25  23:45            9999  Portal_Gun.exe
       `,
       ls: () => commands.dir(),
       'get-bio': () => `
@@ -440,20 +589,21 @@ Ethernet adapter vEthernet (MwikoOS):
       e.preventDefault();
       const submitBtn = contactForm.querySelector('button[type="submit"]');
       if (submitBtn) {
-        submitBtn.textContent = 'Sending...';
+        submitBtn.textContent = 'Transmitting...';
         submitBtn.disabled = true;
       }
 
       setTimeout(() => {
         if (formStatus) {
           formStatus.className = 'form-status success';
-          formStatus.textContent = '✓ Message sent! Mwiko will reply promptly.';
+          formStatus.textContent = '✓ Message transmitted! Mwiko will reply promptly.';
         }
         contactForm.reset();
         if (submitBtn) {
           submitBtn.textContent = 'Sent Successfully';
           submitBtn.disabled = false;
         }
+        showToast('Message Transmitted', 'Your email inquiry has been received by Mwiko.');
       }, 800);
     });
   }
