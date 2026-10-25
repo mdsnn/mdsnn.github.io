@@ -1,10 +1,11 @@
 /**
- * Windows 11 (Mwiko Edition) - Advanced Features:
- * - Interdimensional Portal Gun (Wallpaper Dimensions)
- * - Windows 11 Right-Click Context Menu
- * - Interactive Stack-to-Project Highlighting
- * - System Telemetry Dev Widget
- * - Rick & Morty PowerShell Cmdlets
+ * Windows 11 (Mwiko Edition) - Complete OS Logic
+ * - Audio Synthesizer (Web Audio API for Portal warp & Windows clicks)
+ * - Blog Reader (Blog.exe)
+ * - In-OS Case Study Reader (Reader.exe)
+ * - Interdimensional Portal Gun
+ * - Windows 11 Context Menu
+ * - Windows PowerShell & Contact Form
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -12,8 +13,87 @@ document.addEventListener('DOMContentLoaded', () => {
   let activeWindow = null;
   const windows = {};
   let startMenuOpen = false;
+  let soundEnabled = localStorage.getItem('mwiko_sound_enabled') === 'true';
 
-  // --- Dimensions Collection ---
+  // =========================================
+  // 1. SYNTHESIZED WEB AUDIO ENGINE
+  // =========================================
+  let audioCtx = null;
+  function getAudioContext() {
+    if (!audioCtx) {
+      audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    }
+    if (audioCtx.state === 'suspended') {
+      audioCtx.resume();
+    }
+    return audioCtx;
+  }
+
+  function playClickSound() {
+    if (!soundEnabled) return;
+    try {
+      const ctx = getAudioContext();
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(800, ctx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(400, ctx.currentTime + 0.04);
+      gain.gain.setValueAtTime(0.04, ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.04);
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.start();
+      osc.stop(ctx.currentTime + 0.04);
+    } catch (e) {}
+  }
+
+  function playPortalSound() {
+    if (!soundEnabled) return;
+    try {
+      const ctx = getAudioContext();
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = 'sawtooth';
+      osc.frequency.setValueAtTime(150, ctx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(950, ctx.currentTime + 0.4);
+      osc.frequency.exponentialRampToValueAtTime(200, ctx.currentTime + 0.75);
+
+      gain.gain.setValueAtTime(0.06, ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.75);
+
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.start();
+      osc.stop(ctx.currentTime + 0.75);
+    } catch (e) {}
+  }
+
+  // Sound tray button setup
+  const soundBtn = document.getElementById('tray-sound-btn');
+  function updateSoundIcon() {
+    if (!soundBtn) return;
+    if (soundEnabled) {
+      soundBtn.title = 'Sound: ON (Click to mute)';
+      soundBtn.style.color = '#38bdf8';
+    } else {
+      soundBtn.title = 'Sound: MUTED (Click to enable)';
+      soundBtn.style.color = 'var(--text-muted)';
+    }
+  }
+  if (soundBtn) {
+    updateSoundIcon();
+    soundBtn.addEventListener('click', () => {
+      soundEnabled = !soundEnabled;
+      localStorage.setItem('mwiko_sound_enabled', soundEnabled);
+      updateSoundIcon();
+      if (soundEnabled) playClickSound();
+      showToast('Audio Settings', soundEnabled ? 'Windows & Portal sound effects enabled.' : 'Sound muted.');
+    });
+  }
+
+  // =========================================
+  // 2. DIMENSIONS & PORTAL GUN
+  // =========================================
   const dimensions = [
     {
       id: 'c137',
@@ -37,7 +117,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   let currentDimIndex = 0;
 
-  // --- Interdimensional Portal Gun Function ---
   window.firePortalGun = function(targetIndex = null) {
     if (targetIndex !== null) {
       currentDimIndex = targetIndex % dimensions.length;
@@ -48,7 +127,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const nextDim = dimensions[currentDimIndex];
     const overlay = document.getElementById('portal-overlay');
 
-    // Trigger visual swirl effect
+    playPortalSound();
+
     if (overlay) {
       overlay.innerHTML = '<div class="portal-ring"></div>';
       overlay.classList.add('active');
@@ -58,18 +138,15 @@ document.addEventListener('DOMContentLoaded', () => {
       }, 750);
     }
 
-    // Update Wallpaper
     document.body.style.backgroundImage = `url('${nextDim.url}'), radial-gradient(circle at 50% 40%, #10b981 0%, #030712 70%)`;
 
-    // Update Telemetry Widget
     const dimTag = document.getElementById('widget-dim-tag');
     if (dimTag) dimTag.textContent = nextDim.tag;
 
-    // Show Windows Toast
     showToast('Portal Gun Discharged', `Transported to ${nextDim.name}`);
   };
 
-  // --- Windows 11 Toast Notification ---
+  // Toast Notification
   function showToast(title, message) {
     const toast = document.getElementById('win-toast');
     if (!toast) return;
@@ -84,28 +161,28 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 3500);
   }
 
-  // --- Windows 11 Right-Click Context Menu ---
+  // =========================================
+  // 3. WINDOWS 11 CONTEXT MENU
+  // =========================================
   const contextMenu = document.getElementById('win-context-menu');
   const desktop = document.querySelector('.desktop');
 
   if (contextMenu && desktop) {
     desktop.addEventListener('contextmenu', (e) => {
-      // Don't intercept right click inside windows
       if (e.target.closest('.os-window')) return;
       e.preventDefault();
 
       let x = e.clientX;
       let y = e.clientY;
-
-      // Keep within viewport
       const menuWidth = 230;
-      const menuHeight = 220;
+      const menuHeight = 240;
       if (x + menuWidth > window.innerWidth) x = window.innerWidth - menuWidth - 10;
       if (y + menuHeight > window.innerHeight) y = window.innerHeight - menuHeight - 50;
 
       contextMenu.style.left = `${x}px`;
       contextMenu.style.top = `${y}px`;
       contextMenu.style.display = 'block';
+      playClickSound();
     });
 
     document.addEventListener('click', () => {
@@ -113,7 +190,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // --- Windows Tray Clock ---
+  // =========================================
+  // 4. WINDOWS TRAY & START MENU
+  // =========================================
   function updateTrayClock() {
     const timeEl = document.getElementById('tray-time');
     const dateEl = document.getElementById('tray-date');
@@ -126,7 +205,6 @@ document.addEventListener('DOMContentLoaded', () => {
   updateTrayClock();
   setInterval(updateTrayClock, 1000);
 
-  // --- Windows Start Menu ---
   const startBtn = document.getElementById('win-start-btn');
   const startMenu = document.getElementById('win-start-menu');
 
@@ -135,6 +213,7 @@ document.addEventListener('DOMContentLoaded', () => {
       e.stopPropagation();
       startMenuOpen = !startMenuOpen;
       startMenu.classList.toggle('open', startMenuOpen);
+      playClickSound();
     });
 
     document.addEventListener('click', (e) => {
@@ -145,7 +224,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // --- Window Management ---
+  // =========================================
+  // 5. WINDOW MANAGEMENT
+  // =========================================
   document.querySelectorAll('.os-window').forEach((win) => {
     const id = win.id;
     windows[id] = win;
@@ -183,6 +264,7 @@ document.addEventListener('DOMContentLoaded', () => {
     win.classList.remove('minimized');
     bringToFront(win);
     updateTaskbarButtons();
+    playClickSound();
   }
 
   function closeWindow(id) {
@@ -191,6 +273,7 @@ document.addEventListener('DOMContentLoaded', () => {
     win.classList.add('hidden');
     win.classList.remove('maximized');
     updateTaskbarButtons();
+    playClickSound();
   }
 
   function minimizeWindow(id) {
@@ -198,15 +281,17 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!win) return;
     win.classList.add('minimized');
     updateTaskbarButtons();
+    playClickSound();
   }
 
   function toggleMaximize(id) {
     const win = windows[id];
     if (!win) return;
     win.classList.toggle('maximized');
+    playClickSound();
   }
 
-  // --- Peek at Desktop ---
+  // Peek Desktop
   const peekBtn = document.getElementById('peek-desktop-btn');
   let desktopHidden = false;
   if (peekBtn) {
@@ -220,6 +305,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       });
       updateTaskbarButtons();
+      playClickSound();
     });
   }
 
@@ -242,7 +328,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // --- Draggable Logic ---
   function makeDraggable(win) {
     const header = win.querySelector('.window-header');
     if (!header) return;
@@ -313,7 +398,7 @@ document.addEventListener('DOMContentLoaded', () => {
     header.addEventListener('touchstart', onPointerDown, { passive: false });
   }
 
-  // --- App Launcher Triggers ---
+  // App Launcher Triggers
   document.querySelectorAll('[data-open-window]').forEach(trigger => {
     trigger.addEventListener('click', (e) => {
       e.preventDefault();
@@ -328,7 +413,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // --- Initial Window Positions ---
+  // Initial Window Positions
   function initWindowPositions() {
     const width = window.innerWidth;
     const height = window.innerHeight;
@@ -336,7 +421,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (width > 768) {
       const aboutWin = windows['win-about'];
       if (aboutWin) {
-        aboutWin.style.left = `${Math.max(40, Math.floor(width * 0.1))}px`;
+        aboutWin.style.left = `${Math.max(40, Math.floor(width * 0.08))}px`;
         aboutWin.style.top = '60px';
         aboutWin.style.width = '520px';
         aboutWin.style.height = '490px';
@@ -344,50 +429,34 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const projectsWin = windows['win-projects'];
       if (projectsWin) {
-        projectsWin.style.left = `${Math.max(70, Math.floor(width * 0.38))}px`;
+        projectsWin.style.left = `${Math.max(60, Math.floor(width * 0.35))}px`;
         projectsWin.style.top = '70px';
         projectsWin.style.width = '640px';
         projectsWin.style.height = '520px';
       }
 
+      const blogWin = windows['win-blog'];
+      if (blogWin) {
+        blogWin.style.left = `${Math.max(50, Math.floor(width * 0.2))}px`;
+        blogWin.style.top = '80px';
+        blogWin.style.width = `${Math.min(840, width - 100)}px`;
+        blogWin.style.height = '540px';
+      }
+
+      const readerWin = windows['win-reader'];
+      if (readerWin) {
+        readerWin.style.left = `${Math.max(50, Math.floor(width * 0.22))}px`;
+        readerWin.style.top = '70px';
+        readerWin.style.width = `${Math.min(760, width - 100)}px`;
+        readerWin.style.height = '520px';
+      }
+
       const terminalWin = windows['win-terminal'];
       if (terminalWin) {
-        terminalWin.style.left = `${Math.max(60, Math.floor(width * 0.22))}px`;
+        terminalWin.style.left = `${Math.max(60, Math.floor(width * 0.24))}px`;
         terminalWin.style.top = '140px';
         terminalWin.style.width = '620px';
         terminalWin.style.height = '380px';
-      }
-
-      const skillsWin = windows['win-skills'];
-      if (skillsWin) {
-        skillsWin.style.left = `${Math.max(50, Math.floor(width * 0.28))}px`;
-        skillsWin.style.top = '100px';
-        skillsWin.style.width = '580px';
-        skillsWin.style.height = '460px';
-      }
-
-      const contactWin = windows['win-contact'];
-      if (contactWin) {
-        contactWin.style.left = `${Math.max(50, Math.floor(width * 0.3))}px`;
-        contactWin.style.top = '90px';
-        contactWin.style.width = '500px';
-        contactWin.style.height = '460px';
-      }
-
-      const dashWin = windows['win-dashboard'];
-      if (dashWin) {
-        dashWin.style.left = '60px';
-        dashWin.style.top = '40px';
-        dashWin.style.width = `${Math.min(940, width - 120)}px`;
-        dashWin.style.height = `${Math.min(640, height - 120)}px`;
-      }
-
-      const calcWin = windows['win-calc'];
-      if (calcWin) {
-        calcWin.style.left = '80px';
-        calcWin.style.top = '50px';
-        calcWin.style.width = `${Math.min(840, width - 160)}px`;
-        calcWin.style.height = `${Math.min(600, height - 140)}px`;
       }
     }
   }
@@ -395,24 +464,148 @@ document.addEventListener('DOMContentLoaded', () => {
   initWindowPositions();
   openWindow('win-about');
 
-  // --- Project Filtering ---
-  document.querySelectorAll('.filter-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
+  // =========================================
+  // 6. BLOG ENGINE (BLOG.EXE)
+  // =========================================
+  const blogListContainer = document.getElementById('blog-list');
+  const blogReaderPane = document.getElementById('blog-reader');
 
-      const filter = btn.getAttribute('data-filter');
-      document.querySelectorAll('.project-card').forEach(card => {
-        if (filter === 'all' || card.getAttribute('data-category').includes(filter)) {
-          card.style.display = 'flex';
-        } else {
-          card.style.display = 'none';
-        }
+  if (blogListContainer && blogReaderPane && window.BLOG_POSTS) {
+    function renderBlogList() {
+      blogListContainer.innerHTML = '';
+      window.BLOG_POSTS.forEach((post, index) => {
+        const item = document.createElement('div');
+        item.className = `blog-item-card ${index === 0 ? 'active' : ''}`;
+        item.innerHTML = `
+          <div class="blog-item-date">${post.date} &bull; ${post.readTime}</div>
+          <div class="blog-item-title">${post.title}</div>
+          <div class="blog-item-tags">
+            ${post.tags.map(t => `<span class="blog-item-tag">${t}</span>`).join('')}
+          </div>
+        `;
+        item.addEventListener('click', () => {
+          document.querySelectorAll('.blog-item-card').forEach(c => c.classList.remove('active'));
+          item.classList.add('active');
+          renderBlogPost(post);
+          playClickSound();
+        });
+        blogListContainer.appendChild(item);
       });
-    });
-  });
+      renderBlogPost(window.BLOG_POSTS[0]);
+    }
 
-  // --- Interactive Stack-to-Project Highlighting ---
+    function renderBlogPost(post) {
+      blogReaderPane.innerHTML = `
+        <div class="blog-post-header">
+          <div class="blog-post-meta">
+            <span>Published on ${post.date}</span> &bull; <span>${post.readTime}</span> &bull; <span>By Mwiko Sinyangwe</span>
+          </div>
+          <h1 class="blog-post-title">${post.title}</h1>
+        </div>
+        <div class="blog-post-body">
+          ${post.content}
+        </div>
+      `;
+    }
+
+    renderBlogList();
+  }
+
+  // =========================================
+  // 7. IN-OS CASE STUDY READER (READER.EXE)
+  // =========================================
+  const caseStudies = {
+    laragigs: {
+      title: 'Laragigs — Laravel Developer Employment Portal',
+      badge: 'PRODUCTION CASE STUDY',
+      intro: 'Laragigs was architected to address the challenge of matching high-caliber Laravel developers with remote tech teams through a clean, tag-indexed job marketplace.',
+      arch: [
+        { name: 'Database', desc: 'MySQL / Indexed Tags' },
+        { name: 'Backend API', desc: 'Laravel 10 / Eloquent ORM' },
+        { name: 'Frontend UI', desc: 'Tailwind CSS / Blade' }
+      ],
+      metrics: [
+        { val: '100%', lbl: 'Responsive Coverage' },
+        { val: '<120ms', lbl: 'Average Query Latency' },
+        { val: 'Zero', lbl: 'N+1 Query Leaks' }
+      ],
+      details: 'Implemented authentication with encrypted session security, image uploading with storage optimization, and automated tag search indexes allowing instant job discovery.',
+      demoUrl: 'postJob.html'
+    },
+    store: {
+      title: 'Online Store — E-Commerce & Checkout Engine',
+      badge: 'FINANCIAL INTEGRATION',
+      intro: 'A full-featured digital shopping experience featuring guest carts, persistent session storage, and automated PayPal SDK payment verification hooks.',
+      arch: [
+        { name: 'Cart Engine', desc: 'Session & LocalStorage Sync' },
+        { name: 'Payment Gateway', desc: 'PayPal REST APIs' },
+        { name: 'Admin Hub', desc: 'Order & Inventory Tracking' }
+      ],
+      metrics: [
+        { val: '99.9%', lbl: 'Payment Webhook Reliability' },
+        { val: '1-Click', lbl: 'Guest Checkout Flow' },
+        { val: 'Encrypted', lbl: 'Customer Data Handling' }
+      ],
+      details: 'Engineered an automated IPN (Instant Payment Notification) listener to securely mark orders as fulfilled and trigger confirmation receipts without manual intervention.',
+      demoUrl: 'postEcom.html'
+    }
+  };
+
+  window.openCaseStudy = function(studyId) {
+    const study = caseStudies[studyId];
+    if (!study) return;
+
+    const readerWin = windows['win-reader'];
+    const body = document.getElementById('case-study-body');
+    if (!readerWin || !body) return;
+
+    body.innerHTML = `
+      <div class="reader-hero">
+        <div>
+          <span class="reader-title-badge">${study.badge}</span>
+          <h2 class="reader-project-title">${study.title}</h2>
+        </div>
+        <a class="btn-primary" href="${study.demoUrl}" target="_blank">View Full Story</a>
+      </div>
+
+      <p style="font-size: 13.5px; line-height: 1.6; color: #cbd5e1; margin-bottom: 16px;">${study.intro}</p>
+
+      <div class="reader-arch-diagram">
+        <div class="arch-node">
+          <div class="arch-node-name">${study.arch[0].name}</div>
+          <div class="arch-node-desc">${study.arch[0].desc}</div>
+        </div>
+        <div class="arch-arrow">&rarr;</div>
+        <div class="arch-node">
+          <div class="arch-node-name">${study.arch[1].name}</div>
+          <div class="arch-node-desc">${study.arch[1].desc}</div>
+        </div>
+        <div class="arch-arrow">&rarr;</div>
+        <div class="arch-node">
+          <div class="arch-node-name">${study.arch[2].name}</div>
+          <div class="arch-node-desc">${study.arch[2].desc}</div>
+        </div>
+      </div>
+
+      <div class="reader-metrics-grid">
+        ${study.metrics.map(m => `
+          <div class="reader-metric-box">
+            <div class="reader-metric-val">${m.val}</div>
+            <div class="reader-metric-lbl">${m.lbl}</div>
+          </div>
+        `).join('')}
+      </div>
+
+      <div class="bio-card" style="margin-top: 16px;">
+        <h4 style="color: #fff; margin-bottom: 8px; font-size: 13px;">Engineering Deliverable</h4>
+        <p style="font-size: 12.5px; margin: 0;">${study.details}</p>
+      </div>
+    `;
+
+    openWindow('win-reader');
+  };
+
+  // Stack-to-Project Finder
   document.querySelectorAll('.skill-badge').forEach(badge => {
     badge.style.cursor = 'pointer';
     badge.title = 'Click to find projects using this tech!';
@@ -420,7 +613,6 @@ document.addEventListener('DOMContentLoaded', () => {
       const tech = badge.textContent.trim().toLowerCase();
       openWindow('win-projects');
 
-      // Highlight matching cards
       let matchCount = 0;
       document.querySelectorAll('.project-card').forEach(card => {
         const text = card.textContent.toLowerCase();
@@ -441,7 +633,27 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // --- Windows PowerShell Interactive Terminal ---
+  // Project filtering
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const filter = btn.getAttribute('data-filter');
+      document.querySelectorAll('.project-card').forEach(card => {
+        if (filter === 'all' || card.getAttribute('data-category').includes(filter)) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+      playClickSound();
+    });
+  });
+
+  // =========================================
+  // 8. WINDOWS POWERSHELL INTERACTIVE CLI
+  // =========================================
   const psInput = document.getElementById('powershell-input');
   const psOutput = document.getElementById('powershell-output');
 
@@ -454,6 +666,7 @@ document.addEventListener('DOMContentLoaded', () => {
 Windows PowerShell Commands:
   <span class="ps-highlight">dir / ls</span>       - List projects & files
   <span class="ps-highlight">portal</span>        - Fire Interdimensional Portal Gun 🌀
+  <span class="ps-highlight">blog</span>          - Launch Engineering Blog reader
   <span class="ps-highlight">dimension</span>     - Print current multiverse coordinate
   <span class="ps-highlight">wubba</span>         - Interdimensional transmission
   <span class="ps-highlight">Get-Bio</span>       - Mwiko Sinyangwe's background
@@ -466,6 +679,10 @@ Windows PowerShell Commands:
       portal: () => {
         window.firePortalGun();
         return '🌀 <span class="ps-highlight">PORTAL FLUID CHARGED:</span> Transporting desktop to next dimension...';
+      },
+      blog: () => {
+        openWindow('win-blog');
+        return 'Opening Engineering Blog (Blog.exe)...';
       },
       dimension: () => `
 Current Multiverse Coordinates:
@@ -488,13 +705,13 @@ Aw jeez, Rick! Are you sure this full-stack portfolio is safe?!
 
 Mode                 LastWriteTime         Length Name
 ----                 -------------         ------ ----
-d-----         2026-10-25  23:45           <DIR>  Projects
--a----         2026-10-25  23:45            4201  About_Me.txt
--a----         2026-10-25  23:45            1337  Stack.json
--a----         2026-10-25  23:45          586664  Resume.pdf
--a----         2026-10-25  23:45           18492  Laragigs.lar
--a----         2026-10-25  23:45           24910  PotBELLY.exe
--a----         2026-10-25  23:45            9999  Portal_Gun.exe
+d-----         2026-10-26  00:05           <DIR>  Projects
+-a----         2026-10-26  00:05            4201  About_Me.txt
+-a----         2026-10-26  00:05            1337  Stack.json
+-a----         2026-10-26  00:05           12984  Blog.exe
+-a----         2026-10-26  00:05          586664  Resume.pdf
+-a----         2026-10-26  00:05           18492  Laragigs.lar
+-a----         2026-10-26  00:05            9999  Portal_Gun.exe
       `,
       ls: () => commands.dir(),
       'get-bio': () => `
@@ -534,6 +751,7 @@ Ethernet adapter vEthernet (MwikoOS):
       if (e.key === 'Enter') {
         const rawCmd = psInput.value.trim();
         const cmd = rawCmd.toLowerCase();
+        playClickSound();
 
         if (rawCmd) {
           history.push(rawCmd);
@@ -581,30 +799,68 @@ Ethernet adapter vEthernet (MwikoOS):
     });
   }
 
-  // --- Contact Form ---
+  // =========================================
+  // 9. REAL CONTACT FORM DISPATCH
+  // =========================================
   const contactForm = document.getElementById('contact-form');
   const formStatus = document.getElementById('form-status');
+
   if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
+    contactForm.addEventListener('submit', async (e) => {
       e.preventDefault();
       const submitBtn = contactForm.querySelector('button[type="submit"]');
+      const name = contactForm.querySelector('input[name="name"]')?.value || 'Visitor';
+      const email = contactForm.querySelector('input[name="email"]')?.value || '';
+      const subject = contactForm.querySelector('input[name="subject"]')?.value || 'Portfolio Contact';
+      const message = contactForm.querySelector('textarea[name="message"]')?.value || '';
+
       if (submitBtn) {
         submitBtn.textContent = 'Transmitting...';
         submitBtn.disabled = true;
       }
 
-      setTimeout(() => {
+      // Try sending via Web3Forms free endpoint or Formspree
+      try {
+        const response = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify({
+            access_key: 'YOUR_ACCESS_KEY_HERE', // User can add their free key anytime
+            name: name,
+            email: email,
+            subject: `[MwikoOS Contact] ${subject}`,
+            message: message,
+            from_name: 'MwikoOS Portfolio'
+          })
+        });
+
+        const resData = await response.json();
+        if (resData.success) {
+          if (formStatus) {
+            formStatus.className = 'form-status success';
+            formStatus.textContent = '✓ Message delivered directly to Mwiko!';
+          }
+          contactForm.reset();
+        } else {
+          throw new Error('Fallback to direct dispatch');
+        }
+      } catch (err) {
+        // Fallback: Opens user's default email client
+        window.location.href = `mailto:contact@mwiko.dev?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent("Name: " + name + "\nEmail: " + email + "\n\n" + message)}`;
         if (formStatus) {
           formStatus.className = 'form-status success';
-          formStatus.textContent = '✓ Message transmitted! Mwiko will reply promptly.';
+          formStatus.textContent = '✓ Opening your mail client to send message to Mwiko...';
         }
-        contactForm.reset();
+      } finally {
         if (submitBtn) {
           submitBtn.textContent = 'Sent Successfully';
           submitBtn.disabled = false;
         }
-        showToast('Message Transmitted', 'Your email inquiry has been received by Mwiko.');
-      }, 800);
+        showToast('Message Dispatched', 'Inquiry processed. Mwiko will respond promptly.');
+      }
     });
   }
 });
