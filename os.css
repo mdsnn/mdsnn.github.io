@@ -1314,3 +1314,243 @@ html, body {
   transform: translateY(-4px) scale(1.02);
 }
 
+/* =========================================
+   BLOG APP (BLOG.EXE / DEV NOTES)
+   ========================================= */
+.blog-layout {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  background: rgba(18, 20, 28, 0.9);
+}
+
+.blog-sidebar {
+  width: 290px;
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  overflow-y: auto;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.blog-item-card {
+  padding: 12px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.blog-item-card:hover {
+  background: rgba(0, 120, 212, 0.18);
+  border-color: rgba(0, 120, 212, 0.4);
+}
+
+.blog-item-card.active {
+  background: rgba(0, 120, 212, 0.28);
+  border-color: var(--win-accent-light);
+}
+
+.blog-item-date {
+  font-size: 11px;
+  color: #94a3b8;
+  font-family: var(--font-mono);
+  margin-bottom: 4px;
+}
+
+.blog-item-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: #fff;
+  line-height: 1.35;
+  margin-bottom: 6px;
+}
+
+.blog-item-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.blog-item-tag {
+  font-size: 10px;
+  font-family: var(--font-mono);
+  background: rgba(255, 255, 255, 0.08);
+  padding: 1px 5px;
+  border-radius: 3px;
+  color: #cbd5e1;
+}
+
+.blog-reader-pane {
+  flex: 1;
+  overflow-y: auto;
+  padding: 28px 34px;
+  line-height: 1.7;
+  color: #e2e8f0;
+}
+
+.blog-post-header {
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.blog-post-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 12px;
+  color: #94a3b8;
+  margin-bottom: 8px;
+  font-family: var(--font-mono);
+}
+
+.blog-post-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.3;
+}
+
+.blog-reader-pane h3 {
+  font-size: 17px;
+  font-weight: 600;
+  color: #38bdf8;
+  margin-top: 24px;
+  margin-bottom: 10px;
+}
+
+.blog-reader-pane p {
+  margin-bottom: 14px;
+  font-size: 13.5px;
+}
+
+.blog-reader-pane ul {
+  padding-left: 20px;
+  margin-bottom: 16px;
+  font-size: 13.5px;
+}
+
+.blog-reader-pane li {
+  margin-bottom: 6px;
+}
+
+.blog-reader-pane blockquote {
+  border-left: 3px solid #38bdf8;
+  background: rgba(56, 189, 248, 0.08);
+  padding: 10px 16px;
+  border-radius: 0 6px 6px 0;
+  font-style: italic;
+  margin: 18px 0;
+}
+
+.blog-reader-pane pre {
+  background: #0b0f19;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 14px;
+  overflow-x: auto;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  margin: 16px 0;
+  color: #38bdf8;
+}
+
+/* =========================================
+   IN-OS CASE STUDY READER (READER.EXE)
+   ========================================= */
+.reader-hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.reader-title-badge {
+  font-size: 11px;
+  font-family: var(--font-mono);
+  color: #10b981;
+  background: rgba(16, 185, 129, 0.12);
+  padding: 3px 8px;
+  border-radius: 4px;
+  display: inline-block;
+  margin-bottom: 6px;
+}
+
+.reader-project-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.reader-arch-diagram {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  padding: 16px;
+  margin: 20px 0;
+}
+
+.arch-node {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 6px;
+  padding: 10px;
+  text-align: center;
+}
+
+.arch-node-name {
+  font-size: 12px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.arch-node-desc {
+  font-size: 10.5px;
+  color: #94a3b8;
+  margin-top: 3px;
+}
+
+.arch-arrow {
+  color: #38bdf8;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.reader-metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin: 20px 0;
+}
+
+.reader-metric-box {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  padding: 12px;
+  text-align: center;
+}
+
+.reader-metric-val {
+  font-size: 20px;
+  font-weight: 700;
+  color: #38bdf8;
+}
+
+.reader-metric-lbl {
+  font-size: 11px;
+  color: #94a3b8;
+  margin-top: 3px;
+}
+
+
