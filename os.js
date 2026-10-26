@@ -266,6 +266,10 @@ document.addEventListener('DOMContentLoaded', () => {
     updateTaskbarButtons();
     playClickSound();
   }
+  // Expose window management globally so inline onclick handlers in dynamic HTML work
+  window.openWindow = openWindow;
+  window.closeWindow = closeWindow;
+  window.minimizeWindow = minimizeWindow;
 
   function closeWindow(id) {
     const win = windows[id];
