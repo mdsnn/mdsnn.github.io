@@ -495,10 +495,23 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function renderBlogPost(post) {
+      const shareUrl = `${window.location.origin}${window.location.pathname}?blog=${post.id}`;
       blogReaderPane.innerHTML = `
         <div class="blog-post-header">
-          <div class="blog-post-meta">
-            <span>Published on ${post.date}</span> &bull; <span>${post.readTime}</span> &bull; <span>By Mwiko Sinyangwe</span>
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px;">
+            <div class="blog-post-meta" style="margin: 0;">
+              <span>Published on ${post.date}</span> &bull; <span>${post.readTime}</span> &bull; <span>By Mwiko Sinyangwe</span>
+            </div>
+            <div style="display: flex; gap: 8px;">
+              <button class="btn-secondary" style="padding: 5px 10px; font-size: 11px;" onclick="window.copyBlogLink('${post.id}')" title="Copy shareable link to this article">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+                <span>Share Link</span>
+              </button>
+              <button class="btn-secondary" style="padding: 5px 10px; font-size: 11px;" onclick="window.switchAcrobatDoc('tall'); openWindow('win-resume');" title="Open in Adobe Acrobat Reader">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="#ED1C24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg>
+                <span>View in Acrobat</span>
+              </button>
+            </div>
           </div>
           <h1 class="blog-post-title">${post.title}</h1>
         </div>
@@ -508,7 +521,38 @@ document.addEventListener('DOMContentLoaded', () => {
       `;
     }
 
+    window.copyBlogLink = function(blogId) {
+      const shareUrl = `${window.location.origin}${window.location.pathname}?blog=${blogId}`;
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(shareUrl).then(() => {
+          showToast('Share Link Copied', `Link copied: ${shareUrl}`);
+        });
+      } else {
+        prompt('Copy this shareable link:', shareUrl);
+      }
+      playClickSound();
+    };
+
     renderBlogList();
+
+    // Check if user arrived via a shared blog link (e.g. ?blog=tall-stack-2026)
+    function checkUrlBlogRouting() {
+      const params = new URLSearchParams(window.location.search);
+      const blogId = params.get('blog') || (window.location.hash.startsWith('#blog/') ? window.location.hash.replace('#blog/', '') : null);
+      if (blogId && window.BLOG_POSTS) {
+        const post = window.BLOG_POSTS.find(p => p.id === blogId);
+        if (post) {
+          openWindow('win-blog');
+          renderBlogPost(post);
+          document.querySelectorAll('.blog-item-card').forEach((card, idx) => {
+            card.classList.toggle('active', window.BLOG_POSTS[idx].id === blogId);
+          });
+          document.title = `${post.title} | Mwiko Sinyangwe`;
+          showToast('Article Loaded', `Opened "${post.title}"`);
+        }
+      }
+    }
+    checkUrlBlogRouting();
   }
 
   // =========================================
